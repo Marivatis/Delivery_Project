@@ -175,7 +175,7 @@
             labelMyProfileTitle.AutoSize = true;
             labelMyProfileTitle.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             labelMyProfileTitle.ForeColor = Color.White;
-            labelMyProfileTitle.Location = new Point(80, 35);
+            labelMyProfileTitle.Location = new Point(90, 35);
             labelMyProfileTitle.Name = "labelMyProfileTitle";
             labelMyProfileTitle.Size = new Size(151, 37);
             labelMyProfileTitle.TabIndex = 37;

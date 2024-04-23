@@ -142,7 +142,7 @@
             buttonEdit1.FlatStyle = FlatStyle.Flat;
             buttonEdit1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonEdit1.ForeColor = Color.White;
-            buttonEdit1.Location = new Point(224, 97);
+            buttonEdit1.Location = new Point(224, 94);
             buttonEdit1.Name = "buttonEdit1";
             buttonEdit1.Size = new Size(66, 36);
             buttonEdit1.TabIndex = 27;
