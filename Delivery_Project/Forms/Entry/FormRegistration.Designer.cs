@@ -40,7 +40,9 @@
             // 
             // buttonRegister
             // 
+            buttonRegister.FlatStyle = FlatStyle.Flat;
             buttonRegister.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonRegister.ForeColor = Color.White;
             buttonRegister.Location = new Point(40, 373);
             buttonRegister.Name = "buttonRegister";
             buttonRegister.Size = new Size(250, 40);
