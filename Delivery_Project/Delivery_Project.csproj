@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <Folder Include="Forms\Courier\" />
-    <Folder Include="Forms\Customer\" />
     <Folder Include="Forms\Provider\" />
   </ItemGroup>
 
