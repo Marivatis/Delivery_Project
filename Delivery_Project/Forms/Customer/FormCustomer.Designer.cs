@@ -93,7 +93,7 @@
             buttonAddToCart.FlatStyle = FlatStyle.Flat;
             buttonAddToCart.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonAddToCart.ForeColor = Color.White;
-            buttonAddToCart.Location = new Point(793, 494);
+            buttonAddToCart.Location = new Point(801, 494);
             buttonAddToCart.Name = "buttonAddToCart";
             buttonAddToCart.Size = new Size(187, 34);
             buttonAddToCart.TabIndex = 23;
@@ -154,7 +154,7 @@
             dataGridView1.Location = new Point(280, 191);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(700, 297);
+            dataGridView1.Size = new Size(708, 297);
             dataGridView1.TabIndex = 17;
             // 
             // Product
@@ -238,7 +238,7 @@
             comboBox1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             comboBox1.ForeColor = Color.White;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(771, 39);
+            comboBox1.Location = new Point(779, 39);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(209, 33);
             comboBox1.TabIndex = 31;
@@ -272,7 +272,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(992, 542);
+            ClientSize = new Size(1000, 550);
             Controls.Add(label6);
             Controls.Add(label1);
             Controls.Add(comboBox1);

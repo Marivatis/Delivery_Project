@@ -47,7 +47,7 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(224, 362);
+            button1.Location = new Point(225, 388);
             button1.Name = "button1";
             button1.Size = new Size(66, 36);
             button1.TabIndex = 48;
@@ -60,7 +60,7 @@
             textBoxCardNumber.BorderStyle = BorderStyle.FixedSingle;
             textBoxCardNumber.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxCardNumber.ForeColor = Color.White;
-            textBoxCardNumber.Location = new Point(40, 404);
+            textBoxCardNumber.Location = new Point(41, 430);
             textBoxCardNumber.Name = "textBoxCardNumber";
             textBoxCardNumber.Size = new Size(250, 33);
             textBoxCardNumber.TabIndex = 47;
@@ -71,7 +71,7 @@
             buttonEdit2.FlatStyle = FlatStyle.Flat;
             buttonEdit2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonEdit2.ForeColor = Color.White;
-            buttonEdit2.Location = new Point(224, 263);
+            buttonEdit2.Location = new Point(225, 289);
             buttonEdit2.Name = "buttonEdit2";
             buttonEdit2.Size = new Size(66, 36);
             buttonEdit2.TabIndex = 46;
@@ -83,7 +83,7 @@
             buttonEdit1.FlatStyle = FlatStyle.Flat;
             buttonEdit1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonEdit1.ForeColor = Color.White;
-            buttonEdit1.Location = new Point(224, 94);
+            buttonEdit1.Location = new Point(225, 119);
             buttonEdit1.Name = "buttonEdit1";
             buttonEdit1.Size = new Size(66, 36);
             buttonEdit1.TabIndex = 45;
@@ -95,7 +95,7 @@
             labelCardNumber.AutoSize = true;
             labelCardNumber.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelCardNumber.ForeColor = Color.White;
-            labelCardNumber.Location = new Point(40, 371);
+            labelCardNumber.Location = new Point(41, 397);
             labelCardNumber.Name = "labelCardNumber";
             labelCardNumber.Size = new Size(148, 30);
             labelCardNumber.TabIndex = 44;
@@ -106,7 +106,7 @@
             labelPassword.AutoSize = true;
             labelPassword.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelPassword.ForeColor = Color.White;
-            labelPassword.Location = new Point(40, 272);
+            labelPassword.Location = new Point(41, 298);
             labelPassword.Name = "labelPassword";
             labelPassword.Size = new Size(111, 30);
             labelPassword.TabIndex = 43;
@@ -118,7 +118,7 @@
             textBoxPassword.BorderStyle = BorderStyle.FixedSingle;
             textBoxPassword.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxPassword.ForeColor = Color.White;
-            textBoxPassword.Location = new Point(40, 305);
+            textBoxPassword.Location = new Point(41, 331);
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.Size = new Size(250, 33);
             textBoxPassword.TabIndex = 42;
@@ -129,7 +129,7 @@
             labelPhoneNumber.AutoSize = true;
             labelPhoneNumber.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelPhoneNumber.ForeColor = Color.White;
-            labelPhoneNumber.Location = new Point(40, 172);
+            labelPhoneNumber.Location = new Point(41, 198);
             labelPhoneNumber.Name = "labelPhoneNumber";
             labelPhoneNumber.Size = new Size(166, 30);
             labelPhoneNumber.TabIndex = 41;
@@ -141,7 +141,7 @@
             textBoxPhoneNumber.BorderStyle = BorderStyle.FixedSingle;
             textBoxPhoneNumber.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxPhoneNumber.ForeColor = Color.White;
-            textBoxPhoneNumber.Location = new Point(40, 205);
+            textBoxPhoneNumber.Location = new Point(41, 231);
             textBoxPhoneNumber.Name = "textBoxPhoneNumber";
             textBoxPhoneNumber.Size = new Size(250, 33);
             textBoxPhoneNumber.TabIndex = 40;
@@ -152,7 +152,7 @@
             labelLogin.AutoSize = true;
             labelLogin.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelLogin.ForeColor = Color.White;
-            labelLogin.Location = new Point(40, 103);
+            labelLogin.Location = new Point(41, 128);
             labelLogin.Name = "labelLogin";
             labelLogin.Size = new Size(75, 30);
             labelLogin.TabIndex = 39;
@@ -164,7 +164,7 @@
             textBoxLogin.BorderStyle = BorderStyle.FixedSingle;
             textBoxLogin.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxLogin.ForeColor = Color.White;
-            textBoxLogin.Location = new Point(41, 136);
+            textBoxLogin.Location = new Point(41, 161);
             textBoxLogin.Name = "textBoxLogin";
             textBoxLogin.Size = new Size(250, 33);
             textBoxLogin.TabIndex = 38;
@@ -185,7 +185,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(330, 460);
+            ClientSize = new Size(330, 550);
             Controls.Add(button1);
             Controls.Add(textBoxCardNumber);
             Controls.Add(buttonEdit2);

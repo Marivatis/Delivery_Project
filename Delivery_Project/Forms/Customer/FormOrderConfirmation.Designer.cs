@@ -59,7 +59,7 @@
             listBoxCart.ItemHeight = 21;
             listBoxCart.Location = new Point(40, 278);
             listBoxCart.Name = "listBoxCart";
-            listBoxCart.Size = new Size(250, 109);
+            listBoxCart.Size = new Size(250, 130);
             listBoxCart.TabIndex = 21;
             // 
             // labelOrderDetails
@@ -124,7 +124,7 @@
             buttonOrder.FlatStyle = FlatStyle.Flat;
             buttonOrder.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonOrder.ForeColor = Color.White;
-            buttonOrder.Location = new Point(40, 454);
+            buttonOrder.Location = new Point(40, 488);
             buttonOrder.Name = "buttonOrder";
             buttonOrder.Size = new Size(250, 34);
             buttonOrder.TabIndex = 40;
@@ -136,7 +136,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = SystemColors.Control;
-            label4.Location = new Point(40, 390);
+            label4.Location = new Point(40, 411);
             label4.MaximumSize = new Size(400, 50);
             label4.Name = "label4";
             label4.Size = new Size(165, 25);
@@ -147,7 +147,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(330, 500);
+            ClientSize = new Size(330, 550);
             Controls.Add(label4);
             Controls.Add(buttonOrder);
             Controls.Add(textBoxAddress);
