@@ -36,6 +36,7 @@
             buttonEnter = new Button();
             label1 = new Label();
             labelSignUp = new Label();
+            labelMessage = new Label();
             SuspendLayout();
             // 
             // textBoxLogin
@@ -44,11 +45,13 @@
             textBoxLogin.BorderStyle = BorderStyle.FixedSingle;
             textBoxLogin.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxLogin.ForeColor = Color.White;
-            textBoxLogin.Location = new Point(40, 147);
+            textBoxLogin.Location = new Point(40, 179);
             textBoxLogin.Name = "textBoxLogin";
             textBoxLogin.Size = new Size(250, 33);
-            textBoxLogin.TabIndex = 6;
+            textBoxLogin.TabIndex = 7;
             textBoxLogin.Text = "Enter your login";
+            textBoxLogin.Enter += textBoxLogin_Enter;
+            textBoxLogin.Leave += textBoxLogin_Leave;
             // 
             // textBoxPassword
             // 
@@ -56,18 +59,20 @@
             textBoxPassword.BorderStyle = BorderStyle.FixedSingle;
             textBoxPassword.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxPassword.ForeColor = Color.White;
-            textBoxPassword.Location = new Point(40, 217);
+            textBoxPassword.Location = new Point(40, 249);
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.Size = new Size(250, 33);
             textBoxPassword.TabIndex = 7;
             textBoxPassword.Text = "Enter your password";
+            textBoxPassword.Enter += textBoxPassword_Enter;
+            textBoxPassword.Leave += textBoxPassword_Leave;
             // 
             // labelLogin
             // 
             labelLogin.AutoSize = true;
             labelLogin.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelLogin.ForeColor = Color.White;
-            labelLogin.Location = new Point(40, 114);
+            labelLogin.Location = new Point(40, 145);
             labelLogin.Name = "labelLogin";
             labelLogin.Size = new Size(75, 30);
             labelLogin.TabIndex = 8;
@@ -78,7 +83,7 @@
             labelPassword.AutoSize = true;
             labelPassword.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelPassword.ForeColor = Color.White;
-            labelPassword.Location = new Point(40, 184);
+            labelPassword.Location = new Point(40, 215);
             labelPassword.Name = "labelPassword";
             labelPassword.Size = new Size(111, 30);
             labelPassword.TabIndex = 9;
@@ -106,6 +111,7 @@
             buttonEnter.TabIndex = 11;
             buttonEnter.Text = "Enter";
             buttonEnter.UseVisualStyleBackColor = true;
+            buttonEnter.Click += buttonEnter_Click;
             // 
             // label1
             // 
@@ -129,11 +135,24 @@
             labelSignUp.TabIndex = 14;
             labelSignUp.Text = "Sing Up";
             // 
+            // labelMessage
+            // 
+            labelMessage.AutoSize = true;
+            labelMessage.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            labelMessage.ForeColor = Color.White;
+            labelMessage.Location = new Point(40, 101);
+            labelMessage.Name = "labelMessage";
+            labelMessage.Size = new Size(97, 21);
+            labelMessage.TabIndex = 15;
+            labelMessage.Text = "No message";
+            labelMessage.Visible = false;
+            // 
             // FormLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(330, 440);
+            Controls.Add(labelMessage);
             Controls.Add(labelSignUp);
             Controls.Add(label1);
             Controls.Add(buttonEnter);
@@ -144,6 +163,7 @@
             Controls.Add(textBoxLogin);
             Name = "FormLogin";
             Text = "FormLogin";
+            Load += FormLogin_Load;
             Controls.SetChildIndex(textBoxLogin, 0);
             Controls.SetChildIndex(textBoxPassword, 0);
             Controls.SetChildIndex(labelLogin, 0);
@@ -152,6 +172,7 @@
             Controls.SetChildIndex(buttonEnter, 0);
             Controls.SetChildIndex(label1, 0);
             Controls.SetChildIndex(labelSignUp, 0);
+            Controls.SetChildIndex(labelMessage, 0);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -166,5 +187,6 @@
         private Button buttonEnter;
         private Label label1;
         private Label labelSignUp;
+        private Label labelMessage;
     }
 }
