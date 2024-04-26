@@ -1,5 +1,4 @@
 ﻿using Delivery_Project.DataControl.FormManagement;
-using Delivery_Project.DataControl.Interfaces;
 using Delivery_Project.DataControl.Users;
 using Delivery_Project.Forms.Entry;
 using System;
@@ -19,7 +18,7 @@ namespace Delivery_Project.DataControl.UserManagement
             FormManager.Querry_LoginAttempt += LoginUser;
         }
 
-        public static Type LoggdUser
+        public static Type LoggedUser
         {
             get
             {
@@ -30,13 +29,18 @@ namespace Delivery_Project.DataControl.UserManagement
         private bool LoginUser(string login, string password)
         {
             //MessageBox.Show($"Login: {login}, password: {password}");
-            if (login != "admin" ||  password != "admin")
+            if (login == "cust" ||  password == "cust")
             {
-                return false;
+                _loggedUser = typeof(DeliveryCustomer);
+                return true;
+            }
+            else if (login == "cour" || password == "cour")
+            {
+                _loggedUser = typeof(DeliveryCourier);
+                return true;
             }
 
-            _loggedUser = typeof(DeliveryCustomer);
-            return true;
+            return false;
         }
     }
 }

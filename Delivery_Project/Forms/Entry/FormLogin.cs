@@ -10,17 +10,17 @@ using System.Windows.Forms;
 using Delivery_Project.Forms.CustomBorderCode;
 using Delivery_Project.DataControl.UserManagement;
 using System.Runtime.InteropServices;
-using Delivery_Project.DataControl.Interfaces;
 using Delivery_Project.DataControl.FormManagement;
 
 namespace Delivery_Project.Forms.Entry
 {
     public partial class FormLogin : CustomBorderForm
     {
+        public Action? ShowRegistrationForm;
+
         public event Func<string, string, bool>? LoginAtempt;
         public event EventHandler? LoginComplete;
-        public event EventHandler? GotoRegistrationForm;
-
+        
         public FormLogin() : base()
         {
             InitializeComponent();
@@ -96,7 +96,7 @@ namespace Delivery_Project.Forms.Entry
 
         private void labelSignUp_Click(object sender, EventArgs e)
         {
-            GotoRegistrationForm?.Invoke(this, EventArgs.Empty);
+            ShowRegistrationForm?.Invoke();
             Close();
         }
     }

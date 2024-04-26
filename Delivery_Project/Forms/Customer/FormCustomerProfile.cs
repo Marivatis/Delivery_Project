@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Delivery_Project.Forms.Courier;
 using Delivery_Project.Forms.CustomBorderCode;
 
 namespace Delivery_Project.Forms.Customer
 {
     public partial class FormCustomerProfile : CustomBorderForm
     {
+        private FormCourierRegisteration formCourierRegisteration;
         private Point parentLocation;
 
         public FormCustomerProfile(Point formLocation) : base()
@@ -25,6 +27,25 @@ namespace Delivery_Project.Forms.Customer
         private void FormCustomerProfile_Load(object sender, EventArgs e)
         {
             Location = parentLocation;
+        }
+
+        private void labelBecomeCourier_Click(object sender, EventArgs e)
+        {
+            formCourierRegisteration = new FormCourierRegisteration();
+            formCourierRegisteration.FormClosed += Enable;
+
+            Enabled = false;
+            formCourierRegisteration.Show();
+        }
+
+        private void Enable(object? sender, FormClosedEventArgs e)
+        {
+            Enabled = true;
+        }
+
+        private void labelBecomeProvider_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

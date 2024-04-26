@@ -1,5 +1,4 @@
-﻿using Delivery_Project.DataControl.Interfaces;
-using Delivery_Project.DataControl.UserManagement;
+﻿using Delivery_Project.DataControl.UserManagement;
 using Delivery_Project.DataControl.Users;
 using Delivery_Project.Forms.Courier;
 using Delivery_Project.Forms.Customer;
@@ -38,7 +37,7 @@ namespace Delivery_Project.DataControl.FormManagement
 
             formLogin.LoginComplete += LoginComplete;
             formLogin.LoginAtempt += Querry_LoginAttempt.Invoke;
-            formLogin.GotoRegistrationForm += FormLogin_ShowRegistrationForm;
+            formLogin.ShowRegistrationForm += formRegistration.Show;
 
             formRegistration.LoginComplete += LoginComplete;
         }
@@ -59,19 +58,14 @@ namespace Delivery_Project.DataControl.FormManagement
                 
         private void LoginComplete(object? sender, EventArgs e)
         {
-            if (UserManager.LoggdUser == typeof(DeliveryCustomer))
+            if (UserManager.LoggedUser == typeof(DeliveryCustomer))
             {
                 formCustomer.Show();
             }
-            else if (UserManager.LoggdUser == typeof(DeliveryCourier))
+            else if (UserManager.LoggedUser == typeof(DeliveryCourier))
             {
                 formCourier.Show();
             }
-        }
-
-        private void FormLogin_ShowRegistrationForm(object? sender, EventArgs e)
-        {
-            formRegistration.Show();
         }
 
     }

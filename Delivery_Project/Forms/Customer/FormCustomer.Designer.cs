@@ -45,7 +45,7 @@
             panelSeparator1 = new Panel();
             label2 = new Label();
             label5 = new Label();
-            comboBox1 = new ComboBox();
+            comboBoxPlaces = new ComboBox();
             label1 = new Label();
             label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -233,18 +233,18 @@
             label5.TabIndex = 30;
             label5.Text = "Menu:";
             // 
-            // comboBox1
+            // comboBoxPlaces
             // 
-            comboBox1.BackColor = Color.FromArgb(31, 31, 31);
-            comboBox1.FlatStyle = FlatStyle.Flat;
-            comboBox1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            comboBox1.ForeColor = Color.White;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(779, 39);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(209, 33);
-            comboBox1.TabIndex = 31;
-            comboBox1.Text = "Place...";
+            comboBoxPlaces.BackColor = Color.FromArgb(31, 31, 31);
+            comboBoxPlaces.FlatStyle = FlatStyle.Flat;
+            comboBoxPlaces.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            comboBoxPlaces.ForeColor = Color.White;
+            comboBoxPlaces.FormattingEnabled = true;
+            comboBoxPlaces.Location = new Point(779, 39);
+            comboBoxPlaces.Name = "comboBoxPlaces";
+            comboBoxPlaces.Size = new Size(209, 33);
+            comboBoxPlaces.TabIndex = 31;
+            comboBoxPlaces.Text = "Place...";
             // 
             // label1
             // 
@@ -277,7 +277,7 @@
             ClientSize = new Size(1000, 550);
             Controls.Add(label6);
             Controls.Add(label1);
-            Controls.Add(comboBox1);
+            Controls.Add(comboBoxPlaces);
             Controls.Add(buttonAddToCart);
             Controls.Add(label5);
             Controls.Add(label2);
@@ -309,7 +309,7 @@
             Controls.SetChildIndex(label2, 0);
             Controls.SetChildIndex(label5, 0);
             Controls.SetChildIndex(buttonAddToCart, 0);
-            Controls.SetChildIndex(comboBox1, 0);
+            Controls.SetChildIndex(comboBoxPlaces, 0);
             Controls.SetChildIndex(label1, 0);
             Controls.SetChildIndex(label6, 0);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -336,7 +336,7 @@
         private Panel panelSeparator1;
         private Label label2;
         private Label label5;
-        private ComboBox comboBox1;
+        private ComboBox comboBoxPlaces;
         private Label label1;
         private Label label6;
     }

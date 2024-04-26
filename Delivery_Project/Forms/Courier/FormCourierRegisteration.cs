@@ -17,5 +17,10 @@ namespace Delivery_Project.Forms.Courier
         {
             InitializeComponent();
         }
+
+        private void FormCourierRegisteration_Load(object sender, EventArgs e)
+        {
+            CenterToScreen();
+        }
     }
 }

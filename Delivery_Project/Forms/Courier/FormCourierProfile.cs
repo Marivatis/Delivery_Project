@@ -13,9 +13,17 @@ namespace Delivery_Project.Forms.Courier
 {
     public partial class FormCourierProfile : CustomBorderForm
     {
-        public FormCourierProfile() : base()
+        private Point parentLocation;
+
+        public FormCourierProfile(Point formLocation) : base()
         {
             InitializeComponent();
+            parentLocation = formLocation;
+        }
+
+        private void FormCourierProfile_Load(object sender, EventArgs e)
+        {
+            Location = parentLocation;
         }
     }
 }

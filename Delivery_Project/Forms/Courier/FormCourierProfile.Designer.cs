@@ -200,6 +200,7 @@
             Controls.Add(labelMyProfileTitle);
             Name = "FormCourierProfile";
             Text = "FormCourierProfile";
+            Load += FormCourierProfile_Load;
             Controls.SetChildIndex(labelMyProfileTitle, 0);
             Controls.SetChildIndex(textBoxLogin, 0);
             Controls.SetChildIndex(labelLogin, 0);

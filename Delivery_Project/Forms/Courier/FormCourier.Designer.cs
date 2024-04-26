@@ -34,11 +34,14 @@
             listBoxOrderDetails = new ListBox();
             labelAvailableOrders = new Label();
             dataGridView1 = new DataGridView();
-            Earning = new DataGridViewTextBoxColumn();
-            DeliveryTime = new DataGridViewTextBoxColumn();
-            DestinationAdress = new DataGridViewTextBoxColumn();
             buttonOrderDetails = new Button();
             labelTotalWeight = new Label();
+            buttonMyProfile = new Button();
+            comboBoxDeliveryStatus = new ComboBox();
+            Earning = new DataGridViewTextBoxColumn();
+            DeliveryTime = new DataGridViewTextBoxColumn();
+            DestinationAddress = new DataGridViewTextBoxColumn();
+            ProviderAdress = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -47,7 +50,7 @@
             panelSeparator1.BackColor = Color.FromArgb(61, 61, 61);
             panelSeparator1.Location = new Point(261, 27);
             panelSeparator1.Name = "panelSeparator1";
-            panelSeparator1.Size = new Size(1, 422);
+            panelSeparator1.Size = new Size(1, 522);
             panelSeparator1.TabIndex = 32;
             // 
             // buttonTakeOrder
@@ -55,7 +58,7 @@
             buttonTakeOrder.FlatStyle = FlatStyle.Flat;
             buttonTakeOrder.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonTakeOrder.ForeColor = Color.White;
-            buttonTakeOrder.Location = new Point(12, 404);
+            buttonTakeOrder.Location = new Point(12, 504);
             buttonTakeOrder.Name = "buttonTakeOrder";
             buttonTakeOrder.Size = new Size(234, 34);
             buttonTakeOrder.TabIndex = 31;
@@ -99,37 +102,19 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Earning, DeliveryTime, DestinationAdress });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Earning, DeliveryTime, DestinationAddress, ProviderAdress });
             dataGridView1.Location = new Point(268, 66);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(520, 332);
+            dataGridView1.Size = new Size(720, 432);
             dataGridView1.TabIndex = 34;
-            // 
-            // Earning
-            // 
-            Earning.HeaderText = "Earning";
-            Earning.Name = "Earning";
-            Earning.ReadOnly = true;
-            // 
-            // DeliveryTime
-            // 
-            DeliveryTime.HeaderText = "Delivery time";
-            DeliveryTime.Name = "DeliveryTime";
-            DeliveryTime.ReadOnly = true;
-            // 
-            // DestinationAdress
-            // 
-            DestinationAdress.HeaderText = "Destination adress";
-            DestinationAdress.Name = "DestinationAdress";
-            DestinationAdress.ReadOnly = true;
             // 
             // buttonOrderDetails
             // 
             buttonOrderDetails.FlatStyle = FlatStyle.Flat;
             buttonOrderDetails.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonOrderDetails.ForeColor = Color.White;
-            buttonOrderDetails.Location = new Point(554, 404);
+            buttonOrderDetails.Location = new Point(754, 504);
             buttonOrderDetails.Name = "buttonOrderDetails";
             buttonOrderDetails.Size = new Size(234, 34);
             buttonOrderDetails.TabIndex = 35;
@@ -147,11 +132,64 @@
             labelTotalWeight.TabIndex = 36;
             labelTotalWeight.Text = "Total weight: 2@";
             // 
+            // buttonMyProfile
+            // 
+            buttonMyProfile.FlatAppearance.BorderSize = 0;
+            buttonMyProfile.FlatStyle = FlatStyle.Flat;
+            buttonMyProfile.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonMyProfile.ForeColor = Color.White;
+            buttonMyProfile.Location = new Point(1, 1);
+            buttonMyProfile.Name = "buttonMyProfile";
+            buttonMyProfile.Size = new Size(75, 25);
+            buttonMyProfile.TabIndex = 37;
+            buttonMyProfile.Text = "My Profile";
+            buttonMyProfile.UseVisualStyleBackColor = true;
+            buttonMyProfile.Click += buttonMyProfile_Click;
+            // 
+            // comboBoxDeliveryStatus
+            // 
+            comboBoxDeliveryStatus.BackColor = Color.FromArgb(31, 31, 31);
+            comboBoxDeliveryStatus.FlatStyle = FlatStyle.Flat;
+            comboBoxDeliveryStatus.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            comboBoxDeliveryStatus.ForeColor = Color.White;
+            comboBoxDeliveryStatus.FormattingEnabled = true;
+            comboBoxDeliveryStatus.Location = new Point(12, 465);
+            comboBoxDeliveryStatus.Name = "comboBoxDeliveryStatus";
+            comboBoxDeliveryStatus.Size = new Size(234, 33);
+            comboBoxDeliveryStatus.TabIndex = 38;
+            comboBoxDeliveryStatus.Text = "Delivery status...";
+            comboBoxDeliveryStatus.Visible = false;
+            // 
+            // Earning
+            // 
+            Earning.HeaderText = "Earning";
+            Earning.Name = "Earning";
+            Earning.ReadOnly = true;
+            // 
+            // DeliveryTime
+            // 
+            DeliveryTime.HeaderText = "Delivery time";
+            DeliveryTime.Name = "DeliveryTime";
+            DeliveryTime.ReadOnly = true;
+            // 
+            // DestinationAddress
+            // 
+            DestinationAddress.HeaderText = "Destination address";
+            DestinationAddress.Name = "DestinationAddress";
+            DestinationAddress.ReadOnly = true;
+            // 
+            // ProviderAdress
+            // 
+            ProviderAdress.HeaderText = "Provider address";
+            ProviderAdress.Name = "ProviderAdress";
+            // 
             // FormCourier
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1000, 550);
+            Controls.Add(comboBoxDeliveryStatus);
+            Controls.Add(buttonMyProfile);
             Controls.Add(labelTotalWeight);
             Controls.Add(buttonOrderDetails);
             Controls.Add(dataGridView1);
@@ -162,6 +200,7 @@
             Controls.Add(listBoxOrderDetails);
             Name = "FormCourier";
             Text = "FormCourierMain";
+            Load += FormCourier_Load;
             Controls.SetChildIndex(listBoxOrderDetails, 0);
             Controls.SetChildIndex(labelOrderDetails, 0);
             Controls.SetChildIndex(buttonTakeOrder, 0);
@@ -170,6 +209,8 @@
             Controls.SetChildIndex(dataGridView1, 0);
             Controls.SetChildIndex(buttonOrderDetails, 0);
             Controls.SetChildIndex(labelTotalWeight, 0);
+            Controls.SetChildIndex(buttonMyProfile, 0);
+            Controls.SetChildIndex(comboBoxDeliveryStatus, 0);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -183,10 +224,13 @@
         private ListBox listBoxOrderDetails;
         private Label labelAvailableOrders;
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn Earning;
-        private DataGridViewTextBoxColumn DeliveryTime;
-        private DataGridViewTextBoxColumn DestinationAdress;
         private Button buttonOrderDetails;
         private Label labelTotalWeight;
+        private Button buttonMyProfile;
+        private ComboBox comboBoxDeliveryStatus;
+        private DataGridViewTextBoxColumn Earning;
+        private DataGridViewTextBoxColumn DeliveryTime;
+        private DataGridViewTextBoxColumn DestinationAddress;
+        private DataGridViewTextBoxColumn ProviderAdress;
     }
 }
