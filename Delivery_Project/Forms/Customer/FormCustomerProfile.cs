@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Delivery_Project.Forms.Courier;
+using Delivery_Project.Forms.Provider;
 using Delivery_Project.Forms.Templates;
 
 namespace Delivery_Project.Forms.Customer
@@ -15,6 +16,7 @@ namespace Delivery_Project.Forms.Customer
     public partial class FormCustomerProfile : CustomBorderForm
     {
         private FormCourierRegisteration formCourierRegisteration;
+        private FormProviderRegistration formProviderRegistration;
         private Point parentLocation;
 
         public FormCustomerProfile(Point formLocation) : base()
@@ -45,12 +47,11 @@ namespace Delivery_Project.Forms.Customer
 
         private void labelBecomeProvider_Click(object sender, EventArgs e)
         {
+            formProviderRegistration = new FormProviderRegistration();
+            formProviderRegistration.FormClosed += Enable;
 
-        }
-
-        private void labelBecome1_Click(object sender, EventArgs e)
-        {
-
+            Enabled = false;
+            formProviderRegistration.Show();
         }
     }
 }

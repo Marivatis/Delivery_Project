@@ -17,5 +17,10 @@ namespace Delivery_Project.Forms.Provider
         {
             InitializeComponent();
         }
+
+        private void FormProviderRegistration_Load(object sender, EventArgs e)
+        {
+            CenterToScreen();
+        }
     }
 }

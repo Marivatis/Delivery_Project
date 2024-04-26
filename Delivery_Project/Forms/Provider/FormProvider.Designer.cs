@@ -33,6 +33,9 @@
             label3 = new Label();
             labelPlaceName = new Label();
             dataGridView1 = new DataGridView();
+            ProductName = new DataGridViewTextBoxColumn();
+            ProductPrice = new DataGridViewTextBoxColumn();
+            ProductDescription = new DataGridViewTextBoxColumn();
             panelSeparator1 = new Panel();
             labelProductName = new Label();
             textBoxLogin = new TextBox();
@@ -41,16 +44,11 @@
             textBoxProductPrice = new TextBox();
             labelProductDescription = new Label();
             textBoxProductDescription = new TextBox();
-            ProductName = new DataGridViewTextBoxColumn();
-            ProductPrice = new DataGridViewTextBoxColumn();
-            ProductDescription = new DataGridViewTextBoxColumn();
             buttonChooseProduct = new Button();
             buttonRemove = new Button();
             buttonApply = new Button();
             buttonAddProduct = new Button();
-            buttonAddPlace = new Button();
             buttonEditPlace = new Button();
-            comboBoxPlaces = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -112,6 +110,24 @@
             dataGridView1.Size = new Size(708, 306);
             dataGridView1.TabIndex = 31;
             // 
+            // ProductName
+            // 
+            ProductName.HeaderText = "Product";
+            ProductName.Name = "ProductName";
+            ProductName.ReadOnly = true;
+            // 
+            // ProductPrice
+            // 
+            ProductPrice.HeaderText = "Price";
+            ProductPrice.Name = "ProductPrice";
+            ProductPrice.ReadOnly = true;
+            // 
+            // ProductDescription
+            // 
+            ProductDescription.HeaderText = "Description";
+            ProductDescription.Name = "ProductDescription";
+            ProductDescription.ReadOnly = true;
+            // 
             // panelSeparator1
             // 
             panelSeparator1.BackColor = Color.FromArgb(61, 61, 61);
@@ -155,6 +171,7 @@
             buttonMyProfile.TabIndex = 39;
             buttonMyProfile.Text = "My Profile";
             buttonMyProfile.UseVisualStyleBackColor = true;
+            buttonMyProfile.Click += buttonMyProfile_Click;
             // 
             // labelProductPrice
             // 
@@ -201,24 +218,6 @@
             textBoxProductDescription.Size = new Size(234, 33);
             textBoxProductDescription.TabIndex = 42;
             textBoxProductDescription.Text = "Enter product description";
-            // 
-            // ProductName
-            // 
-            ProductName.HeaderText = "Product";
-            ProductName.Name = "ProductName";
-            ProductName.ReadOnly = true;
-            // 
-            // ProductPrice
-            // 
-            ProductPrice.HeaderText = "Price";
-            ProductPrice.Name = "ProductPrice";
-            ProductPrice.ReadOnly = true;
-            // 
-            // ProductDescription
-            // 
-            ProductDescription.HeaderText = "Description";
-            ProductDescription.Name = "ProductDescription";
-            ProductDescription.ReadOnly = true;
             // 
             // buttonChooseProduct
             // 
@@ -268,51 +267,25 @@
             buttonAddProduct.Text = "Add new product";
             buttonAddProduct.UseVisualStyleBackColor = true;
             // 
-            // buttonAddPlace
-            // 
-            buttonAddPlace.FlatStyle = FlatStyle.Flat;
-            buttonAddPlace.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonAddPlace.ForeColor = Color.White;
-            buttonAddPlace.Location = new Point(12, 35);
-            buttonAddPlace.Name = "buttonAddPlace";
-            buttonAddPlace.Size = new Size(234, 34);
-            buttonAddPlace.TabIndex = 48;
-            buttonAddPlace.Text = "Add new place";
-            buttonAddPlace.UseVisualStyleBackColor = true;
-            // 
             // buttonEditPlace
             // 
             buttonEditPlace.FlatStyle = FlatStyle.Flat;
             buttonEditPlace.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonEditPlace.ForeColor = Color.White;
-            buttonEditPlace.Location = new Point(12, 75);
+            buttonEditPlace.Location = new Point(12, 38);
             buttonEditPlace.Name = "buttonEditPlace";
             buttonEditPlace.Size = new Size(234, 34);
             buttonEditPlace.TabIndex = 49;
             buttonEditPlace.Text = "Edit place";
             buttonEditPlace.UseVisualStyleBackColor = true;
-            // 
-            // comboBoxPlaces
-            // 
-            comboBoxPlaces.BackColor = Color.FromArgb(31, 31, 31);
-            comboBoxPlaces.FlatStyle = FlatStyle.Flat;
-            comboBoxPlaces.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            comboBoxPlaces.ForeColor = Color.White;
-            comboBoxPlaces.FormattingEnabled = true;
-            comboBoxPlaces.Location = new Point(754, 38);
-            comboBoxPlaces.Name = "comboBoxPlaces";
-            comboBoxPlaces.Size = new Size(234, 33);
-            comboBoxPlaces.TabIndex = 50;
-            comboBoxPlaces.Text = "Place...";
+            buttonEditPlace.Click += buttonEditPlace_Click;
             // 
             // FormProvider
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1000, 550);
-            Controls.Add(comboBoxPlaces);
             Controls.Add(buttonEditPlace);
-            Controls.Add(buttonAddPlace);
             Controls.Add(buttonAddProduct);
             Controls.Add(buttonApply);
             Controls.Add(buttonRemove);
@@ -349,9 +322,7 @@
             Controls.SetChildIndex(buttonRemove, 0);
             Controls.SetChildIndex(buttonApply, 0);
             Controls.SetChildIndex(buttonAddProduct, 0);
-            Controls.SetChildIndex(buttonAddPlace, 0);
             Controls.SetChildIndex(buttonEditPlace, 0);
-            Controls.SetChildIndex(comboBoxPlaces, 0);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -379,8 +350,6 @@
         private Button buttonRemove;
         private Button buttonApply;
         private Button buttonAddProduct;
-        private Button buttonAddPlace;
         private Button buttonEditPlace;
-        private ComboBox comboBoxPlaces;
     }
 }

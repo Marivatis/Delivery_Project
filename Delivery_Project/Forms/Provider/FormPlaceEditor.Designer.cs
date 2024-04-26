@@ -158,6 +158,7 @@
             Controls.Add(richTextBox1);
             Name = "FormPlaceEditor";
             Text = "FormPlaceEditor";
+            Load += FormPlaceEditor_Load;
             Controls.SetChildIndex(richTextBox1, 0);
             Controls.SetChildIndex(textBoxPlacename, 0);
             Controls.SetChildIndex(labelPlaceName, 0);

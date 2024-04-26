@@ -159,7 +159,6 @@
             labelBecome1.Size = new Size(66, 21);
             labelBecome1.TabIndex = 30;
             labelBecome1.Text = "Become";
-            labelBecome1.Click += labelBecome1_Click;
             // 
             // labelBecome2
             // 

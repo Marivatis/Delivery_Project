@@ -118,6 +118,7 @@
             Controls.Add(labelRegistration);
             Name = "FormProviderRegistration";
             Text = "FormProviderRegistration";
+            Load += FormProviderRegistration_Load;
             Controls.SetChildIndex(labelRegistration, 0);
             Controls.SetChildIndex(buttonRegister, 0);
             Controls.SetChildIndex(textBoxPhoneNumber, 0);

@@ -11,16 +11,20 @@ using Delivery_Project.Forms.Templates;
 
 namespace Delivery_Project.Forms.Provider
 {
-    public partial class FormPlaceEditor : CustomBorderForm
+    public partial class FormProviderProfile : CustomBorderForm
     {
-        public FormPlaceEditor() : base()
+        private Point parentLocation;
+
+        public FormProviderProfile(Point formLocation) : base()
         {
             InitializeComponent();
+
+            parentLocation = formLocation;
         }
 
-        private void FormPlaceEditor_Load(object sender, EventArgs e)
+        private void FormProviderProfile_Load(object sender, EventArgs e)
         {
-            CenterToScreen();
+            Location = parentLocation;
         }
     }
 }
