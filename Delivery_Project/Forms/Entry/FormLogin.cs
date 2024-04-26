@@ -17,7 +17,9 @@ namespace Delivery_Project.Forms.Entry
 {
     public partial class FormLogin : CustomBorderForm
     {
-        public event Func<string, string, bool> LoginAtempt;
+        public event Func<string, string, bool>? LoginAtempt;
+        public event EventHandler? LoginComplete;
+        public event EventHandler? GotoRegistrationForm;
 
         public FormLogin() : base()
         {
@@ -64,7 +66,7 @@ namespace Delivery_Project.Forms.Entry
         {
             string login = textBoxLogin.Text;
             string password = textBoxPassword.Text;
-            
+
             if (login == "Enter your login" || password == "Enter your password")
             {
                 labelMessage.Text = "Login or password is incorrect";
@@ -76,9 +78,26 @@ namespace Delivery_Project.Forms.Entry
 
             if (isLogined)
             {
-                labelMessage.Text = "Win!";
+                labelMessage.Text = "Logged in!";
+                labelMessage.Visible = true;
+                LoginComplete?.Invoke(this, EventArgs.Empty);
+            }
+            else
+            {
+                labelMessage.Text = "Login or password is incorrect";
                 labelMessage.Visible = true;
             }
+        }
+
+        private void FormLogin_LoginComplete(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void labelSignUp_Click(object sender, EventArgs e)
+        {
+            GotoRegistrationForm?.Invoke(this, EventArgs.Empty);
+            Close();
         }
     }
 }

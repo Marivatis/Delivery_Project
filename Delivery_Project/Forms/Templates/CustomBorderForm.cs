@@ -24,6 +24,7 @@ namespace Delivery_Project.Forms.CustomBorderCode
         protected event EventHandler TopMenuPanelColorChanged;
         protected event EventHandler PanelSeparatorColorChanged;
 
+        public static event EventHandler FormClosed;
 
         protected CustomBorderForm()
         {
@@ -172,6 +173,7 @@ namespace Delivery_Project.Forms.CustomBorderCode
         private void buttonClose_Click(object sender, EventArgs e)
         {
             Close();
+            FormClosed?.Invoke(this, EventArgs.Empty);
         }
     }
 }

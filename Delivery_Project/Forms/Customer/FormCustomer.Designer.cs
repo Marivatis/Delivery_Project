@@ -292,6 +292,7 @@
             Controls.Add(buttonMyProfile);
             Name = "FormCustomer";
             Text = "FormCustomer";
+            Load += FormCustomer_Load;
             Controls.SetChildIndex(buttonMyProfile, 0);
             Controls.SetChildIndex(dataGridView1, 0);
             Controls.SetChildIndex(labelPlaceName, 0);

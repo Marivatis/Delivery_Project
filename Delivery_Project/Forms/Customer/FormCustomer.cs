@@ -17,5 +17,10 @@ namespace Delivery_Project.Forms.Customer
         {
             InitializeComponent();
         }
+
+        private void FormCustomer_Load(object sender, EventArgs e)
+        {
+            CenterToScreen();
+        }
     }
 }

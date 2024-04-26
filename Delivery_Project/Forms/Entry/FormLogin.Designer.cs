@@ -34,7 +34,7 @@
             labelPassword = new Label();
             labelLoginMain = new Label();
             buttonEnter = new Button();
-            label1 = new Label();
+            labelText1 = new Label();
             labelSignUp = new Label();
             labelMessage = new Label();
             SuspendLayout();
@@ -48,7 +48,7 @@
             textBoxLogin.Location = new Point(40, 179);
             textBoxLogin.Name = "textBoxLogin";
             textBoxLogin.Size = new Size(250, 33);
-            textBoxLogin.TabIndex = 7;
+            textBoxLogin.TabIndex = 1;
             textBoxLogin.Text = "Enter your login";
             textBoxLogin.Enter += textBoxLogin_Enter;
             textBoxLogin.Leave += textBoxLogin_Leave;
@@ -62,7 +62,7 @@
             textBoxPassword.Location = new Point(40, 249);
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.Size = new Size(250, 33);
-            textBoxPassword.TabIndex = 7;
+            textBoxPassword.TabIndex = 2;
             textBoxPassword.Text = "Enter your password";
             textBoxPassword.Enter += textBoxPassword_Enter;
             textBoxPassword.Leave += textBoxPassword_Leave;
@@ -75,7 +75,7 @@
             labelLogin.Location = new Point(40, 145);
             labelLogin.Name = "labelLogin";
             labelLogin.Size = new Size(75, 30);
-            labelLogin.TabIndex = 8;
+            labelLogin.TabIndex = 0;
             labelLogin.Text = "Login:";
             // 
             // labelPassword
@@ -86,7 +86,7 @@
             labelPassword.Location = new Point(40, 215);
             labelPassword.Name = "labelPassword";
             labelPassword.Size = new Size(111, 30);
-            labelPassword.TabIndex = 9;
+            labelPassword.TabIndex = 0;
             labelPassword.Text = "Password:";
             // 
             // labelLoginMain
@@ -97,7 +97,7 @@
             labelLoginMain.Location = new Point(117, 35);
             labelLoginMain.Name = "labelLoginMain";
             labelLoginMain.Size = new Size(97, 37);
-            labelLoginMain.TabIndex = 10;
+            labelLoginMain.TabIndex = 0;
             labelLoginMain.Text = "Log In";
             // 
             // buttonEnter
@@ -108,21 +108,21 @@
             buttonEnter.Location = new Point(40, 320);
             buttonEnter.Name = "buttonEnter";
             buttonEnter.Size = new Size(250, 40);
-            buttonEnter.TabIndex = 11;
+            buttonEnter.TabIndex = 3;
             buttonEnter.Text = "Enter";
             buttonEnter.UseVisualStyleBackColor = true;
             buttonEnter.Click += buttonEnter_Click;
             // 
-            // label1
+            // labelText1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(78, 368);
-            label1.Name = "label1";
-            label1.Size = new Size(179, 21);
-            label1.TabIndex = 12;
-            label1.Text = "Don`t have an accaunt?";
+            labelText1.AutoSize = true;
+            labelText1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            labelText1.ForeColor = Color.White;
+            labelText1.Location = new Point(78, 368);
+            labelText1.Name = "labelText1";
+            labelText1.Size = new Size(179, 21);
+            labelText1.TabIndex = 0;
+            labelText1.Text = "Don`t have an accaunt?";
             // 
             // labelSignUp
             // 
@@ -132,8 +132,9 @@
             labelSignUp.Location = new Point(129, 389);
             labelSignUp.Name = "labelSignUp";
             labelSignUp.Size = new Size(68, 21);
-            labelSignUp.TabIndex = 14;
+            labelSignUp.TabIndex = 4;
             labelSignUp.Text = "Sing Up";
+            labelSignUp.Click += labelSignUp_Click;
             // 
             // labelMessage
             // 
@@ -143,7 +144,7 @@
             labelMessage.Location = new Point(40, 101);
             labelMessage.Name = "labelMessage";
             labelMessage.Size = new Size(97, 21);
-            labelMessage.TabIndex = 15;
+            labelMessage.TabIndex = 0;
             labelMessage.Text = "No message";
             labelMessage.Visible = false;
             // 
@@ -154,7 +155,7 @@
             ClientSize = new Size(330, 440);
             Controls.Add(labelMessage);
             Controls.Add(labelSignUp);
-            Controls.Add(label1);
+            Controls.Add(labelText1);
             Controls.Add(buttonEnter);
             Controls.Add(labelLoginMain);
             Controls.Add(labelPassword);
@@ -164,13 +165,14 @@
             Name = "FormLogin";
             Text = "FormLogin";
             Load += FormLogin_Load;
+            LoginComplete += FormLogin_LoginComplete;
             Controls.SetChildIndex(textBoxLogin, 0);
             Controls.SetChildIndex(textBoxPassword, 0);
             Controls.SetChildIndex(labelLogin, 0);
             Controls.SetChildIndex(labelPassword, 0);
             Controls.SetChildIndex(labelLoginMain, 0);
             Controls.SetChildIndex(buttonEnter, 0);
-            Controls.SetChildIndex(label1, 0);
+            Controls.SetChildIndex(labelText1, 0);
             Controls.SetChildIndex(labelSignUp, 0);
             Controls.SetChildIndex(labelMessage, 0);
             ResumeLayout(false);
@@ -185,7 +187,7 @@
         private Label labelPassword;
         private Label labelLoginMain;
         private Button buttonEnter;
-        private Label label1;
+        private Label labelText1;
         private Label labelSignUp;
         private Label labelMessage;
     }
