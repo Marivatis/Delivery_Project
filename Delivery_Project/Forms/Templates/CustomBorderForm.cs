@@ -17,14 +17,14 @@ namespace Delivery_Project.Forms.CustomBorderCode
         private Color topMenuPanelColor = Color.FromArgb(31, 31, 31);
         private Color panelSeparatorColor = Color.FromArgb(61, 61, 61);
 
-        protected event EventHandler BorderSizeChanged;
-        protected event EventHandler TopMenuPanelSizeChanged;
-        protected event EventHandler PanelSeparatorSizeChanged;
-        protected event EventHandler BorderColorChanged;
-        protected event EventHandler TopMenuPanelColorChanged;
-        protected event EventHandler PanelSeparatorColorChanged;
+        protected event EventHandler? BorderSizeChanged;
+        protected event EventHandler? TopMenuPanelSizeChanged;
+        protected event EventHandler? PanelSeparatorSizeChanged;
+        protected event EventHandler? BorderColorChanged;
+        protected event EventHandler? TopMenuPanelColorChanged;
+        protected event EventHandler? PanelSeparatorColorChanged;
 
-        public static event EventHandler FormClosed;
+        public static event EventHandler? CustomFormClosed;
 
         protected CustomBorderForm()
         {
@@ -103,7 +103,7 @@ namespace Delivery_Project.Forms.CustomBorderCode
             set
             {
                 panelSeparatorColor = value;
-                PanelSeparatorColorChanged.Invoke(this, EventArgs.Empty);
+                PanelSeparatorColorChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -173,7 +173,7 @@ namespace Delivery_Project.Forms.CustomBorderCode
         private void buttonClose_Click(object sender, EventArgs e)
         {
             Close();
-            FormClosed?.Invoke(this, EventArgs.Empty);
+            CustomFormClosed?.Invoke(this, EventArgs.Empty);
         }
     }
 }

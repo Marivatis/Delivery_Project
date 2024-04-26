@@ -45,6 +45,7 @@ namespace Delivery_Project.Forms.CustomBorderCode
             buttonClose.ForeColor = Color.White;
             buttonClose.FlatStyle = FlatStyle.Flat;
             buttonClose.FlatAppearance.BorderSize = 0;
+            buttonClose.TabStop = false;
             buttonClose.Size = new Size(TopMenuPanelSize, TopMenuPanelSize);
             buttonClose.Location = new Point(panelTopMenu.Width - TopMenuPanelSize, 0);
             buttonClose.Text = "X";

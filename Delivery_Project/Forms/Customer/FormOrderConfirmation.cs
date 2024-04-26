@@ -13,9 +13,18 @@ namespace Delivery_Project.Forms.Customer
 {
     public partial class FormOrderConfirmation : CustomBorderForm
     {
-        public FormOrderConfirmation() : base()
+        private Point parentLocation;
+
+        public FormOrderConfirmation(Point formLocation) : base()
         {
             InitializeComponent();
+
+            parentLocation = formLocation;
+        }
+
+        private void FormOrderConfirmation_Load(object sender, EventArgs e)
+        {
+            Location = parentLocation;
         }
     }
 }

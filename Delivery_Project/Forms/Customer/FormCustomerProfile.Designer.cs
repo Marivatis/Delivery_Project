@@ -252,6 +252,7 @@
             Controls.Add(labelMyProfileTitle);
             Name = "FormCustomerProfile";
             Text = "FormCustomerProfile";
+            Load += FormCustomerProfile_Load;
             Controls.SetChildIndex(labelMyProfileTitle, 0);
             Controls.SetChildIndex(textBoxLogin, 0);
             Controls.SetChildIndex(labelLogin, 0);

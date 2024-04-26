@@ -13,9 +13,18 @@ namespace Delivery_Project.Forms.Customer
 {
     public partial class FormCustomerProfile : CustomBorderForm
     {
-        public FormCustomerProfile() : base()
+        private Point parentLocation;
+
+        public FormCustomerProfile(Point formLocation) : base()
         {
             InitializeComponent();
+
+            parentLocation = formLocation;
+        }
+
+        private void FormCustomerProfile_Load(object sender, EventArgs e)
+        {
+            Location = parentLocation;
         }
     }
 }

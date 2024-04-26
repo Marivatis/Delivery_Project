@@ -34,11 +34,11 @@ namespace Delivery_Project.DataControl.FormManagement
             formCustomer = new FormCustomer();
             formCourier = new FormCourier();
 
-            CustomBorderForm.FormClosed += CustomBorderForm_FormClosed;
+            CustomBorderForm.CustomFormClosed += CustomBorderForm_FormClosed;
 
             formLogin.LoginComplete += LoginComplete;
             formLogin.LoginAtempt += Querry_LoginAttempt.Invoke;
-            formLogin.GotoRegistrationForm += FormLogin_GotoRegistrationForm;
+            formLogin.GotoRegistrationForm += FormLogin_ShowRegistrationForm;
 
             formRegistration.LoginComplete += LoginComplete;
         }
@@ -69,7 +69,7 @@ namespace Delivery_Project.DataControl.FormManagement
             }
         }
 
-        private void FormLogin_GotoRegistrationForm(object? sender, EventArgs e)
+        private void FormLogin_ShowRegistrationForm(object? sender, EventArgs e)
         {
             formRegistration.Show();
         }

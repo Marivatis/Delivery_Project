@@ -63,6 +63,7 @@
             buttonMyProfile.TabIndex = 6;
             buttonMyProfile.Text = "My Profile";
             buttonMyProfile.UseVisualStyleBackColor = true;
+            buttonMyProfile.Click += buttonMyProfile_Click;
             // 
             // label4
             // 
@@ -186,6 +187,7 @@
             buttonOrder.TabIndex = 26;
             buttonOrder.Text = "Order";
             buttonOrder.UseVisualStyleBackColor = true;
+            buttonOrder.Click += buttonOrder_Click;
             // 
             // buttonAdd
             // 

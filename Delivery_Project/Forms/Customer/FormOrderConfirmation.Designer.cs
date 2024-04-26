@@ -159,6 +159,7 @@
             Controls.Add(listBoxCart);
             Name = "FormOrderConfirmation";
             Text = "FormOrderConfirmation";
+            Load += FormOrderConfirmation_Load;
             Controls.SetChildIndex(listBoxCart, 0);
             Controls.SetChildIndex(labelCart, 0);
             Controls.SetChildIndex(labelOrderDetails, 0);
