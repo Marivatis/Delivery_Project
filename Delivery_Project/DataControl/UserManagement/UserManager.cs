@@ -29,14 +29,19 @@ namespace Delivery_Project.DataControl.UserManagement
         private bool LoginUser(string login, string password)
         {
             //MessageBox.Show($"Login: {login}, password: {password}");
-            if (login == "cust" ||  password == "cust")
+            if (login == "cust" &&  password == "cust")
             {
                 _loggedUser = typeof(DeliveryCustomer);
                 return true;
             }
-            else if (login == "cour" || password == "cour")
+            else if (login == "cour" && password == "cour")
             {
                 _loggedUser = typeof(DeliveryCourier);
+                return true;
+            }
+            else if (login == "prov" && password == "prov")
+            {
+                _loggedUser = typeof(DeliveryProvider);
                 return true;
             }
 

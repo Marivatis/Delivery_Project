@@ -94,9 +94,9 @@
             buttonAddToCart.FlatStyle = FlatStyle.Flat;
             buttonAddToCart.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonAddToCart.ForeColor = Color.White;
-            buttonAddToCart.Location = new Point(801, 494);
+            buttonAddToCart.Location = new Point(754, 494);
             buttonAddToCart.Name = "buttonAddToCart";
-            buttonAddToCart.Size = new Size(187, 34);
+            buttonAddToCart.Size = new Size(234, 34);
             buttonAddToCart.TabIndex = 23;
             buttonAddToCart.Text = "Add to cart";
             buttonAddToCart.UseVisualStyleBackColor = true;
@@ -142,7 +142,7 @@
             labelPlaceName.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             labelPlaceName.ForeColor = SystemColors.Control;
             labelPlaceName.Location = new Point(280, 36);
-            labelPlaceName.MaximumSize = new Size(500, 32);
+            labelPlaceName.MaximumSize = new Size(430, 32);
             labelPlaceName.Name = "labelPlaceName";
             labelPlaceName.Size = new Size(144, 32);
             labelPlaceName.TabIndex = 18;
@@ -206,7 +206,7 @@
             panelSeparator1.BackColor = Color.FromArgb(61, 61, 61);
             panelSeparator1.Location = new Point(262, 26);
             panelSeparator1.Name = "panelSeparator1";
-            panelSeparator1.Size = new Size(1, 550);
+            panelSeparator1.Size = new Size(1, 522);
             panelSeparator1.TabIndex = 28;
             // 
             // label2
@@ -215,7 +215,7 @@
             label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = SystemColors.Control;
             label2.Location = new Point(280, 68);
-            label2.MaximumSize = new Size(500, 25);
+            label2.MaximumSize = new Size(430, 25);
             label2.Name = "label2";
             label2.Size = new Size(131, 25);
             label2.TabIndex = 29;
@@ -224,12 +224,12 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = SystemColors.Control;
-            label5.Location = new Point(280, 163);
+            label5.Location = new Point(280, 157);
             label5.MaximumSize = new Size(400, 50);
             label5.Name = "label5";
-            label5.Size = new Size(69, 25);
+            label5.Size = new Size(76, 30);
             label5.TabIndex = 30;
             label5.Text = "Menu:";
             // 
@@ -240,9 +240,9 @@
             comboBoxPlaces.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             comboBoxPlaces.ForeColor = Color.White;
             comboBoxPlaces.FormattingEnabled = true;
-            comboBoxPlaces.Location = new Point(779, 39);
+            comboBoxPlaces.Location = new Point(754, 39);
             comboBoxPlaces.Name = "comboBoxPlaces";
-            comboBoxPlaces.Size = new Size(209, 33);
+            comboBoxPlaces.Size = new Size(234, 33);
             comboBoxPlaces.TabIndex = 31;
             comboBoxPlaces.Text = "Place...";
             // 

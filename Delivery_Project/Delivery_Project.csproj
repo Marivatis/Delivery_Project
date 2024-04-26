@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <Folder Include="DataControl\Interfaces\" />
-    <Folder Include="Forms\Provider\" />
   </ItemGroup>
 
 </Project>

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Delivery_Project.Forms.CustomBorderCode
+namespace Delivery_Project.Forms.Templates
 {
     public partial class CustomBorderForm : Form
     {

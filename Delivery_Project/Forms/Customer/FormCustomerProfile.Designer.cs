@@ -154,11 +154,12 @@
             labelBecome1.AutoSize = true;
             labelBecome1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             labelBecome1.ForeColor = Color.White;
-            labelBecome1.Location = new Point(40, 509);
+            labelBecome1.Location = new Point(38, 509);
             labelBecome1.Name = "labelBecome1";
             labelBecome1.Size = new Size(66, 21);
             labelBecome1.TabIndex = 30;
             labelBecome1.Text = "Become";
+            labelBecome1.Click += labelBecome1_Click;
             // 
             // labelBecome2
             // 
@@ -174,11 +175,11 @@
             // labelBecomeProvider
             // 
             labelBecomeProvider.AutoSize = true;
-            labelBecomeProvider.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelBecomeProvider.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point);
             labelBecomeProvider.ForeColor = Color.White;
             labelBecomeProvider.Location = new Point(196, 509);
             labelBecomeProvider.Name = "labelBecomeProvider";
-            labelBecomeProvider.Size = new Size(88, 21);
+            labelBecomeProvider.Size = new Size(90, 21);
             labelBecomeProvider.TabIndex = 32;
             labelBecomeProvider.Text = "a provider";
             labelBecomeProvider.Click += labelBecomeProvider_Click;
@@ -186,11 +187,11 @@
             // labelBecomeCourier
             // 
             labelBecomeCourier.AutoSize = true;
-            labelBecomeCourier.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelBecomeCourier.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point);
             labelBecomeCourier.ForeColor = Color.White;
-            labelBecomeCourier.Location = new Point(103, 509);
+            labelBecomeCourier.Location = new Point(101, 509);
             labelBecomeCourier.Name = "labelBecomeCourier";
-            labelBecomeCourier.Size = new Size(77, 21);
+            labelBecomeCourier.Size = new Size(79, 21);
             labelBecomeCourier.TabIndex = 33;
             labelBecomeCourier.Text = "a courier";
             labelBecomeCourier.Click += labelBecomeCourier_Click;

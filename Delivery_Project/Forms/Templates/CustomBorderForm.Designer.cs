@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Delivery_Project.Forms.CustomBorderCode
+namespace Delivery_Project.Forms.Templates
 {
     partial class CustomBorderForm
     {

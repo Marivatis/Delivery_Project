@@ -9,18 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Delivery_Project.Forms.Templates;
 
-namespace Delivery_Project.Forms.Courier
+namespace Delivery_Project.Forms.Provider
 {
-    public partial class FormCourierRegisteration : CustomBorderForm
+    public partial class FormPlaceEditor : CustomBorderForm
     {
-        public FormCourierRegisteration() : base()
+        public FormPlaceEditor() : base()
         {
             InitializeComponent();
-        }
-
-        private void FormCourierRegisteration_Load(object sender, EventArgs e)
-        {
-            CenterToScreen();
         }
     }
 }
