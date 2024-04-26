@@ -8,9 +8,18 @@ namespace Delivery_Project.DataControl.Users
 {
     public abstract class DeliveryUser
     {
-        private string _login;
-        private string _password;
-        private string _phoneNumber;
+        protected string _login;
+        protected string _password;
+        protected string _phoneNumber;
+
+        public DeliveryUser() : this("No_login", "No_Password", "No_Phone_Number") { }
+        public DeliveryUser(string login, string password) : this(login, password, "No_Phone_Number") { }
+        public DeliveryUser(string login, string password, string phoneNumber)
+        {
+            _login = login;
+            _password = password;
+            _phoneNumber = phoneNumber;
+        }
 
         public string Login
         {

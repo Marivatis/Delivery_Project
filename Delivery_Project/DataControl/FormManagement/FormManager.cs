@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Http.Headers;
 
 namespace Delivery_Project.DataControl.FormManagement
 {
@@ -21,7 +22,8 @@ namespace Delivery_Project.DataControl.FormManagement
         private FormCourier formCourier;
         private FormProvider formProvider;
 
-        public static event Func<string, string, bool> Querry_LoginAttempt;
+        public static Func<string, string, bool> QuerryRegistration;
+        public static Func<string, string, bool> QuerryLogin;
 
         public FormManager()
         {
@@ -38,11 +40,18 @@ namespace Delivery_Project.DataControl.FormManagement
 
             CustomBorderForm.CustomFormClosed += CustomBorderForm_FormClosed;
 
+            formLogin.LoginUser += QuerryLogin;
             formLogin.LoginComplete += LoginComplete;
-            formLogin.LoginAtempt += Querry_LoginAttempt.Invoke;
             formLogin.ShowRegistrationForm += formRegistration.Show;
 
-            formRegistration.LoginComplete += LoginComplete;
+            FormRegistration.RegistrateCustomer += QuerryRegistration;
+            formRegistration.RegistrationComplete += FormRegistration_RegistrationComplete;
+        }
+
+        private void FormRegistration_RegistrationComplete(object? sender, EventArgs e)
+        {
+            formLogin = new FormLogin();
+            formLogin.Show();
         }
 
         public void Run()

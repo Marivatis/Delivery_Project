@@ -36,6 +36,7 @@
             textBoxPassword = new TextBox();
             label1 = new Label();
             textBoxRepeatPassword = new TextBox();
+            labelMessage = new Label();
             SuspendLayout();
             // 
             // buttonRegister
@@ -56,7 +57,7 @@
             labelLogin.AutoSize = true;
             labelLogin.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelLogin.ForeColor = Color.White;
-            labelLogin.Location = new Point(40, 112);
+            labelLogin.Location = new Point(40, 137);
             labelLogin.Name = "labelLogin";
             labelLogin.Size = new Size(75, 30);
             labelLogin.TabIndex = 13;
@@ -68,11 +69,13 @@
             textBoxLogin.BorderStyle = BorderStyle.FixedSingle;
             textBoxLogin.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxLogin.ForeColor = Color.White;
-            textBoxLogin.Location = new Point(40, 146);
+            textBoxLogin.Location = new Point(40, 171);
             textBoxLogin.Name = "textBoxLogin";
             textBoxLogin.Size = new Size(250, 33);
             textBoxLogin.TabIndex = 1;
             textBoxLogin.Text = "Enter your login";
+            textBoxLogin.Enter += textBoxLogin_Enter;
+            textBoxLogin.Leave += textBoxLogin_Leave;
             // 
             // labelRegistration
             // 
@@ -90,7 +93,7 @@
             labelPassword.AutoSize = true;
             labelPassword.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelPassword.ForeColor = Color.White;
-            labelPassword.Location = new Point(40, 182);
+            labelPassword.Location = new Point(40, 207);
             labelPassword.Name = "labelPassword";
             labelPassword.Size = new Size(111, 30);
             labelPassword.TabIndex = 16;
@@ -102,18 +105,20 @@
             textBoxPassword.BorderStyle = BorderStyle.FixedSingle;
             textBoxPassword.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxPassword.ForeColor = Color.White;
-            textBoxPassword.Location = new Point(40, 216);
+            textBoxPassword.Location = new Point(40, 241);
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.Size = new Size(250, 33);
             textBoxPassword.TabIndex = 2;
             textBoxPassword.Text = "Enter your password";
+            textBoxPassword.Enter += textBoxPassword_Enter;
+            textBoxPassword.Leave += textBoxPassword_Leave;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(40, 252);
+            label1.Location = new Point(40, 277);
             label1.Name = "label1";
             label1.Size = new Size(185, 30);
             label1.TabIndex = 19;
@@ -125,17 +130,32 @@
             textBoxRepeatPassword.BorderStyle = BorderStyle.FixedSingle;
             textBoxRepeatPassword.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxRepeatPassword.ForeColor = Color.White;
-            textBoxRepeatPassword.Location = new Point(40, 286);
+            textBoxRepeatPassword.Location = new Point(40, 311);
             textBoxRepeatPassword.Name = "textBoxRepeatPassword";
             textBoxRepeatPassword.Size = new Size(250, 33);
             textBoxRepeatPassword.TabIndex = 3;
             textBoxRepeatPassword.Text = "Repeat your password";
+            textBoxRepeatPassword.Enter += textBoxRepeatPassword_Enter;
+            textBoxRepeatPassword.Leave += textBoxRepeatPassword_Leave;
+            // 
+            // labelMessage
+            // 
+            labelMessage.AutoSize = true;
+            labelMessage.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            labelMessage.ForeColor = Color.White;
+            labelMessage.Location = new Point(40, 98);
+            labelMessage.Name = "labelMessage";
+            labelMessage.Size = new Size(97, 21);
+            labelMessage.TabIndex = 20;
+            labelMessage.Text = "No message";
+            labelMessage.Visible = false;
             // 
             // FormRegistration
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(330, 440);
+            Controls.Add(labelMessage);
             Controls.Add(label1);
             Controls.Add(textBoxRepeatPassword);
             Controls.Add(labelRegistration);
@@ -155,6 +175,7 @@
             Controls.SetChildIndex(labelRegistration, 0);
             Controls.SetChildIndex(textBoxRepeatPassword, 0);
             Controls.SetChildIndex(label1, 0);
+            Controls.SetChildIndex(labelMessage, 0);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -169,5 +190,6 @@
         private TextBox textBoxPassword;
         private Label label1;
         private TextBox textBoxRepeatPassword;
+        private Label labelMessage;
     }
 }

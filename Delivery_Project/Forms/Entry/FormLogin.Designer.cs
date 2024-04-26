@@ -34,7 +34,7 @@
             labelPassword = new Label();
             labelLoginMain = new Label();
             buttonEnter = new Button();
-            labelText1 = new Label();
+            labelTextAccount = new Label();
             labelSignUp = new Label();
             labelMessage = new Label();
             SuspendLayout();
@@ -113,27 +113,27 @@
             buttonEnter.UseVisualStyleBackColor = true;
             buttonEnter.Click += buttonEnter_Click;
             // 
-            // labelText1
+            // labelTextAccount
             // 
-            labelText1.AutoSize = true;
-            labelText1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            labelText1.ForeColor = Color.White;
-            labelText1.Location = new Point(78, 368);
-            labelText1.Name = "labelText1";
-            labelText1.Size = new Size(179, 21);
-            labelText1.TabIndex = 0;
-            labelText1.Text = "Don`t have an accaunt?";
+            labelTextAccount.AutoSize = true;
+            labelTextAccount.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            labelTextAccount.ForeColor = Color.White;
+            labelTextAccount.Location = new Point(78, 368);
+            labelTextAccount.Name = "labelTextAccount";
+            labelTextAccount.Size = new Size(179, 21);
+            labelTextAccount.TabIndex = 0;
+            labelTextAccount.Text = "Don`t have an account?";
             // 
             // labelSignUp
             // 
             labelSignUp.AutoSize = true;
-            labelSignUp.Font = new Font("Segoe UI", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            labelSignUp.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point);
             labelSignUp.ForeColor = Color.White;
-            labelSignUp.Location = new Point(129, 389);
+            labelSignUp.Location = new Point(126, 389);
             labelSignUp.Name = "labelSignUp";
-            labelSignUp.Size = new Size(68, 21);
+            labelSignUp.Size = new Size(70, 21);
             labelSignUp.TabIndex = 4;
-            labelSignUp.Text = "Sing Up";
+            labelSignUp.Text = "Sign Up";
             labelSignUp.Click += labelSignUp_Click;
             // 
             // labelMessage
@@ -155,7 +155,7 @@
             ClientSize = new Size(330, 440);
             Controls.Add(labelMessage);
             Controls.Add(labelSignUp);
-            Controls.Add(labelText1);
+            Controls.Add(labelTextAccount);
             Controls.Add(buttonEnter);
             Controls.Add(labelLoginMain);
             Controls.Add(labelPassword);
@@ -165,14 +165,13 @@
             Name = "FormLogin";
             Text = "FormLogin";
             Load += FormLogin_Load;
-            LoginComplete += FormLogin_LoginComplete;
             Controls.SetChildIndex(textBoxLogin, 0);
             Controls.SetChildIndex(textBoxPassword, 0);
             Controls.SetChildIndex(labelLogin, 0);
             Controls.SetChildIndex(labelPassword, 0);
             Controls.SetChildIndex(labelLoginMain, 0);
             Controls.SetChildIndex(buttonEnter, 0);
-            Controls.SetChildIndex(labelText1, 0);
+            Controls.SetChildIndex(labelTextAccount, 0);
             Controls.SetChildIndex(labelSignUp, 0);
             Controls.SetChildIndex(labelMessage, 0);
             ResumeLayout(false);
@@ -187,7 +186,7 @@
         private Label labelPassword;
         private Label labelLoginMain;
         private Button buttonEnter;
-        private Label labelText1;
+        private Label labelTextAccount;
         private Label labelSignUp;
         private Label labelMessage;
     }

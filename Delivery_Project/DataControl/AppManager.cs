@@ -1,4 +1,5 @@
-﻿using Delivery_Project.DataControl.FormManagement;
+﻿using Delivery_Project.DataControl.DataManagement;
+using Delivery_Project.DataControl.FormManagement;
 using Delivery_Project.DataControl.UserManagement;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Delivery_Project.DataControl
     {
         private FormManager formManager;
         private UserManager userManager;
+        private DataManager dataManager;
 
         public AppManager() 
         {
@@ -20,6 +22,7 @@ namespace Delivery_Project.DataControl
 
         private void Initialize()
         {
+            dataManager = new DataManager();
             userManager = new UserManager();
             formManager = new FormManager();
         }

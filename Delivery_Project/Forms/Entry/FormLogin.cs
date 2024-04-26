@@ -18,9 +18,10 @@ namespace Delivery_Project.Forms.Entry
     {
         public Action? ShowRegistrationForm;
 
-        public event Func<string, string, bool>? LoginAtempt;
+        public  Func<string, string, bool>? LoginUser;
+
         public event EventHandler? LoginComplete;
-        
+
         public FormLogin() : base()
         {
             InitializeComponent();
@@ -74,24 +75,20 @@ namespace Delivery_Project.Forms.Entry
                 return;
             }
 
-            bool isLogined = LoginAtempt?.Invoke(login, password) ?? false;
+            bool isLogined = LoginUser?.Invoke(login, password) ?? false;
 
             if (isLogined)
             {
                 labelMessage.Text = "Logged in!";
                 labelMessage.Visible = true;
                 LoginComplete?.Invoke(this, EventArgs.Empty);
+                Close();
             }
             else
             {
                 labelMessage.Text = "Login or password is incorrect";
                 labelMessage.Visible = true;
             }
-        }
-
-        private void FormLogin_LoginComplete(object sender, EventArgs e)
-        {
-            Close();
         }
 
         private void labelSignUp_Click(object sender, EventArgs e)
