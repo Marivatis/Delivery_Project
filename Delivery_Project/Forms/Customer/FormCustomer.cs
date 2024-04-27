@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Delivery_Project.DataControl.Users;
 using Delivery_Project.Forms.Templates;
 
 namespace Delivery_Project.Forms.Customer
@@ -16,14 +17,19 @@ namespace Delivery_Project.Forms.Customer
         private FormCustomerProfile formProfile;
         private FormOrderConfirmation formOrderConfirmation;
 
-        public FormCustomer() : base()
+        private DeliveryCustomer customer;
+
+        public FormCustomer(ref DeliveryCustomer customer) : base()
         {
             InitializeComponent();
+
+            this.customer = customer;
         }
 
         private void FormCustomer_Load(object sender, EventArgs e)
         {
             CenterToScreen();
+            MessageBox.Show($"{customer.Login} {customer.Password} {customer.Address}");
         }
 
         private void buttonMyProfile_Click(object sender, EventArgs e)

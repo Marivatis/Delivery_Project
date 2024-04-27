@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Delivery_Project.DataControl.Users;
 using Delivery_Project.Forms.Templates;
 
 namespace Delivery_Project.Forms.Provider
@@ -16,9 +17,13 @@ namespace Delivery_Project.Forms.Provider
         private FormProviderProfile formProfile;
         private FormPlaceEditor formPlaceEditor;
 
-        public FormProvider() : base()
+        private DeliveryProvider provider;
+
+        public FormProvider(ref DeliveryProvider provider) : base()
         {
             InitializeComponent();
+
+            this.provider = provider;
         }
 
         private void buttonMyProfile_Click(object sender, EventArgs e)

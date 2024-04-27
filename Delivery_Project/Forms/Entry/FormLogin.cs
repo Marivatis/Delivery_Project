@@ -18,7 +18,8 @@ namespace Delivery_Project.Forms.Entry
     {
         public Action? ShowRegistrationForm;
 
-        public  Func<string, string, bool>? LoginUser;
+        public EntryUser LoginUser;
+        //public  Func<string, string, bool>? LoginUser;
 
         public event EventHandler? LoginComplete;
 
@@ -70,23 +71,19 @@ namespace Delivery_Project.Forms.Entry
 
             if (login == "Enter your login" || password == "Enter your password")
             {
-                labelMessage.Text = "Login or password is incorrect";
+                labelMessage.Text = "Login or password fields are empty.";
                 labelMessage.Visible = true;
                 return;
             }
 
-            bool isLogined = LoginUser?.Invoke(login, password) ?? false;
+            bool isLogged = false;
+            string message = "Something went wrong.";
 
-            if (isLogined)
+            isLogged = LoginUser.Invoke(login, password, ref message);
+
+            if (!isLogged)
             {
-                labelMessage.Text = "Logged in!";
-                labelMessage.Visible = true;
-                LoginComplete?.Invoke(this, EventArgs.Empty);
-                Close();
-            }
-            else
-            {
-                labelMessage.Text = "Login or password is incorrect";
+                labelMessage.Text = message;
                 labelMessage.Visible = true;
             }
         }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Delivery_Project.DataControl.FormManagement;
 using Delivery_Project.Forms.Templates;
 
 namespace Delivery_Project.Forms.Entry
@@ -15,7 +16,8 @@ namespace Delivery_Project.Forms.Entry
     {
         public event EventHandler RegistrationComplete;
 
-        public static Func<string, string, bool> RegistrateCustomer;
+        public static EntryUser RegisterCustomer;
+        //public static Func<string, string, bool> RegisterCustomer;
 
         public FormRegistration() : base()
         {
@@ -41,21 +43,24 @@ namespace Delivery_Project.Forms.Entry
             
             if (login == "Enter your login" || password == "Enter your password")
             {
-                labelMessage.Text = "Login or password is incorrect";
+                labelMessage.Text = "Login or password fields are empty.";
                 labelMessage.Visible = true;
                 return;
             }
 
-            bool isRegistred = RegistrateCustomer.Invoke(login, password);
+            string message = "Something went wrong.";
+            bool isRegistred = RegisterCustomer.Invoke(login, password, ref message);
 
             if (isRegistred)
             {
                 RegistrationComplete.Invoke(this, EventArgs.Empty);
                 Close();
             }
-
-            labelMessage.Text = "Something went wrong.";
-            labelMessage.Visible = true;
+            else
+            {
+                labelMessage.Text = message;
+                labelMessage.Visible = true;
+            }
         }
 
         private void textBoxLogin_Enter(object sender, EventArgs e)

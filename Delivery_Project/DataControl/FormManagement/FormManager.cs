@@ -22,8 +22,10 @@ namespace Delivery_Project.DataControl.FormManagement
         private FormCourier formCourier;
         private FormProvider formProvider;
 
-        public static Func<string, string, bool> QuerryRegistration;
-        public static Func<string, string, bool> QuerryLogin;
+        public static EntryUser QuerryRegistrerCustomer;
+        //public static Func<string, string, bool> QuerryRegistration;
+        public static LoginCustomer QuerryLoginCustomer;
+        //public static Func<string, string, bool> QuerryLogin;
 
         public FormManager()
         {
@@ -34,17 +36,14 @@ namespace Delivery_Project.DataControl.FormManagement
         {
             formLogin = new FormLogin();
             formRegistration = new FormRegistration();
-            formCustomer = new FormCustomer();
-            formCourier = new FormCourier();
-            formProvider = new FormProvider();
 
             CustomBorderForm.CustomFormClosed += CustomBorderForm_FormClosed;
 
-            formLogin.LoginUser += QuerryLogin;
-            formLogin.LoginComplete += LoginComplete;
+            formLogin.LoginUser += LoginUser;
+            //formLogin.LoginComplete += LoginComplete;
             formLogin.ShowRegistrationForm += formRegistration.Show;
 
-            FormRegistration.RegistrateCustomer += QuerryRegistration;
+            FormRegistration.RegisterCustomer += QuerryRegistrerCustomer;
             formRegistration.RegistrationComplete += FormRegistration_RegistrationComplete;
         }
 
@@ -68,20 +67,42 @@ namespace Delivery_Project.DataControl.FormManagement
             }
         }
                 
-        private void LoginComplete(object? sender, EventArgs e)
+        private bool LoginUser(string login, string password, ref string message)
         {
-            if (UserManager.LoggedUser == typeof(DeliveryCustomer))
+            DeliveryUser user;
+
+            message = QuerryLoginCustomer.Invoke(login, password, out user);
+
+            if (user != null)
             {
+                LoginComplete(user);
+                return true;
+            }
+            else
+            {
+
+                return false;
+            }
+        }
+        private void LoginComplete(DeliveryUser user)
+        {
+            if (user is DeliveryCustomer customer)
+            {
+                formCustomer = new FormCustomer(ref customer);
                 formCustomer.Show();
             }
-            else if (UserManager.LoggedUser == typeof(DeliveryCourier))
+            else if (user is DeliveryCourier courier)
             {
+                formCourier = new FormCourier(ref courier);
                 formCourier.Show();
             }
-            else if (UserManager.LoggedUser == typeof(DeliveryProvider))
+            else if (user is DeliveryProvider provider)
             {
+                formProvider = new FormProvider(ref provider);
                 formProvider.Show();
             }
+
+            formLogin?.Close();
         }
 
     }

@@ -1,6 +1,6 @@
 [
   {
-    "Address": "No_Address",
+    "Address": "adminAddress",
     "Login": "admin",
     "Password": "admin",
     "PhoneNumber": "No_Phone_Number"
@@ -21,6 +21,18 @@
     "Address": "No_Address",
     "Login": "Bogdanochka",
     "Password": "chess",
+    "PhoneNumber": "No_Phone_Number"
+  },
+  {
+    "Address": "No_Address",
+    "Login": "Shlepa",
+    "Password": "123",
+    "PhoneNumber": "No_Phone_Number"
+  },
+  {
+    "Address": "No_Address",
+    "Login": "bars",
+    "Password": "barss",
     "PhoneNumber": "No_Phone_Number"
   }
 ]

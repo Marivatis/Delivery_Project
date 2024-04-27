@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Delivery_Project.DataControl.Users;
 using Delivery_Project.Forms.Templates;
 
 namespace Delivery_Project.Forms.Courier
@@ -15,9 +16,13 @@ namespace Delivery_Project.Forms.Courier
     {
         private FormCourierProfile formProfile;
 
-        public FormCourier() : base()
+        private DeliveryCourier courier;
+
+        public FormCourier(ref DeliveryCourier courier) : base()
         {
             InitializeComponent();
+
+            this.courier = courier;
         }
 
         private void FormCourier_Load(object sender, EventArgs e)

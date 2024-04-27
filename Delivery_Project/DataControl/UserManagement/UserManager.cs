@@ -15,7 +15,9 @@ namespace Delivery_Project.DataControl.UserManagement
 {
     public class UserManager
     {
-        private ListDeliveryCustomer deliveryCustomers;
+        private ListDeliveryCustomers deliveryCustomers;
+        private ListDeliveryCouriers deliveryCouriers;
+        private ListDeliveryProvider deliveryProviders;
 
         private static Type loggedUser;
 
@@ -27,23 +29,24 @@ namespace Delivery_Project.DataControl.UserManagement
         private void Initialize()
         {
             Reading_DeliveryCustomers();
+            Reading_DeliveryCouriers();
+            Reading_DeliveryProviders();
 
-            FormManager.QuerryRegistration += RegisterCustomer;
-            FormManager.QuerryLogin += LoginUser;
+            FormManager.QuerryRegistrerCustomer += RegisterCustomer;
+            FormManager.QuerryLoginCustomer += LoginUser;
 
-            deliveryCustomers.CustomerAdded += Writting_DeliveryCustomers;
-            
+            deliveryCustomers.AddedCustomer += Writting_DeliveryCustomers;            
         }
 
 
-        public static Type LoggedUser => loggedUser;
+        public static Type LoggedUserType => loggedUser;
 
-        public bool RegisterCustomer(string login, string password)
+        private bool RegisterCustomer(string login, string password)
         {
             string message = string.Empty;
             return RegisterCustomer(login, password, ref message);
         }
-        public bool RegisterCustomer(string login, string password, ref string message)
+        private bool RegisterCustomer(string login, string password, ref string message)
         {
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
@@ -51,7 +54,7 @@ namespace Delivery_Project.DataControl.UserManagement
                 return false;
             }
 
-            string pattern = "^[a-zA-Z0-9 ]+$";
+            string pattern = "^[a-zA-Z0-9]";
 
             if (!Regex.IsMatch(login, pattern))
             {
@@ -64,29 +67,54 @@ namespace Delivery_Project.DataControl.UserManagement
                 return false;
             }
 
+            var customerExists = deliveryCustomers.Any(c => c.Login == login) ||
+                                 deliveryCouriers.Any(c => c.Login == login) ||
+                                 deliveryProviders.Any(p => p.Login == login);    
+
+            if (customerExists)
+            {
+                message = "This login is already used.";
+                return false;
+            }
+
             deliveryCustomers.Add(new DeliveryCustomer(login, password));
             return true;
         }
 
-        public bool LoginUser(string login, string password)
+        private string LoginUser(string login, string password, out DeliveryUser? user)
         {
-            foreach (var customer in deliveryCustomers)
+            Reading_DeliveryCustomers();
+            Reading_DeliveryCouriers();
+            Reading_DeliveryProviders();
+
+            string message = "Something went wrong";
+
+            user = deliveryCustomers.FirstOrDefault(c => c.Login == login);
+            user = deliveryCouriers.FirstOrDefault(c => c.Login == login) ?? user;
+            user = deliveryProviders.FirstOrDefault(p => p.Login == login) ?? user;
+
+            if (user is null)
             {
-                if (customer.Login == login && customer.Password == password)
-                {
-                    loggedUser = typeof(DeliveryCustomer);
-                    return true;
-                }
+                message = "No registered user with this login.";
+            }
+            else if (user.Password != password)
+            {
+                user = null;
+                message = "Incorrect password.";
+            }
+            else
+            {
+                message = "Login successfull.";
             }
 
-            return false;
+            return message;
         }
 
         private void Writting_DeliveryCustomers(object? sender, EventArgs e)
         {
             bool isWritten = false;
 
-            isWritten = DataManager.WriteListToJson(deliveryCustomers.ListCustomers, "Customers");
+            isWritten = DataManager.WriteListToJson(deliveryCustomers.ListUsers, "Customers");
 
             if (!isWritten)
             {
@@ -103,11 +131,41 @@ namespace Delivery_Project.DataControl.UserManagement
 
             if (!isRead)
             {
-                MessageBox.Show("Writting list to json file went wrong!");
+                MessageBox.Show("Writting list to json file \"Customers\" went wrong!");
                 return;
             }
 
-            deliveryCustomers = new ListDeliveryCustomer(customers);
+            deliveryCustomers = new ListDeliveryCustomers(customers);
+        }
+        private void Reading_DeliveryCouriers()
+        {
+            bool isRead = false;
+            List<DeliveryCourier> couriers = new List<DeliveryCourier>();
+
+            isRead = DataManager.ReadListFromJson("Couriers", ref couriers);
+
+            if (!isRead)
+            {
+                MessageBox.Show($"Writting list to json file \"Couriers\" went wrong!");
+                return;
+            }
+
+            deliveryCouriers = new ListDeliveryCouriers(couriers);
+        }
+        private void Reading_DeliveryProviders()
+        {
+            bool isRead = false;
+            List<DeliveryProvider> providers = new List<DeliveryProvider>();
+
+            isRead = DataManager.ReadListFromJson("Providers", ref providers);
+
+            if (!isRead)
+            {
+                MessageBox.Show($"Writting list to json file \"Couriers\" went wrong!");
+                return;
+            }
+
+            deliveryProviders = new ListDeliveryProvider(providers);
         }
     }
 }
