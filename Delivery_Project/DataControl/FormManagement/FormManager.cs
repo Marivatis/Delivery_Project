@@ -34,22 +34,21 @@ namespace Delivery_Project.DataControl.FormManagement
 
         private void Initialize()
         {
-            formLogin = new FormLogin();
             formRegistration = new FormRegistration();
-
-            CustomBorderForm.CustomFormClosed += CustomBorderForm_FormClosed;
+            formLogin = new FormLogin();
 
             formLogin.LoginUser += LoginUser;
-            //formLogin.LoginComplete += LoginComplete;
             formLogin.ShowRegistrationForm += formRegistration.Show;
 
+            CustomBorderForm.CustomFormClosed += CustomBorderForm_FormClosed;
+            
             FormRegistration.RegisterCustomer += QuerryRegistrerCustomer;
             formRegistration.RegistrationComplete += FormRegistration_RegistrationComplete;
         }
 
         private void FormRegistration_RegistrationComplete(object? sender, EventArgs e)
         {
-            formLogin = new FormLogin();
+            Initialize();
             formLogin.Show();
         }
 

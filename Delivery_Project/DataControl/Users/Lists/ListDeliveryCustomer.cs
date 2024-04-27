@@ -17,7 +17,7 @@ namespace Delivery_Project.DataControl.Users.Lists
         public override void Add(DeliveryCustomer customer)
         {
             base.Add(customer);
-            AddedCustomer.Invoke(this, EventArgs.Empty);
+            AddedCustomer?.Invoke(this, EventArgs.Empty);
         }
     }
 }

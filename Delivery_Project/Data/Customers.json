@@ -7,32 +7,8 @@
   },
   {
     "Address": "No_Address",
-    "Login": "Kiryha",
-    "Password": "Robe",
-    "PhoneNumber": "No_Phone_Number"
-  },
-  {
-    "Address": "No_Address",
-    "Login": "Ivan",
-    "Password": "12345",
-    "PhoneNumber": "No_Phone_Number"
-  },
-  {
-    "Address": "No_Address",
-    "Login": "Bogdanochka",
-    "Password": "chess",
-    "PhoneNumber": "No_Phone_Number"
-  },
-  {
-    "Address": "No_Address",
-    "Login": "Shlepa",
-    "Password": "123",
-    "PhoneNumber": "No_Phone_Number"
-  },
-  {
-    "Address": "No_Address",
-    "Login": "bars",
-    "Password": "barss",
+    "Login": "User",
+    "Password": "user",
     "PhoneNumber": "No_Phone_Number"
   }
 ]

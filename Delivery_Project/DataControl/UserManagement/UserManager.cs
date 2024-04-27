@@ -41,12 +41,29 @@ namespace Delivery_Project.DataControl.UserManagement
 
         public static Type LoggedUserType => loggedUser;
 
-        private bool RegisterCustomer(string login, string password)
-        {
-            string message = string.Empty;
-            return RegisterCustomer(login, password, ref message);
-        }
         private bool RegisterCustomer(string login, string password, ref string message)
+        {
+            bool isCorrectFormat = false;
+
+            isCorrectFormat = RegisterCustomer_CheckStringFormat(login, password, ref message);
+
+            if (!isCorrectFormat)
+                return false;
+
+            var customerExists = deliveryCustomers.Any(c => c.Login == login) ||
+                                 deliveryCouriers.Any(c => c.Login == login) ||
+                                 deliveryProviders.Any(p => p.Login == login);    
+
+            if (customerExists)
+            {
+                message = "This login is already used.";
+                return false;
+            }
+
+            deliveryCustomers.Add(new DeliveryCustomer(login, password));
+            return true;
+        }
+        private bool RegisterCustomer_CheckStringFormat(string login, string password, ref string message)
         {
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
@@ -67,26 +84,22 @@ namespace Delivery_Project.DataControl.UserManagement
                 return false;
             }
 
-            var customerExists = deliveryCustomers.Any(c => c.Login == login) ||
-                                 deliveryCouriers.Any(c => c.Login == login) ||
-                                 deliveryProviders.Any(p => p.Login == login);    
-
-            if (customerExists)
+            if (3 > login.Length || login.Length > 12)
             {
-                message = "This login is already used.";
+                message = "Login must be from 3 to 12 characters.";
+                return false;
+            }
+            else if (4 > password.Length || password.Length > 14)
+            {
+                message = "Password must be from 4 to 12 characters.";
                 return false;
             }
 
-            deliveryCustomers.Add(new DeliveryCustomer(login, password));
             return true;
         }
 
         private string LoginUser(string login, string password, out DeliveryUser? user)
         {
-            Reading_DeliveryCustomers();
-            Reading_DeliveryCouriers();
-            Reading_DeliveryProviders();
-
             string message = "Something went wrong";
 
             user = deliveryCustomers.FirstOrDefault(c => c.Login == login);

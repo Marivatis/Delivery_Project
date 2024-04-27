@@ -17,25 +17,27 @@ namespace Delivery_Project.Forms.Entry
         public event EventHandler RegistrationComplete;
 
         public static EntryUser RegisterCustomer;
-        //public static Func<string, string, bool> RegisterCustomer;
 
         public FormRegistration() : base()
         {
             InitializeComponent();
         }
 
+        // On load form functions
         private void FormRegistration_Load(object sender, EventArgs e)
         {
             CenterToScreen();
             textBoxLogin.Focus();
         }
 
+        // Registration button click event hendler
         private void buttonRegister_Click(object sender, EventArgs e)
         {
             if (textBoxPassword.Text != textBoxRepeatPassword.Text)
             {
                 labelMessage.Text = "Passwords don`t match.";
                 labelMessage.Visible = true;
+                return;
             }
 
             string login = textBoxLogin.Text;
@@ -63,6 +65,7 @@ namespace Delivery_Project.Forms.Entry
             }
         }
 
+        // Field login usefull design
         private void textBoxLogin_Enter(object sender, EventArgs e)
         {
             if (textBoxLogin.Text == "Enter your login")
@@ -78,6 +81,7 @@ namespace Delivery_Project.Forms.Entry
             }
         }
 
+        // Field password usefull design
         private void textBoxPassword_Enter(object sender, EventArgs e)
         {
             if (textBoxPassword.Text == "Enter your password")
@@ -93,6 +97,7 @@ namespace Delivery_Project.Forms.Entry
             }
         }
 
+        // Field repeat password usefull design
         private void textBoxRepeatPassword_Enter(object sender, EventArgs e)
         {
             if (textBoxRepeatPassword.Text == "Repeat your password")
