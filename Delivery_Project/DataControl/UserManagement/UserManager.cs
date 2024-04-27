@@ -2,7 +2,10 @@
 using Delivery_Project.DataControl.FormManagement;
 using Delivery_Project.DataControl.Users;
 using Delivery_Project.DataControl.Users.Lists;
+using Delivery_Project.Forms.Courier;
+using Delivery_Project.Forms.Customer;
 using Delivery_Project.Forms.Entry;
+using Delivery_Project.Forms.Provider;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,25 +31,117 @@ namespace Delivery_Project.DataControl.UserManagement
 
         private void Initialize()
         {
+            DeliveryUser.ValidateLogin += ValidateLogin;
+            DeliveryUser.ValidatePassword += ValidatePassword;
+            DeliveryUser.ValidatePhoneNumber += ValidatePhoneNumber;
+            DeliveryCustomer.ValidateAddress += ValidateAddress;
+
             Reading_DeliveryCustomers();
             Reading_DeliveryCouriers();
             Reading_DeliveryProviders();
 
             FormManager.QuerryRegistrerCustomer += RegisterCustomer;
             FormManager.QuerryLoginCustomer += LoginUser;
+            FormManager.QuerryDeleteAccount += DeleteAcount;
 
-            deliveryCustomers.AddedCustomer += Writting_DeliveryCustomers;            
+            DeliveryUser.UserChanged += Write_UserList;            
+
+            deliveryCustomers.AddedCustomer += Write_DeliveryCustomers;            
         }
 
 
         public static Type LoggedUserType => loggedUser;
 
+        private bool ValidateLogin(string login, ref string message)
+        {
+            if (string.IsNullOrEmpty(login))
+            {
+                message = "Login can`t be empty.";
+                return false;
+            }
+
+            string pattern = "^[a-zA-Z0-9]";
+
+            if (!Regex.IsMatch(login, pattern))
+            {
+                message = "Incorrect login format.";
+                return false;
+            }
+
+            if (3 > login.Length || login.Length > 12)
+            {
+                message = "Login must be from 3 to 12 characters.";
+                return false;
+            }
+
+            return true;
+        }
+        private bool ValidatePassword(string password, ref string message)
+        {
+            if (string.IsNullOrEmpty(password))
+            {
+                message = "Password can`t be empty.";
+                return false;
+            }
+
+            string pattern = "^[a-zA-Z0-9]";
+
+            if (!Regex.IsMatch(password, pattern))
+            {
+                message = "Incorrect password format.";
+                return false;
+            }
+
+            if (4 > password.Length || password.Length > 14)
+            {
+                message = "Password must be from 4 to 12 characters.";
+                return false;
+            }
+
+            return true;
+        }
+        private bool ValidatePhoneNumber(string phoneNumber, ref string message)
+        {
+            if (string.IsNullOrEmpty(phoneNumber))
+            {
+                message = "Phone number can`t be empty.";
+                return false;
+            }
+
+            if (phoneNumber == "No_Phone_Number")
+            {
+                return true;
+            }
+
+            message = "Invalid phone number";
+            return false;
+        }
+        private bool ValidateAddress(string address, ref string message)
+        {
+            if (string.IsNullOrEmpty(address))
+            {
+                message = "Address can`t be empty.";
+                return false;
+            }
+
+            if (address == "No_Address")
+            {
+                return true;
+            }
+
+            message = "Invalid address";
+            return false;
+        }
+
         private bool RegisterCustomer(string login, string password, ref string message)
         {
             bool isCorrectFormat = false;
 
-            isCorrectFormat = RegisterCustomer_CheckStringFormat(login, password, ref message);
+            isCorrectFormat = ValidateLogin(login, ref message);
+            if (!isCorrectFormat)
+                return false;
 
+            isCorrectFormat = ValidatePassword(login, ref message);
             if (!isCorrectFormat)
                 return false;
 
@@ -61,40 +156,6 @@ namespace Delivery_Project.DataControl.UserManagement
             }
 
             deliveryCustomers.Add(new DeliveryCustomer(login, password));
-            return true;
-        }
-        private bool RegisterCustomer_CheckStringFormat(string login, string password, ref string message)
-        {
-            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
-            {
-                message = "Login or password can`t be empty.";
-                return false;
-            }
-
-            string pattern = "^[a-zA-Z0-9]";
-
-            if (!Regex.IsMatch(login, pattern))
-            {
-                message = "Incorrect login format.";
-                return false;
-            }
-            else if (!Regex.IsMatch(password, pattern))
-            {
-                message = "Incorrect password format.";
-                return false;
-            }
-
-            if (3 > login.Length || login.Length > 12)
-            {
-                message = "Login must be from 3 to 12 characters.";
-                return false;
-            }
-            else if (4 > password.Length || password.Length > 14)
-            {
-                message = "Password must be from 4 to 12 characters.";
-                return false;
-            }
-
             return true;
         }
 
@@ -123,7 +184,43 @@ namespace Delivery_Project.DataControl.UserManagement
             return message;
         }
 
-        private void Writting_DeliveryCustomers(object? sender, EventArgs e)
+        private bool DeleteAcount(DeliveryUser user)
+        {
+            bool isDeleted = false;
+
+            if (user is DeliveryCustomer customer)
+            {
+                isDeleted = deliveryCustomers.Remove(customer);
+            }
+            else if (user is DeliveryCourier courier)
+            {
+            }
+            else if (user is DeliveryProvider provider)
+            {
+            }
+
+            if (isDeleted)
+            {
+                Write_UserList(user);
+            }
+
+            return isDeleted;
+        }
+
+        private void Write_UserList(DeliveryUser user)
+        {
+            if (user is DeliveryCustomer customer)
+            {
+                Write_DeliveryCustomers();
+            }
+            else if (user is DeliveryCourier courier)
+            {
+            }
+            else if (user is DeliveryProvider provider)
+            {
+            }
+        }
+        private void Write_DeliveryCustomers()
         {
             bool isWritten = false;
 

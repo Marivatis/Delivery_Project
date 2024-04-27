@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
+using Microsoft.VisualBasic.ApplicationServices;
+using System.CodeDom;
 
 namespace Delivery_Project.DataControl.FormManagement
 {
@@ -22,10 +24,9 @@ namespace Delivery_Project.DataControl.FormManagement
         private FormCourier formCourier;
         private FormProvider formProvider;
 
-        public static EntryUser QuerryRegistrerCustomer;
-        //public static Func<string, string, bool> QuerryRegistration;
-        public static LoginCustomer QuerryLoginCustomer;
-        //public static Func<string, string, bool> QuerryLogin;
+        public static RegisterCustomer? QuerryRegistrerCustomer;
+        public static LoginUser? QuerryLoginCustomer;
+        public static Func<DeliveryUser, bool>? QuerryDeleteAccount;
 
         public FormManager()
         {
@@ -44,11 +45,19 @@ namespace Delivery_Project.DataControl.FormManagement
             
             FormRegistration.RegisterCustomer += QuerryRegistrerCustomer;
             formRegistration.RegistrationComplete += FormRegistration_RegistrationComplete;
+
+            FormCustomerProfile.DeleteAccount += QuerryDeleteAccount;
+            FormCustomerProfile.AccountDeleted += AccountDeleted;
         }
+
 
         private void FormRegistration_RegistrationComplete(object? sender, EventArgs e)
         {
-            Initialize();
+            formLogin = new FormLogin();
+
+            formLogin.LoginUser += LoginUser;
+            formLogin.ShowRegistrationForm += formRegistration.Show;
+
             formLogin.Show();
         }
 
@@ -104,5 +113,23 @@ namespace Delivery_Project.DataControl.FormManagement
             formLogin?.Close();
         }
 
+        private void AccountDeleted(Type userType)
+        {
+            if (userType == typeof(DeliveryCustomer))
+            {
+                formCustomer.Close();
+            }
+            else if (userType == typeof(DeliveryCourier))
+            {
+                formCourier.Close();
+            }
+            else if (userType == typeof(DeliveryProvider))
+            {
+                formProvider.Close();
+            }
+
+            formLogin = new FormLogin();
+            formLogin.Show();
+        }
     }
 }

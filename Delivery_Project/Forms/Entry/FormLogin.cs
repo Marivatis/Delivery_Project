@@ -18,7 +18,7 @@ namespace Delivery_Project.Forms.Entry
     {
         public Action? ShowRegistrationForm;
 
-        public EntryUser LoginUser;
+        public RegisterCustomer LoginUser;
         //public  Func<string, string, bool>? LoginUser;
 
         public event EventHandler? LoginComplete;

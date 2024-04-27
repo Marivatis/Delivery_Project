@@ -43,7 +43,8 @@
             labelBecomeCourier = new Label();
             buttonEdit2 = new Button();
             textBoxAddress = new TextBox();
-            button1 = new Button();
+            buttonEdit3 = new Button();
+            buttonDeleteAccount = new Button();
             SuspendLayout();
             // 
             // labelMyProfileTitle
@@ -72,6 +73,7 @@
             // 
             textBoxLogin.BackColor = Color.FromArgb(61, 61, 61);
             textBoxLogin.BorderStyle = BorderStyle.FixedSingle;
+            textBoxLogin.Enabled = false;
             textBoxLogin.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxLogin.ForeColor = Color.White;
             textBoxLogin.Location = new Point(40, 166);
@@ -95,6 +97,7 @@
             // 
             textBoxPhoneNumber.BackColor = Color.FromArgb(61, 61, 61);
             textBoxPhoneNumber.BorderStyle = BorderStyle.FixedSingle;
+            textBoxPhoneNumber.Enabled = false;
             textBoxPhoneNumber.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxPhoneNumber.ForeColor = Color.White;
             textBoxPhoneNumber.Location = new Point(40, 236);
@@ -118,6 +121,7 @@
             // 
             textBoxPassword.BackColor = Color.FromArgb(61, 61, 61);
             textBoxPassword.BorderStyle = BorderStyle.FixedSingle;
+            textBoxPassword.Enabled = false;
             textBoxPassword.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxPassword.ForeColor = Color.White;
             textBoxPassword.Location = new Point(40, 338);
@@ -148,6 +152,7 @@
             buttonEdit1.TabIndex = 27;
             buttonEdit1.Text = "Edit";
             buttonEdit1.UseVisualStyleBackColor = true;
+            buttonEdit1.Click += buttonEdit1_Click;
             // 
             // labelBecome1
             // 
@@ -206,11 +211,13 @@
             buttonEdit2.TabIndex = 34;
             buttonEdit2.Text = "Edit";
             buttonEdit2.UseVisualStyleBackColor = true;
+            buttonEdit2.Click += buttonEdit2_Click;
             // 
             // textBoxAddress
             // 
             textBoxAddress.BackColor = Color.FromArgb(61, 61, 61);
             textBoxAddress.BorderStyle = BorderStyle.FixedSingle;
+            textBoxAddress.Enabled = false;
             textBoxAddress.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxAddress.ForeColor = Color.White;
             textBoxAddress.Location = new Point(40, 440);
@@ -219,24 +226,40 @@
             textBoxAddress.TabIndex = 35;
             textBoxAddress.Text = "Enter your address";
             // 
-            // button1
+            // buttonEdit3
             // 
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(224, 398);
-            button1.Name = "button1";
-            button1.Size = new Size(66, 36);
-            button1.TabIndex = 36;
-            button1.Text = "Edit";
-            button1.UseVisualStyleBackColor = true;
+            buttonEdit3.FlatStyle = FlatStyle.Flat;
+            buttonEdit3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonEdit3.ForeColor = Color.White;
+            buttonEdit3.Location = new Point(224, 398);
+            buttonEdit3.Name = "buttonEdit3";
+            buttonEdit3.Size = new Size(66, 36);
+            buttonEdit3.TabIndex = 36;
+            buttonEdit3.Text = "Edit";
+            buttonEdit3.UseVisualStyleBackColor = true;
+            buttonEdit3.Click += buttonEdit3_Click;
+            // 
+            // buttonDeleteAccount
+            // 
+            buttonDeleteAccount.FlatAppearance.BorderSize = 0;
+            buttonDeleteAccount.FlatStyle = FlatStyle.Flat;
+            buttonDeleteAccount.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonDeleteAccount.ForeColor = Color.White;
+            buttonDeleteAccount.Location = new Point(1, 1);
+            buttonDeleteAccount.Name = "buttonDeleteAccount";
+            buttonDeleteAccount.Size = new Size(103, 25);
+            buttonDeleteAccount.TabIndex = 37;
+            buttonDeleteAccount.Text = "Delete account";
+            buttonDeleteAccount.UseVisualStyleBackColor = true;
+            buttonDeleteAccount.Click += buttonDeleteAccount_Click;
             // 
             // FormCustomerProfile
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(330, 550);
-            Controls.Add(button1);
+            Controls.Add(buttonDeleteAccount);
+            Controls.Add(buttonEdit3);
             Controls.Add(textBoxAddress);
             Controls.Add(buttonEdit2);
             Controls.Add(labelBecomeCourier);
@@ -270,7 +293,8 @@
             Controls.SetChildIndex(labelBecomeCourier, 0);
             Controls.SetChildIndex(buttonEdit2, 0);
             Controls.SetChildIndex(textBoxAddress, 0);
-            Controls.SetChildIndex(button1, 0);
+            Controls.SetChildIndex(buttonEdit3, 0);
+            Controls.SetChildIndex(buttonDeleteAccount, 0);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -292,6 +316,7 @@
         private Label labelBecomeCourier;
         private Button buttonEdit2;
         private TextBox textBoxAddress;
-        private Button button1;
+        private Button buttonEdit3;
+        private Button buttonDeleteAccount;
     }
 }

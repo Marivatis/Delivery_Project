@@ -12,7 +12,14 @@ namespace Delivery_Project.DataControl.Users
         protected string _password;
         protected string _phoneNumber;
 
-        public DeliveryUser() : this("No_login", "No_Password", "No_Phone_Number") { }
+        public delegate bool ValidateProperty<T>(T property, ref string message);
+
+        public static event Action<DeliveryUser>? UserChanged;
+        public static ValidateProperty<string>? ValidateLogin;
+        public static ValidateProperty<string>? ValidatePassword;
+        public static ValidateProperty<string>? ValidatePhoneNumber;
+
+        public DeliveryUser() : this("No_Login", "No_Password", "No_Phone_Number") { }
         public DeliveryUser(string login, string password) : this(login, password, "No_Phone_Number") { }
         public DeliveryUser(string login, string password, string phoneNumber)
         {
@@ -29,7 +36,20 @@ namespace Delivery_Project.DataControl.Users
             }
             set
             {
-                _login = value;
+                bool isValid = false;
+                string message = "Something went wrong.";
+
+                isValid = ValidateLogin?.Invoke(value, ref message) ?? false;
+
+                if (isValid)
+                {
+                    _login = value;
+                    UserChanged?.Invoke(this);
+                }
+                else
+                {
+                    throw new InvalidDataException(message);
+                }
             }
         }
         public string Password
@@ -40,7 +60,20 @@ namespace Delivery_Project.DataControl.Users
             }
             set
             {
-                _password = value;
+                bool isValid = false;
+                string message = "Something went wrong.";
+
+                isValid = ValidatePassword?.Invoke(value, ref message) ?? false;
+
+                if (isValid)
+                {
+                    _password = value;
+                    UserChanged?.Invoke(this);
+                }
+                else
+                {
+                    throw new InvalidDataException(message);
+                }
             }
         }
         public string PhoneNumber
@@ -51,8 +84,26 @@ namespace Delivery_Project.DataControl.Users
             }
             set
             {
-                _phoneNumber = value;
+                bool isValid = false;
+                string message = "Something went wrong.";
+
+                isValid = ValidatePhoneNumber?.Invoke(value, ref message) ?? false;
+
+                if (isValid)
+                {
+                    _phoneNumber = value;
+                    UserChanged?.Invoke(this);
+                }
+                else
+                {
+                    throw new InvalidDataException(message);
+                }
             }
+        }
+
+        protected void RaiseEvent_UserChanged(DeliveryUser user)
+        {
+            UserChanged?.Invoke(user);
         }
     }
 }

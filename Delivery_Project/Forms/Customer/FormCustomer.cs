@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Delivery_Project.DataControl.Users;
+using Delivery_Project.DataControl.Workplaces;
 using Delivery_Project.Forms.Templates;
 
 namespace Delivery_Project.Forms.Customer
@@ -18,6 +19,7 @@ namespace Delivery_Project.Forms.Customer
         private FormOrderConfirmation formOrderConfirmation;
 
         private DeliveryCustomer customer;
+        private PlaceMenu menu;
 
         public FormCustomer(ref DeliveryCustomer customer) : base()
         {
@@ -29,12 +31,11 @@ namespace Delivery_Project.Forms.Customer
         private void FormCustomer_Load(object sender, EventArgs e)
         {
             CenterToScreen();
-            MessageBox.Show($"{customer.Login} {customer.Password} {customer.Address}");
         }
 
         private void buttonMyProfile_Click(object sender, EventArgs e)
         {
-            formProfile = new FormCustomerProfile(Location);
+            formProfile = new FormCustomerProfile(Location, ref customer);
             formProfile.FormClosed += Enable;
 
             Enabled = false;

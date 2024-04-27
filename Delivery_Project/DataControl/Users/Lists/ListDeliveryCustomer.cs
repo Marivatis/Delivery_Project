@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +9,8 @@ using System.Threading.Tasks;
 namespace Delivery_Project.DataControl.Users.Lists
 {
     public class ListDeliveryCustomers : ListDeliveryUser<DeliveryCustomer>
-    {
-        public event EventHandler AddedCustomer;
+    {        
+        public event Action AddedCustomer;
 
         public ListDeliveryCustomers() : this(new List<DeliveryCustomer>()) { }
         public ListDeliveryCustomers(List<DeliveryCustomer> customers) : base(customers) { }
@@ -17,7 +18,7 @@ namespace Delivery_Project.DataControl.Users.Lists
         public override void Add(DeliveryCustomer customer)
         {
             base.Add(customer);
-            AddedCustomer?.Invoke(this, EventArgs.Empty);
+            AddedCustomer?.Invoke();
         }
     }
 }

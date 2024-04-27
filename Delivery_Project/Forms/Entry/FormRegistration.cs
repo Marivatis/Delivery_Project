@@ -16,7 +16,7 @@ namespace Delivery_Project.Forms.Entry
     {
         public event EventHandler RegistrationComplete;
 
-        public static EntryUser RegisterCustomer;
+        public static RegisterCustomer RegisterCustomer;
 
         public FormRegistration() : base()
         {

@@ -9,7 +9,7 @@ namespace Delivery_Project.DataControl.Users.Lists
 {
     public abstract class ListDeliveryUser<T> : IEnumerable<T>, ICollection<T>
     {
-        private List<T> _listUsers;
+        protected List<T> _listUsers;
 
         public event EventHandler AddedUser;
 

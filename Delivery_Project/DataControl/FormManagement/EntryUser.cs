@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace Delivery_Project.DataControl.FormManagement
 {
-    public delegate bool EntryUser(string login, string password, ref string message);
+    public delegate bool RegisterCustomer(string login, string password, ref string message);
+    public delegate bool RegisterCourier(string login, string password, string phoneNumber, string cardNumber, ref string message);
+    public delegate bool RegisterProvider(string login, string password, string phoneNumber, string secretWord,  ref string message);
 
-    public delegate string LoginCustomer(string login, string password, out DeliveryUser user);
+    public delegate string LoginUser(string login, string password, out DeliveryUser user);
 }
