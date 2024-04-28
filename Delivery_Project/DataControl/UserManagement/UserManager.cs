@@ -22,8 +22,6 @@ namespace Delivery_Project.DataControl.UserManagement
         private ListDeliveryCouriers deliveryCouriers;
         private ListDeliveryProvider deliveryProviders;
 
-        private static Type loggedUser;
-
         public UserManager()
         {
             Initialize();
@@ -49,9 +47,7 @@ namespace Delivery_Project.DataControl.UserManagement
             deliveryCustomers.AddedCustomer += Write_DeliveryCustomers;            
         }
 
-
-        public static Type LoggedUserType => loggedUser;
-
+        // User properties validation unit
         private bool ValidateLogin(string login, ref string message)
         {
             if (string.IsNullOrEmpty(login))

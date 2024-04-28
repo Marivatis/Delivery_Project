@@ -16,24 +16,24 @@ namespace Delivery_Project.Forms.Entry
 {
     public partial class FormLogin : CustomBorderForm
     {
-        public Action? ShowRegistrationForm;
+        public static Action? ShowRegistrationForm;
+        public static RegisterCustomer? LoginUser;
 
-        public RegisterCustomer LoginUser;
-        //public  Func<string, string, bool>? LoginUser;
-
-        public event EventHandler? LoginComplete;
+        public static event EventHandler? LoginComplete;
 
         public FormLogin() : base()
         {
             InitializeComponent();
         }
 
+        // On load form functions
         private void FormLogin_Load(object sender, EventArgs e)
         {
             CenterToScreen();
             textBoxLogin.Focus();
         }
 
+        // Field login usefull design
         private void textBoxLogin_Enter(object sender, EventArgs e)
         {
             if (textBoxLogin.Text == "Enter your login")
@@ -49,6 +49,7 @@ namespace Delivery_Project.Forms.Entry
             }
         }
 
+        // Field password usefull design
         private void textBoxPassword_Enter(object sender, EventArgs e)
         {
             if (textBoxPassword.Text == "Enter your password")
@@ -64,6 +65,7 @@ namespace Delivery_Project.Forms.Entry
             }
         }
 
+        // Login user function
         private void buttonEnter_Click(object sender, EventArgs e)
         {
             string login = textBoxLogin.Text;
@@ -79,7 +81,7 @@ namespace Delivery_Project.Forms.Entry
             bool isLogged = false;
             string message = "Something went wrong.";
 
-            isLogged = LoginUser.Invoke(login, password, ref message);
+            isLogged = LoginUser?.Invoke(login, password, ref message) ?? false;
 
             if (!isLogged)
             {
@@ -88,6 +90,7 @@ namespace Delivery_Project.Forms.Entry
             }
         }
 
+        // Transotion to registration form
         private void labelSignUp_Click(object sender, EventArgs e)
         {
             ShowRegistrationForm?.Invoke();

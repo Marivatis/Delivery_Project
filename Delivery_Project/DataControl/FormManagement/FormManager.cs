@@ -18,11 +18,11 @@ namespace Delivery_Project.DataControl.FormManagement
 {
     public class FormManager
     {
-        private FormLogin formLogin;
-        private FormRegistration formRegistration;
-        private FormCustomer formCustomer;
-        private FormCourier formCourier;
-        private FormProvider formProvider;
+        private FormLogin? formLogin;
+        private FormRegistration? formRegistration;
+        private FormCustomer? formCustomer;
+        private FormCourier? formCourier;
+        private FormProvider? formProvider;
 
         public static RegisterCustomer? QuerryRegistrerCustomer;
         public static LoginUser? QuerryLoginCustomer;
@@ -35,38 +35,28 @@ namespace Delivery_Project.DataControl.FormManagement
 
         private void Initialize()
         {
-            formRegistration = new FormRegistration();
-            formLogin = new FormLogin();
-
-            formLogin.LoginUser += LoginUser;
-            formLogin.ShowRegistrationForm += formRegistration.Show;
-
             CustomBorderForm.CustomFormClosed += CustomBorderForm_FormClosed;
-            
+
+            FormLogin.LoginUser += LoginUser;
+            FormLogin.ShowRegistrationForm += FormRegistrationShow;
+
             FormRegistration.RegisterCustomer += QuerryRegistrerCustomer;
-            formRegistration.RegistrationComplete += FormRegistration_RegistrationComplete;
+            FormRegistration.RegistrationComplete += FormRegistration_RegistrationComplete;
 
             FormCustomerProfile.DeleteAccount += QuerryDeleteAccount;
             FormCustomerProfile.AccountDeleted += AccountDeleted;
         }
 
-
-        private void FormRegistration_RegistrationComplete(object? sender, EventArgs e)
-        {
-            formLogin = new FormLogin();
-
-            formLogin.LoginUser += LoginUser;
-            formLogin.ShowRegistrationForm += formRegistration.Show;
-
-            formLogin.Show();
-        }
-
+        // Runs application and shows login form
         public void Run()
         {
+            formLogin = new FormLogin();
             formLogin.Show();
+
             Application.Run();
         }
 
+        // Application close when forms count equals zero
         private void CustomBorderForm_FormClosed(object? sender, EventArgs e)
         {
             if (Application.OpenForms.Count == 0)
@@ -74,12 +64,26 @@ namespace Delivery_Project.DataControl.FormManagement
                 Application.Exit();
             }
         }
+
+        // Shows login form when user registration complete
+        private void FormRegistration_RegistrationComplete(object? sender, EventArgs e)
+        {
+            formLogin = new FormLogin();
+            formLogin.Show();
+        }
+        // Shows registration form
+        private void FormRegistrationShow()
+        {
+            formRegistration = new FormRegistration();
+            formRegistration.Show();
+        }
                 
+        // Makes querry to login user
         private bool LoginUser(string login, string password, ref string message)
         {
-            DeliveryUser user;
+            DeliveryUser? user = null;
 
-            message = QuerryLoginCustomer.Invoke(login, password, out user);
+            message = QuerryLoginCustomer?.Invoke(login, password, out user) ?? "Something went wrong";
 
             if (user != null)
             {
@@ -92,6 +96,7 @@ namespace Delivery_Project.DataControl.FormManagement
                 return false;
             }
         }
+        // Opens corresponding form after user logs in
         private void LoginComplete(DeliveryUser user)
         {
             if (user is DeliveryCustomer customer)
@@ -113,19 +118,20 @@ namespace Delivery_Project.DataControl.FormManagement
             formLogin?.Close();
         }
 
+        // Closes corresponding user form
         private void AccountDeleted(Type userType)
         {
             if (userType == typeof(DeliveryCustomer))
             {
-                formCustomer.Close();
+                formCustomer?.Close();
             }
             else if (userType == typeof(DeliveryCourier))
             {
-                formCourier.Close();
+                formCourier?.Close();
             }
             else if (userType == typeof(DeliveryProvider))
             {
-                formProvider.Close();
+                formProvider?.Close();
             }
 
             formLogin = new FormLogin();

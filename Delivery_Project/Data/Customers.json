@@ -4,5 +4,11 @@
     "Login": "admin",
     "Password": "admin",
     "PhoneNumber": "No_Phone_Number"
+  },
+  {
+    "Address": "No_Address",
+    "Login": "User",
+    "Password": "user",
+    "PhoneNumber": "No_Phone_Number"
   }
 ]

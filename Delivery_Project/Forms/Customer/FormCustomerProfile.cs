@@ -35,13 +35,18 @@ namespace Delivery_Project.Forms.Customer
             parentLocation = formLocation;
         }
 
+        // On load form functions
         private void FormCustomerProfile_Load(object sender, EventArgs e)
         {
-            LoadComponent();
+            textBoxLogin.Text = customer.Login;
+            textBoxPhoneNumber.Text = customer.PhoneNumber;
+            textBoxPassword.Text = customer.Password;
+            textBoxAddress.Text = customer.Address;
 
             Location = parentLocation;
         }
 
+        // Transition to courier or provider registration forms
         private void labelBecomeCourier_Click(object sender, EventArgs e)
         {
             formCourierRegisteration = new FormCourierRegisteration();
@@ -63,14 +68,7 @@ namespace Delivery_Project.Forms.Customer
             Enabled = true;
         }
 
-        private void LoadComponent()
-        {
-            textBoxLogin.Text = customer.Login;
-            textBoxPhoneNumber.Text = customer.PhoneNumber;
-            textBoxPassword.Text = customer.Password;
-            textBoxAddress.Text = customer.Address;
-        }
-
+        // Login and phone number edit functionality
         private void buttonEdit1_Click(object sender, EventArgs e)
         {
             if (buttonEdit1.Text == "Edit")
@@ -107,6 +105,7 @@ namespace Delivery_Project.Forms.Customer
             }
         }
 
+        // Password edit functionality
         private void buttonEdit2_Click(object sender, EventArgs e)
         {
             if (buttonEdit2.Text == "Edit")
@@ -141,6 +140,7 @@ namespace Delivery_Project.Forms.Customer
 
         }
 
+        // Address edit functionality
         private void buttonEdit3_Click(object sender, EventArgs e)
         {
             if (buttonEdit3.Text == "Edit")
@@ -174,8 +174,14 @@ namespace Delivery_Project.Forms.Customer
             }
         }
 
+        // Account delete button event handler
         private void buttonDeleteAccount_Click(object sender, EventArgs e)
         {
+            DialogResult result = MessageBox.Show("Are you sure you want to delete account?", "Action confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.No)
+                return;
+
             bool isDeleted = false;
 
             isDeleted = DeleteAccount?.Invoke(customer) ?? false;

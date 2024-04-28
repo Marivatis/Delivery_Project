@@ -14,9 +14,9 @@ namespace Delivery_Project.Forms.Entry
 {
     public partial class FormRegistration : CustomBorderForm
     {
-        public event EventHandler RegistrationComplete;
+        public static event EventHandler? RegistrationComplete;
 
-        public static RegisterCustomer RegisterCustomer;
+        public static RegisterCustomer? RegisterCustomer;
 
         public FormRegistration() : base()
         {
@@ -51,11 +51,11 @@ namespace Delivery_Project.Forms.Entry
             }
 
             string message = "Something went wrong.";
-            bool isRegistred = RegisterCustomer.Invoke(login, password, ref message);
+            bool isRegistred = RegisterCustomer?.Invoke(login, password, ref message) ?? false;
 
             if (isRegistred)
             {
-                RegistrationComplete.Invoke(this, EventArgs.Empty);
+                RegistrationComplete?.Invoke(this, EventArgs.Empty);
                 Close();
             }
             else
@@ -112,6 +112,5 @@ namespace Delivery_Project.Forms.Entry
                 textBoxRepeatPassword.Text = "Repeat your password";
             }
         }
-
     }
 }
