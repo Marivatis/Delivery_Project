@@ -1,6 +1,6 @@
 ﻿namespace Delivery_Project.Forms.Courier
 {
-    partial class FormCourierRegisteration
+    partial class FormCourierRegistration
     {
         /// <summary>
         /// Required designer variable.
@@ -34,6 +34,7 @@
             textBoxPhoneNumber = new TextBox();
             labelCardNumber = new Label();
             textBoxCardNumber = new TextBox();
+            labelMessage = new Label();
             SuspendLayout();
             // 
             // labelRegistration
@@ -58,13 +59,14 @@
             buttonRegister.TabIndex = 19;
             buttonRegister.Text = "Become a courier";
             buttonRegister.UseVisualStyleBackColor = true;
+            buttonRegister.Click += buttonRegister_Click;
             // 
             // labelPhoneNumber
             // 
             labelPhoneNumber.AutoSize = true;
             labelPhoneNumber.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelPhoneNumber.ForeColor = Color.White;
-            labelPhoneNumber.Location = new Point(40, 128);
+            labelPhoneNumber.Location = new Point(40, 179);
             labelPhoneNumber.Name = "labelPhoneNumber";
             labelPhoneNumber.Size = new Size(166, 30);
             labelPhoneNumber.TabIndex = 41;
@@ -76,18 +78,20 @@
             textBoxPhoneNumber.BorderStyle = BorderStyle.FixedSingle;
             textBoxPhoneNumber.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxPhoneNumber.ForeColor = Color.White;
-            textBoxPhoneNumber.Location = new Point(40, 161);
+            textBoxPhoneNumber.Location = new Point(40, 213);
             textBoxPhoneNumber.Name = "textBoxPhoneNumber";
             textBoxPhoneNumber.Size = new Size(250, 33);
             textBoxPhoneNumber.TabIndex = 40;
             textBoxPhoneNumber.Text = "Enter your phone number";
+            textBoxPhoneNumber.Enter += textBoxPhoneNumber_Enter;
+            textBoxPhoneNumber.Leave += textBoxPhoneNumber_Leave;
             // 
             // labelCardNumber
             // 
             labelCardNumber.AutoSize = true;
             labelCardNumber.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelCardNumber.ForeColor = Color.White;
-            labelCardNumber.Location = new Point(40, 210);
+            labelCardNumber.Location = new Point(40, 261);
             labelCardNumber.Name = "labelCardNumber";
             labelCardNumber.Size = new Size(148, 30);
             labelCardNumber.TabIndex = 43;
@@ -99,17 +103,32 @@
             textBoxCardNumber.BorderStyle = BorderStyle.FixedSingle;
             textBoxCardNumber.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxCardNumber.ForeColor = Color.White;
-            textBoxCardNumber.Location = new Point(40, 243);
+            textBoxCardNumber.Location = new Point(40, 295);
             textBoxCardNumber.Name = "textBoxCardNumber";
             textBoxCardNumber.Size = new Size(250, 33);
             textBoxCardNumber.TabIndex = 42;
             textBoxCardNumber.Text = "Enter your card number";
+            textBoxCardNumber.Enter += textBoxCardNumber_Enter;
+            textBoxCardNumber.Leave += textBoxCardNumber_Leave;
+            // 
+            // labelMessage
+            // 
+            labelMessage.AutoSize = true;
+            labelMessage.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            labelMessage.ForeColor = Color.White;
+            labelMessage.Location = new Point(40, 120);
+            labelMessage.Name = "labelMessage";
+            labelMessage.Size = new Size(97, 21);
+            labelMessage.TabIndex = 44;
+            labelMessage.Text = "No message";
+            labelMessage.Visible = false;
             // 
             // FormCourierRegisteration
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(330, 440);
+            Controls.Add(labelMessage);
             Controls.Add(labelCardNumber);
             Controls.Add(textBoxCardNumber);
             Controls.Add(labelPhoneNumber);
@@ -125,6 +144,7 @@
             Controls.SetChildIndex(labelPhoneNumber, 0);
             Controls.SetChildIndex(textBoxCardNumber, 0);
             Controls.SetChildIndex(labelCardNumber, 0);
+            Controls.SetChildIndex(labelMessage, 0);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -137,5 +157,6 @@
         private TextBox textBoxPhoneNumber;
         private Label labelCardNumber;
         private TextBox textBoxCardNumber;
+        private Label labelMessage;
     }
 }

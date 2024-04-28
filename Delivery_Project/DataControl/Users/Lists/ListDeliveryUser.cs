@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Delivery_Project.DataControl.Users.Lists
 {
-    public abstract class ListDeliveryUser<T> : IEnumerable<T>, ICollection<T>
+    public abstract class ListDeliveryUser<T> : IEnumerable<T>, ICollection<T> 
+        where T : DeliveryUser
     {
         protected List<T> _listUsers;
 
-        public event EventHandler AddedUser;
+        public event Action<DeliveryUser>? AddedUser;
 
         public ListDeliveryUser() : this(new List<T>()) { }
         public ListDeliveryUser(List<T> listCustomers)
@@ -19,7 +20,7 @@ namespace Delivery_Project.DataControl.Users.Lists
             _listUsers = listCustomers;
         }
 
-        public List<T> ListUsers => _listUsers;
+        public List<T> List => _listUsers;
 
         public T this[int index]
         {
@@ -33,7 +34,7 @@ namespace Delivery_Project.DataControl.Users.Lists
         public virtual void Add(T customer)
         {
             _listUsers.Add(customer);
-            AddedUser?.Invoke(this, EventArgs.Empty);
+            AddedUser?.Invoke(customer);
         }
         public void Clear()
         {
@@ -60,5 +61,6 @@ namespace Delivery_Project.DataControl.Users.Lists
         {
             return ((IEnumerable)_listUsers).GetEnumerator();
         }
+
     }
 }

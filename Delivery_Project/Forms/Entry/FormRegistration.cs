@@ -8,15 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Delivery_Project.DataControl.FormManagement;
+using Delivery_Project.DataControl.Users;
 using Delivery_Project.Forms.Templates;
 
 namespace Delivery_Project.Forms.Entry
 {
     public partial class FormRegistration : CustomBorderForm
     {
-        public static event EventHandler? RegistrationComplete;
-
         public static RegisterCustomer? RegisterCustomer;
+
+        public static event Action<Type>? RegistrationComplete;
 
         public FormRegistration() : base()
         {
@@ -55,7 +56,7 @@ namespace Delivery_Project.Forms.Entry
 
             if (isRegistred)
             {
-                RegistrationComplete?.Invoke(this, EventArgs.Empty);
+                RegistrationComplete?.Invoke(typeof(DeliveryCustomer));
                 Close();
             }
             else

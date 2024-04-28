@@ -25,6 +25,7 @@ namespace Delivery_Project.DataControl.FormManagement
         private FormProvider? formProvider;
 
         public static RegisterCustomer? QuerryRegistrerCustomer;
+        public static RegisterCourier? QuerryRegistrerCourier;
         public static LoginUser? QuerryLoginCustomer;
         public static Func<DeliveryUser, bool>? QuerryDeleteAccount;
 
@@ -41,10 +42,13 @@ namespace Delivery_Project.DataControl.FormManagement
             FormLogin.ShowRegistrationForm += FormRegistrationShow;
 
             FormRegistration.RegisterCustomer += QuerryRegistrerCustomer;
-            FormRegistration.RegistrationComplete += FormRegistration_RegistrationComplete;
+            FormRegistration.RegistrationComplete += RegistrationComplete;
 
             FormCustomerProfile.DeleteAccount += QuerryDeleteAccount;
             FormCustomerProfile.AccountDeleted += AccountDeleted;
+
+            FormCourierRegistration.RegisterCourier += QuerryRegistrerCourier;
+            FormCourierRegistration.RegistrationComplete += RegistrationComplete;
         }
 
         // Runs application and shows login form
@@ -66,8 +70,21 @@ namespace Delivery_Project.DataControl.FormManagement
         }
 
         // Shows login form when user registration complete
-        private void FormRegistration_RegistrationComplete(object? sender, EventArgs e)
+        private void RegistrationComplete(Type user)
         {
+            if (user == typeof(DeliveryCustomer))
+            {
+                formCustomer?.Close();
+            }
+            else if (user == typeof(DeliveryCourier))
+            {
+                formCourier?.Close();
+            }
+            else if (user == typeof(DeliveryProvider))
+            {
+                formCourier?.Close();
+            }
+
             formLogin = new FormLogin();
             formLogin.Show();
         }

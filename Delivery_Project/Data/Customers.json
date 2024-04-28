@@ -3,12 +3,18 @@
     "Address": "No_Address",
     "Login": "admin",
     "Password": "admin",
-    "PhoneNumber": "No_Phone_Number"
+    "PhoneNumber": "0637878813"
   },
   {
     "Address": "No_Address",
     "Login": "User",
     "Password": "user",
+    "PhoneNumber": "No_Phone_Number"
+  },
+  {
+    "Address": "No_Address",
+    "Login": "Cour",
+    "Password": "cour",
     "PhoneNumber": "No_Phone_Number"
   }
 ]

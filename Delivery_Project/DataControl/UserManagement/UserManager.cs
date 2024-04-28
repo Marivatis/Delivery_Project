@@ -6,6 +6,7 @@ using Delivery_Project.Forms.Courier;
 using Delivery_Project.Forms.Customer;
 using Delivery_Project.Forms.Entry;
 using Delivery_Project.Forms.Provider;
+using Microsoft.VisualBasic.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,10 @@ namespace Delivery_Project.DataControl.UserManagement
 {
     public class UserManager
     {
-        private ListDeliveryCustomers deliveryCustomers;
-        private ListDeliveryCouriers deliveryCouriers;
-        private ListDeliveryProvider deliveryProviders;
-
+        private ListDeliveryCustomers? deliveryCustomers;
+        private ListDeliveryCouriers? deliveryCouriers;
+        private ListDeliveryProvider? deliveryProviders;
+        
         public UserManager()
         {
             Initialize();
@@ -33,18 +34,22 @@ namespace Delivery_Project.DataControl.UserManagement
             DeliveryUser.ValidatePassword += ValidatePassword;
             DeliveryUser.ValidatePhoneNumber += ValidatePhoneNumber;
             DeliveryCustomer.ValidateAddress += ValidateAddress;
+            DeliveryCourier.ValidateCardNumber += ValidateCardNumber;
 
             Reading_DeliveryCustomers();
             Reading_DeliveryCouriers();
             Reading_DeliveryProviders();
 
             FormManager.QuerryRegistrerCustomer += RegisterCustomer;
+            FormManager.QuerryRegistrerCourier += RegisterCourier;
             FormManager.QuerryLoginCustomer += LoginUser;
             FormManager.QuerryDeleteAccount += DeleteAcount;
 
             DeliveryUser.UserChanged += Write_UserList;            
 
-            deliveryCustomers.AddedCustomer += Write_DeliveryCustomers;            
+            deliveryCustomers.AddedUser += Write_UserList;
+            deliveryCouriers.AddedUser += Write_UserList;
+            deliveryProviders.AddedUser += Write_UserList;
         }
 
         // User properties validation unit
@@ -109,8 +114,15 @@ namespace Delivery_Project.DataControl.UserManagement
                 return true;
             }
 
-            message = "Invalid phone number";
-            return false;
+            string pattern = @"^\+?(\d{2})?[-. ]?(\d{3})[-. ]?(\d{3})[-. ]?(\d{4})$";
+
+            if (!Regex.IsMatch(phoneNumber, pattern))
+            {
+                message = "Invalid phone number";
+                return false; 
+            }
+
+            return true;
         }
         private bool ValidateAddress(string address, ref string message)
         {
@@ -128,19 +140,38 @@ namespace Delivery_Project.DataControl.UserManagement
             message = "Invalid address";
             return false;
         }
+        private bool ValidateCardNumber(string cardNumber, ref string message)
+        {
+            if (string.IsNullOrEmpty(cardNumber))
+            {
+                message = "Card number can`t be empty.";
+                return false;
+            }
+
+            if (cardNumber == "No_Card_Number")
+            {
+                return true;
+            }
+
+            string pattern = @"^\d{4} \d{4} \d{4} \d{4}$"; 
+
+            if (!Regex.IsMatch(cardNumber, pattern))
+            {
+                message = "Invalid card number.";
+                return false;
+            }
+
+            return true;
+        }
 
         private bool RegisterCustomer(string login, string password, ref string message)
         {
-            bool isCorrectFormat = false;
+            bool isValid = ValidateLogin(login, ref message) &&
+                           ValidatePassword(password, ref message);
 
-            isCorrectFormat = ValidateLogin(login, ref message);
-            if (!isCorrectFormat)
+            if (!isValid)
                 return false;
-
-            isCorrectFormat = ValidatePassword(login, ref message);
-            if (!isCorrectFormat)
-                return false;
-
+            
             var customerExists = deliveryCustomers.Any(c => c.Login == login) ||
                                  deliveryCouriers.Any(c => c.Login == login) ||
                                  deliveryProviders.Any(p => p.Login == login);    
@@ -151,8 +182,19 @@ namespace Delivery_Project.DataControl.UserManagement
                 return false;
             }
 
-            deliveryCustomers.Add(new DeliveryCustomer(login, password));
+            deliveryCustomers?.Add(new DeliveryCustomer(login, password));
             return true;
+        }
+        private bool RegisterCourier(DeliveryUser user, string cardNumber,ref string message)
+        {
+            bool isValid = ValidateCardNumber(cardNumber, ref message);
+
+            if (!isValid)
+                return false;
+
+            deliveryCouriers?.Add(new DeliveryCourier(user.Login, user.Password, user.PhoneNumber, cardNumber));
+
+            return DeleteAcount(user); 
         }
 
         private string LoginUser(string login, string password, out DeliveryUser? user)
@@ -186,13 +228,15 @@ namespace Delivery_Project.DataControl.UserManagement
 
             if (user is DeliveryCustomer customer)
             {
-                isDeleted = deliveryCustomers.Remove(customer);
+                isDeleted = deliveryCustomers?.Remove(customer) ?? false;
             }
             else if (user is DeliveryCourier courier)
             {
+                isDeleted = deliveryCouriers?.Remove(courier) ?? false;
             }
             else if (user is DeliveryProvider provider)
             {
+                isDeleted = deliveryProviders?.Remove(provider) ?? false;
             }
 
             if (isDeleted)
@@ -207,20 +251,22 @@ namespace Delivery_Project.DataControl.UserManagement
         {
             if (user is DeliveryCustomer customer)
             {
-                Write_DeliveryCustomers();
+                Write_List(deliveryCustomers?.List, "Customers");
             }
             else if (user is DeliveryCourier courier)
             {
+                Write_List(deliveryCouriers?.List, "Couriers");
             }
             else if (user is DeliveryProvider provider)
             {
+                Write_List(deliveryProviders?.List, "Providers");
             }
         }
-        private void Write_DeliveryCustomers()
+        private void Write_List<T>(List<T> list, string fileName)
         {
             bool isWritten = false;
 
-            isWritten = DataManager.WriteListToJson(deliveryCustomers.ListUsers, "Customers");
+            isWritten = DataManager.WriteListToJson(list, fileName);
 
             if (!isWritten)
             {

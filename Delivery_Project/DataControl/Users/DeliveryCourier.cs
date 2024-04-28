@@ -10,6 +10,8 @@ namespace Delivery_Project.DataControl.Users
     {
         private string _cardNumber;
 
+        public static ValidateProperty<string>? ValidateCardNumber;
+
         public DeliveryCourier() : this("No_Login", "No_Password") { }
         public DeliveryCourier(string login, string password) : this(login, password, "No_Phone_Number") { }
         public DeliveryCourier(string login, string password, string phoneNumber) : this(login, password, phoneNumber, "No_Card_Number") { }
@@ -20,8 +22,28 @@ namespace Delivery_Project.DataControl.Users
 
         public string CardNumber
         {
-            get { return _cardNumber; }
-            set { _cardNumber = value; }
+            get 
+            {
+                return _cardNumber; 
+            }
+            set 
+            {
+                bool isValid = false;
+                string message = "Something went wrong.";
+
+                isValid = ValidateCardNumber?.Invoke(value, ref message) ?? false;
+
+                if (isValid)
+                {
+                    _cardNumber = value;
+                    RaiseEvent_UserChanged(this);
+                }
+                else
+                {
+                    throw new InvalidDataException(message);
+                }
+            }
+
         }
     }
 }

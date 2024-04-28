@@ -1,7 +1,20 @@
 [
   {
+    "CardNumber": "No_Card_Number",
     "Login": "COUR",
     "Password": "COUR",
     "PhoneNumber": "No_Phone_Number"
+  },
+  {
+    "CardNumber": "1111 1111 1111 1111",
+    "Login": "Cour",
+    "Password": "cour",
+    "PhoneNumber": "0637878813"
+  },
+  {
+    "CardNumber": "2341 1234 8483 1235",
+    "Login": "Kirill",
+    "Password": "Kirilyan",
+    "PhoneNumber": "380663013273"
   }
 ]

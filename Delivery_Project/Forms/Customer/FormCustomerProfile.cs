@@ -17,7 +17,7 @@ namespace Delivery_Project.Forms.Customer
 {
     public partial class FormCustomerProfile : CustomBorderForm
     {
-        private FormCourierRegisteration formCourierRegisteration;
+        private FormCourierRegistration formCourierRegisteration;
         private FormProviderRegistration formProviderRegistration;
 
         private Point parentLocation;
@@ -33,6 +33,9 @@ namespace Delivery_Project.Forms.Customer
 
             this.customer = customer;
             parentLocation = formLocation;
+
+            FormCourierRegistration.RegistrationComplete += AccountDeleted;
+            FormCourierRegistration.RegistrationComplete += Close;
         }
 
         // On load form functions
@@ -49,9 +52,9 @@ namespace Delivery_Project.Forms.Customer
         // Transition to courier or provider registration forms
         private void labelBecomeCourier_Click(object sender, EventArgs e)
         {
-            formCourierRegisteration = new FormCourierRegisteration();
+            formCourierRegisteration = new FormCourierRegistration(ref customer);
             formCourierRegisteration.FormClosed += Enable;
-
+            
             Enabled = false;
             formCourierRegisteration.Show();
         }
@@ -196,6 +199,12 @@ namespace Delivery_Project.Forms.Customer
             {
                 MessageBox.Show("Something went wrong.");
             }
+        }
+
+        // Overload form close function
+        private void Close(Type type)
+        {
+            Close();
         }
     }
 }

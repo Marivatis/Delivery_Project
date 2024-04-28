@@ -33,9 +33,9 @@
             label3 = new Label();
             labelPlaceName = new Label();
             dataGridView1 = new DataGridView();
-            ProductName = new DataGridViewTextBoxColumn();
-            ProductPrice = new DataGridViewTextBoxColumn();
-            ProductDescription = new DataGridViewTextBoxColumn();
+            productName = new DataGridViewTextBoxColumn();
+            productPrice = new DataGridViewTextBoxColumn();
+            productDescription = new DataGridViewTextBoxColumn();
             panelSeparator1 = new Panel();
             labelProductName = new Label();
             textBoxLogin = new TextBox();
@@ -103,7 +103,7 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ProductName, ProductPrice, ProductDescription });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { productName, productPrice, productDescription });
             dataGridView1.Location = new Point(280, 192);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
@@ -112,21 +112,21 @@
             // 
             // ProductName
             // 
-            ProductName.HeaderText = "Product";
-            ProductName.Name = "ProductName";
-            ProductName.ReadOnly = true;
+            productName.HeaderText = "Product";
+            productName.Name = "ProductName";
+            productName.ReadOnly = true;
             // 
             // ProductPrice
             // 
-            ProductPrice.HeaderText = "Price";
-            ProductPrice.Name = "ProductPrice";
-            ProductPrice.ReadOnly = true;
+            productPrice.HeaderText = "Price";
+            productPrice.Name = "ProductPrice";
+            productPrice.ReadOnly = true;
             // 
             // ProductDescription
             // 
-            ProductDescription.HeaderText = "Description";
-            ProductDescription.Name = "ProductDescription";
-            ProductDescription.ReadOnly = true;
+            productDescription.HeaderText = "Description";
+            productDescription.Name = "ProductDescription";
+            productDescription.ReadOnly = true;
             // 
             // panelSeparator1
             // 
@@ -339,9 +339,9 @@
         private Label labelProductName;
         private TextBox textBoxLogin;
         private Button buttonMyProfile;
-        private DataGridViewTextBoxColumn ProductName;
-        private DataGridViewTextBoxColumn ProductPrice;
-        private DataGridViewTextBoxColumn ProductDescription;
+        private DataGridViewTextBoxColumn productName;
+        private DataGridViewTextBoxColumn productPrice;
+        private DataGridViewTextBoxColumn productDescription;
         private Label labelProductPrice;
         private TextBox textBoxProductPrice;
         private Label labelProductDescription;
