@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            buttonEdit3 = new Button();
             textBoxCardNumber = new TextBox();
             buttonEdit2 = new Button();
             buttonEdit1 = new Button();
@@ -40,24 +40,27 @@
             labelLogin = new Label();
             textBoxLogin = new TextBox();
             labelMyProfileTitle = new Label();
+            buttonDeleteAccount = new Button();
             SuspendLayout();
             // 
-            // button1
+            // buttonEdit3
             // 
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(225, 388);
-            button1.Name = "button1";
-            button1.Size = new Size(66, 36);
-            button1.TabIndex = 48;
-            button1.Text = "Edit";
-            button1.UseVisualStyleBackColor = true;
+            buttonEdit3.FlatStyle = FlatStyle.Flat;
+            buttonEdit3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonEdit3.ForeColor = Color.White;
+            buttonEdit3.Location = new Point(225, 388);
+            buttonEdit3.Name = "buttonEdit3";
+            buttonEdit3.Size = new Size(66, 36);
+            buttonEdit3.TabIndex = 48;
+            buttonEdit3.Text = "Edit";
+            buttonEdit3.UseVisualStyleBackColor = true;
+            buttonEdit3.Click += buttonEdit3_Click;
             // 
             // textBoxCardNumber
             // 
             textBoxCardNumber.BackColor = Color.FromArgb(61, 61, 61);
             textBoxCardNumber.BorderStyle = BorderStyle.FixedSingle;
+            textBoxCardNumber.Enabled = false;
             textBoxCardNumber.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxCardNumber.ForeColor = Color.White;
             textBoxCardNumber.Location = new Point(41, 430);
@@ -95,7 +98,7 @@
             labelCardNumber.AutoSize = true;
             labelCardNumber.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelCardNumber.ForeColor = Color.White;
-            labelCardNumber.Location = new Point(41, 397);
+            labelCardNumber.Location = new Point(41, 396);
             labelCardNumber.Name = "labelCardNumber";
             labelCardNumber.Size = new Size(148, 30);
             labelCardNumber.TabIndex = 44;
@@ -106,7 +109,7 @@
             labelPassword.AutoSize = true;
             labelPassword.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelPassword.ForeColor = Color.White;
-            labelPassword.Location = new Point(41, 298);
+            labelPassword.Location = new Point(41, 297);
             labelPassword.Name = "labelPassword";
             labelPassword.Size = new Size(111, 30);
             labelPassword.TabIndex = 43;
@@ -116,6 +119,7 @@
             // 
             textBoxPassword.BackColor = Color.FromArgb(61, 61, 61);
             textBoxPassword.BorderStyle = BorderStyle.FixedSingle;
+            textBoxPassword.Enabled = false;
             textBoxPassword.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxPassword.ForeColor = Color.White;
             textBoxPassword.Location = new Point(41, 331);
@@ -129,7 +133,7 @@
             labelPhoneNumber.AutoSize = true;
             labelPhoneNumber.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelPhoneNumber.ForeColor = Color.White;
-            labelPhoneNumber.Location = new Point(41, 198);
+            labelPhoneNumber.Location = new Point(41, 197);
             labelPhoneNumber.Name = "labelPhoneNumber";
             labelPhoneNumber.Size = new Size(166, 30);
             labelPhoneNumber.TabIndex = 41;
@@ -139,6 +143,7 @@
             // 
             textBoxPhoneNumber.BackColor = Color.FromArgb(61, 61, 61);
             textBoxPhoneNumber.BorderStyle = BorderStyle.FixedSingle;
+            textBoxPhoneNumber.Enabled = false;
             textBoxPhoneNumber.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxPhoneNumber.ForeColor = Color.White;
             textBoxPhoneNumber.Location = new Point(41, 231);
@@ -152,7 +157,7 @@
             labelLogin.AutoSize = true;
             labelLogin.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelLogin.ForeColor = Color.White;
-            labelLogin.Location = new Point(41, 128);
+            labelLogin.Location = new Point(41, 127);
             labelLogin.Name = "labelLogin";
             labelLogin.Size = new Size(75, 30);
             labelLogin.TabIndex = 39;
@@ -162,6 +167,7 @@
             // 
             textBoxLogin.BackColor = Color.FromArgb(61, 61, 61);
             textBoxLogin.BorderStyle = BorderStyle.FixedSingle;
+            textBoxLogin.Enabled = false;
             textBoxLogin.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxLogin.ForeColor = Color.White;
             textBoxLogin.Location = new Point(41, 161);
@@ -181,12 +187,27 @@
             labelMyProfileTitle.TabIndex = 37;
             labelMyProfileTitle.Text = "My Profile";
             // 
+            // buttonDeleteAccount
+            // 
+            buttonDeleteAccount.FlatAppearance.BorderSize = 0;
+            buttonDeleteAccount.FlatStyle = FlatStyle.Flat;
+            buttonDeleteAccount.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonDeleteAccount.ForeColor = Color.White;
+            buttonDeleteAccount.Location = new Point(1, 1);
+            buttonDeleteAccount.Name = "buttonDeleteAccount";
+            buttonDeleteAccount.Size = new Size(103, 25);
+            buttonDeleteAccount.TabIndex = 49;
+            buttonDeleteAccount.Text = "Delete account";
+            buttonDeleteAccount.UseVisualStyleBackColor = true;
+            buttonDeleteAccount.Click += buttonDeleteAccount_Click;
+            // 
             // FormCourierProfile
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(330, 550);
-            Controls.Add(button1);
+            Controls.Add(buttonDeleteAccount);
+            Controls.Add(buttonEdit3);
             Controls.Add(textBoxCardNumber);
             Controls.Add(buttonEdit2);
             Controls.Add(buttonEdit1);
@@ -212,14 +233,15 @@
             Controls.SetChildIndex(buttonEdit1, 0);
             Controls.SetChildIndex(buttonEdit2, 0);
             Controls.SetChildIndex(textBoxCardNumber, 0);
-            Controls.SetChildIndex(button1, 0);
+            Controls.SetChildIndex(buttonEdit3, 0);
+            Controls.SetChildIndex(buttonDeleteAccount, 0);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
+        private Button buttonEdit3;
         private TextBox textBoxCardNumber;
         private Button buttonEdit2;
         private Button buttonEdit1;
@@ -231,5 +253,6 @@
         private Label labelLogin;
         private TextBox textBoxLogin;
         private Label labelMyProfileTitle;
+        private Button buttonDeleteAccount;
     }
 }

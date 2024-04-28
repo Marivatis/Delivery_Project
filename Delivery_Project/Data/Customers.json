@@ -10,11 +10,5 @@
     "Login": "User",
     "Password": "user",
     "PhoneNumber": "No_Phone_Number"
-  },
-  {
-    "Address": "No_Address",
-    "Login": "Cour",
-    "Password": "cour",
-    "PhoneNumber": "No_Phone_Number"
   }
 ]

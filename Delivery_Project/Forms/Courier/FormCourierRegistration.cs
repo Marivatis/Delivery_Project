@@ -16,23 +16,23 @@ namespace Delivery_Project.Forms.Courier
 {
     public partial class FormCourierRegistration : CustomBorderForm
     {
-        private DeliveryCustomer customer;
+        private DeliveryUser user;
 
         public static RegisterCourier? RegisterCourier;
 
         public static event Action<Type>? RegistrationComplete;
 
-        public FormCourierRegistration(ref DeliveryCustomer customer) : base()
+        public FormCourierRegistration(DeliveryUser user) : base()
         {
             InitializeComponent();
 
-            this.customer = customer;
+            this.user = user;
         }
 
         private void FormCourierRegisteration_Load(object sender, EventArgs e)
         {
-            if (customer.PhoneNumber != "No_Phone_Number")
-                textBoxPhoneNumber.Text = customer.PhoneNumber;
+            if (user.PhoneNumber != "No_Phone_Number")
+                textBoxPhoneNumber.Text = user.PhoneNumber;
 
             CenterToScreen();
         }
@@ -51,7 +51,7 @@ namespace Delivery_Project.Forms.Courier
 
             try
             {
-                customer.PhoneNumber = phoneNumber;
+                user.PhoneNumber = phoneNumber;
             }
             catch (InvalidDataException ex)
             {
@@ -60,14 +60,12 @@ namespace Delivery_Project.Forms.Courier
             }
 
             string message = "Something went wrong.";
-            bool isRegistred = RegisterCourier?.Invoke(customer, cardNumber, ref message) ?? false;
+            bool isRegistred = RegisterCourier?.Invoke(user, cardNumber, ref message) ?? false;
 
             if (isRegistred)
             {
                 RegistrationComplete?.Invoke(typeof(DeliveryCourier));
                 Close();
-                labelMessage.Text = "Ura";
-                labelMessage.Visible = true;
             }
             else
             {

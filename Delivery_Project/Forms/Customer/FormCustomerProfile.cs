@@ -36,6 +36,9 @@ namespace Delivery_Project.Forms.Customer
 
             FormCourierRegistration.RegistrationComplete += AccountDeleted;
             FormCourierRegistration.RegistrationComplete += Close;
+
+            FormProviderRegistration.RegistrationComplete += AccountDeleted;
+            FormProviderRegistration.RegistrationComplete += Close;
         }
 
         // On load form functions
@@ -52,7 +55,7 @@ namespace Delivery_Project.Forms.Customer
         // Transition to courier or provider registration forms
         private void labelBecomeCourier_Click(object sender, EventArgs e)
         {
-            formCourierRegisteration = new FormCourierRegistration(ref customer);
+            formCourierRegisteration = new FormCourierRegistration(customer);
             formCourierRegisteration.FormClosed += Enable;
             
             Enabled = false;
@@ -60,7 +63,7 @@ namespace Delivery_Project.Forms.Customer
         }
         private void labelBecomeProvider_Click(object sender, EventArgs e)
         {
-            formProviderRegistration = new FormProviderRegistration();
+            formProviderRegistration = new FormProviderRegistration(customer);
             formProviderRegistration.FormClosed += Enable;
 
             Enabled = false;
@@ -157,7 +160,7 @@ namespace Delivery_Project.Forms.Customer
         }
         private void buttonEdit3_Edit_Click()
         {
-            textBoxPassword.Enabled = true;
+            textBoxAddress.Enabled = true;
 
             buttonEdit3.Text = "Save";
         }
@@ -167,7 +170,7 @@ namespace Delivery_Project.Forms.Customer
             {
                 customer.Address = textBoxAddress.Text;
 
-                textBoxPassword.Enabled = false;
+                textBoxAddress.Enabled = false;
 
                 buttonEdit3.Text = "Edit";
             }

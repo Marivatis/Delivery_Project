@@ -42,6 +42,7 @@ namespace Delivery_Project.DataControl.UserManagement
 
             FormManager.QuerryRegistrerCustomer += RegisterCustomer;
             FormManager.QuerryRegistrerCourier += RegisterCourier;
+            FormManager.QuerryRegistrerProvider += RegisterProvider;
             FormManager.QuerryLoginCustomer += LoginUser;
             FormManager.QuerryDeleteAccount += DeleteAcount;
 
@@ -185,7 +186,7 @@ namespace Delivery_Project.DataControl.UserManagement
             deliveryCustomers?.Add(new DeliveryCustomer(login, password));
             return true;
         }
-        private bool RegisterCourier(DeliveryUser user, string cardNumber,ref string message)
+        private bool RegisterCourier(DeliveryUser user, string cardNumber, ref string message)
         {
             bool isValid = ValidateCardNumber(cardNumber, ref message);
 
@@ -195,6 +196,18 @@ namespace Delivery_Project.DataControl.UserManagement
             deliveryCouriers?.Add(new DeliveryCourier(user.Login, user.Password, user.PhoneNumber, cardNumber));
 
             return DeleteAcount(user); 
+        }
+        private bool RegisterProvider(DeliveryUser user, string secretWord, ref string message)
+        {
+            if (secretWord != "Please")
+            {
+                message = "Incorrect secret word.";
+                return false;
+            }
+
+            deliveryProviders?.Add(new DeliveryProvider(user.Login, user.Password, user.PhoneNumber));
+
+            return DeleteAcount(user);
         }
 
         private string LoginUser(string login, string password, out DeliveryUser? user)

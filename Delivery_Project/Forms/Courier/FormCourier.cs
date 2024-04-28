@@ -32,7 +32,7 @@ namespace Delivery_Project.Forms.Courier
 
         private void buttonMyProfile_Click(object sender, EventArgs e)
         {
-            formProfile = new FormCourierProfile(Location);
+            formProfile = new FormCourierProfile(Location, ref courier);
             formProfile.FormClosed += Enable;
 
             Enabled = false;

@@ -26,6 +26,7 @@ namespace Delivery_Project.DataControl.FormManagement
 
         public static RegisterCustomer? QuerryRegistrerCustomer;
         public static RegisterCourier? QuerryRegistrerCourier;
+        public static RegisterProvider? QuerryRegistrerProvider;
         public static LoginUser? QuerryLoginCustomer;
         public static Func<DeliveryUser, bool>? QuerryDeleteAccount;
 
@@ -39,7 +40,7 @@ namespace Delivery_Project.DataControl.FormManagement
             CustomBorderForm.CustomFormClosed += CustomBorderForm_FormClosed;
 
             FormLogin.LoginUser += LoginUser;
-            FormLogin.ShowRegistrationForm += FormRegistrationShow;
+            FormLogin.ShowRegistrationForm += FormRegistration_Show;
 
             FormRegistration.RegisterCustomer += QuerryRegistrerCustomer;
             FormRegistration.RegistrationComplete += RegistrationComplete;
@@ -47,8 +48,14 @@ namespace Delivery_Project.DataControl.FormManagement
             FormCustomerProfile.DeleteAccount += QuerryDeleteAccount;
             FormCustomerProfile.AccountDeleted += AccountDeleted;
 
+            FormCourierProfile.DeleteAccount += QuerryDeleteAccount;
+            FormCourierProfile.AccountDeleted += AccountDeleted;
+
             FormCourierRegistration.RegisterCourier += QuerryRegistrerCourier;
             FormCourierRegistration.RegistrationComplete += RegistrationComplete;
+
+            FormProviderRegistration.RegisterProvider += QuerryRegistrerProvider;
+            FormProviderRegistration.RegistrationComplete += RegistrationComplete;
         }
 
         // Runs application and shows login form
@@ -72,29 +79,32 @@ namespace Delivery_Project.DataControl.FormManagement
         // Shows login form when user registration complete
         private void RegistrationComplete(Type user)
         {
-            if (user == typeof(DeliveryCustomer))
-            {
-                formCustomer?.Close();
-            }
-            else if (user == typeof(DeliveryCourier))
-            {
-                formCourier?.Close();
-            }
-            else if (user == typeof(DeliveryProvider))
-            {
-                formCourier?.Close();
-            }
+            formCustomer?.Close();
+            formCourier?.Close();
+            formProvider?.Close();
 
-            formLogin = new FormLogin();
-            formLogin.Show();
+            FormLogin_Show();
         }
+
         // Shows registration form
-        private void FormRegistrationShow()
+        private void FormRegistration_Show()
         {
-            formRegistration = new FormRegistration();
-            formRegistration.Show();
+            if (!Application.OpenForms.OfType<FormRegistration>().Any())
+            {
+                formRegistration = new FormRegistration();
+                formRegistration.Show();
+            }            
         }
-                
+        // Show login form
+        private void FormLogin_Show()
+        {
+            if (!Application.OpenForms.OfType<FormLogin>().Any())
+            {
+                formLogin = new FormLogin();
+                formLogin.Show();
+            }
+        }
+        
         // Makes querry to login user
         private bool LoginUser(string login, string password, ref string message)
         {
@@ -151,8 +161,7 @@ namespace Delivery_Project.DataControl.FormManagement
                 formProvider?.Close();
             }
 
-            formLogin = new FormLogin();
-            formLogin.Show();
+            FormLogin_Show();
         }
     }
 }
