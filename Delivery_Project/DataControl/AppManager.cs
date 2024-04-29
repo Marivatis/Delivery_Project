@@ -1,6 +1,7 @@
 ﻿using Delivery_Project.DataControl.DataManagement;
 using Delivery_Project.DataControl.FormManagement;
 using Delivery_Project.DataControl.UserManagement;
+using Delivery_Project.DataControl.Workplaces.Management;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace Delivery_Project.DataControl
         private FormManager formManager;
         private UserManager userManager;
         private DataManager dataManager;
+        private PlacesManager placesManager;
 
         public AppManager() 
         {
@@ -25,6 +27,7 @@ namespace Delivery_Project.DataControl
             dataManager = new DataManager();
             userManager = new UserManager();
             formManager = new FormManager();
+            placesManager = new PlacesManager();
         }
 
         public void Run()

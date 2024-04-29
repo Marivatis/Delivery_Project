@@ -51,6 +51,9 @@ namespace Delivery_Project.DataControl.FormManagement
             FormCourierProfile.DeleteAccount += QuerryDeleteAccount;
             FormCourierProfile.AccountDeleted += AccountDeleted;
 
+            FormProviderProfile.DeleteAccount += QuerryDeleteAccount;
+            FormProviderProfile.AccountDeleted += AccountDeleted;
+
             FormCourierRegistration.RegisterCourier += QuerryRegistrerCourier;
             FormCourierRegistration.RegistrationComplete += RegistrationComplete;
 

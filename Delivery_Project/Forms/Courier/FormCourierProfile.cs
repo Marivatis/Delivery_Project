@@ -167,6 +167,5 @@ namespace Delivery_Project.Forms.Courier
                 MessageBox.Show("Something went wrong.");
             }
         }
-
     }
 }

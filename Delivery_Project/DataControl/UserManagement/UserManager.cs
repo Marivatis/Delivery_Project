@@ -1,7 +1,10 @@
 ﻿using Delivery_Project.DataControl.DataManagement;
+using Delivery_Project.DataControl.DataValidation;
 using Delivery_Project.DataControl.FormManagement;
 using Delivery_Project.DataControl.Users;
 using Delivery_Project.DataControl.Users.Lists;
+using Delivery_Project.DataControl.Workplaces;
+using Delivery_Project.DataControl.Workplaces.Lists;
 using Delivery_Project.Forms.Courier;
 using Delivery_Project.Forms.Customer;
 using Delivery_Project.Forms.Entry;
@@ -22,6 +25,8 @@ namespace Delivery_Project.DataControl.UserManagement
         private ListDeliveryCustomers? deliveryCustomers;
         private ListDeliveryCouriers? deliveryCouriers;
         private ListDeliveryProvider? deliveryProviders;
+
+        public static Func<DeliveryPlace>? GetDeliveryPlace;
         
         public UserManager()
         {
@@ -30,16 +35,16 @@ namespace Delivery_Project.DataControl.UserManagement
 
         private void Initialize()
         {
-            DeliveryUser.ValidateLogin += ValidateLogin;
-            DeliveryUser.ValidatePassword += ValidatePassword;
-            DeliveryUser.ValidatePhoneNumber += ValidatePhoneNumber;
-            DeliveryCustomer.ValidateAddress += ValidateAddress;
-            DeliveryCourier.ValidateCardNumber += ValidateCardNumber;
+            DeliveryUser.ValidateLogin += UserDataValidator.ValidateLogin;
+            DeliveryUser.ValidatePassword += UserDataValidator.ValidatePassword;
+            DeliveryUser.ValidatePhoneNumber += UserDataValidator.ValidatePhoneNumber;
+            DeliveryCustomer.ValidateAddress += UserDataValidator.ValidateAddress;
+            DeliveryCourier.ValidateCardNumber += UserDataValidator.ValidateCardNumber;
 
-            Reading_DeliveryCustomers();
-            Reading_DeliveryCouriers();
-            Reading_DeliveryProviders();
-
+            Read_DeliveryCustomers();
+            Read_DeliveryCouriers();
+            Read_DeliveryProviders();
+            
             FormManager.QuerryRegistrerCustomer += RegisterCustomer;
             FormManager.QuerryRegistrerCourier += RegisterCourier;
             FormManager.QuerryRegistrerProvider += RegisterProvider;
@@ -51,124 +56,17 @@ namespace Delivery_Project.DataControl.UserManagement
             deliveryCustomers.AddedUser += Write_UserList;
             deliveryCouriers.AddedUser += Write_UserList;
             deliveryProviders.AddedUser += Write_UserList;
+            
         }
 
         // User properties validation unit
-        private bool ValidateLogin(string login, ref string message)
-        {
-            if (string.IsNullOrEmpty(login))
-            {
-                message = "Login can`t be empty.";
-                return false;
-            }
+       
 
-            string pattern = "^[a-zA-Z0-9]";
-
-            if (!Regex.IsMatch(login, pattern))
-            {
-                message = "Incorrect login format.";
-                return false;
-            }
-
-            if (3 > login.Length || login.Length > 12)
-            {
-                message = "Login must be from 3 to 12 characters.";
-                return false;
-            }
-
-            return true;
-        }
-        private bool ValidatePassword(string password, ref string message)
-        {
-            if (string.IsNullOrEmpty(password))
-            {
-                message = "Password can`t be empty.";
-                return false;
-            }
-
-            string pattern = "^[a-zA-Z0-9]";
-
-            if (!Regex.IsMatch(password, pattern))
-            {
-                message = "Incorrect password format.";
-                return false;
-            }
-
-            if (4 > password.Length || password.Length > 14)
-            {
-                message = "Password must be from 4 to 12 characters.";
-                return false;
-            }
-
-            return true;
-        }
-        private bool ValidatePhoneNumber(string phoneNumber, ref string message)
-        {
-            if (string.IsNullOrEmpty(phoneNumber))
-            {
-                message = "Phone number can`t be empty.";
-                return false;
-            }
-
-            if (phoneNumber == "No_Phone_Number")
-            {
-                return true;
-            }
-
-            string pattern = @"^\+?(\d{2})?[-. ]?(\d{3})[-. ]?(\d{3})[-. ]?(\d{4})$";
-
-            if (!Regex.IsMatch(phoneNumber, pattern))
-            {
-                message = "Invalid phone number";
-                return false; 
-            }
-
-            return true;
-        }
-        private bool ValidateAddress(string address, ref string message)
-        {
-            if (string.IsNullOrEmpty(address))
-            {
-                message = "Address can`t be empty.";
-                return false;
-            }
-
-            if (address == "No_Address")
-            {
-                return true;
-            }
-
-            message = "Invalid address";
-            return false;
-        }
-        private bool ValidateCardNumber(string cardNumber, ref string message)
-        {
-            if (string.IsNullOrEmpty(cardNumber))
-            {
-                message = "Card number can`t be empty.";
-                return false;
-            }
-
-            if (cardNumber == "No_Card_Number")
-            {
-                return true;
-            }
-
-            string pattern = @"^\d{4} \d{4} \d{4} \d{4}$"; 
-
-            if (!Regex.IsMatch(cardNumber, pattern))
-            {
-                message = "Invalid card number.";
-                return false;
-            }
-
-            return true;
-        }
-
+        // User registration functions
         private bool RegisterCustomer(string login, string password, ref string message)
         {
-            bool isValid = ValidateLogin(login, ref message) &&
-                           ValidatePassword(password, ref message);
+            bool isValid = UserDataValidator.ValidateLogin(login, ref message) &&
+                           UserDataValidator.ValidatePassword(password, ref message);
 
             if (!isValid)
                 return false;
@@ -188,7 +86,7 @@ namespace Delivery_Project.DataControl.UserManagement
         }
         private bool RegisterCourier(DeliveryUser user, string cardNumber, ref string message)
         {
-            bool isValid = ValidateCardNumber(cardNumber, ref message);
+            bool isValid = UserDataValidator.ValidateCardNumber(cardNumber, ref message);
 
             if (!isValid)
                 return false;
@@ -205,7 +103,16 @@ namespace Delivery_Project.DataControl.UserManagement
                 return false;
             }
 
-            deliveryProviders?.Add(new DeliveryProvider(user.Login, user.Password, user.PhoneNumber));
+            DeliveryProvider provider = new DeliveryProvider(user.Login, user.Password, user.PhoneNumber);
+
+            DeliveryPlace? place = GetDeliveryPlace?.Invoke();
+
+            bool isConnected = provider.ConnectPlace(place, ref message);
+
+            if (!isConnected)
+                return false;
+            
+            deliveryProviders?.Add(provider);
 
             return DeleteAcount(user);
         }
@@ -287,7 +194,7 @@ namespace Delivery_Project.DataControl.UserManagement
             }
         }
 
-        private void Reading_DeliveryCustomers()
+        private void Read_DeliveryCustomers()
         {
             bool isRead = false;
             List<DeliveryCustomer> customers = new List<DeliveryCustomer>();
@@ -296,13 +203,13 @@ namespace Delivery_Project.DataControl.UserManagement
 
             if (!isRead)
             {
-                MessageBox.Show("Writting list to json file \"Customers\" went wrong!");
+                MessageBox.Show("Reading list from json file \"Customers\" went wrong!");
                 return;
             }
 
             deliveryCustomers = new ListDeliveryCustomers(customers);
         }
-        private void Reading_DeliveryCouriers()
+        private void Read_DeliveryCouriers()
         {
             bool isRead = false;
             List<DeliveryCourier> couriers = new List<DeliveryCourier>();
@@ -311,13 +218,13 @@ namespace Delivery_Project.DataControl.UserManagement
 
             if (!isRead)
             {
-                MessageBox.Show($"Writting list to json file \"Couriers\" went wrong!");
+                MessageBox.Show($"Reading list from json file \"Couriers\" went wrong!");
                 return;
             }
 
             deliveryCouriers = new ListDeliveryCouriers(couriers);
         }
-        private void Reading_DeliveryProviders()
+        private void Read_DeliveryProviders()
         {
             bool isRead = false;
             List<DeliveryProvider> providers = new List<DeliveryProvider>();
@@ -326,7 +233,7 @@ namespace Delivery_Project.DataControl.UserManagement
 
             if (!isRead)
             {
-                MessageBox.Show($"Writting list to json file \"Couriers\" went wrong!");
+                MessageBox.Show($"Reading list from json file \"Providers\" went wrong!");
                 return;
             }
 

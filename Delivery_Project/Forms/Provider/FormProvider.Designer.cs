@@ -110,22 +110,22 @@
             dataGridView1.Size = new Size(708, 306);
             dataGridView1.TabIndex = 31;
             // 
-            // ProductName
+            // productName
             // 
             productName.HeaderText = "Product";
-            productName.Name = "ProductName";
+            productName.Name = "productName";
             productName.ReadOnly = true;
             // 
-            // ProductPrice
+            // productPrice
             // 
             productPrice.HeaderText = "Price";
-            productPrice.Name = "ProductPrice";
+            productPrice.Name = "productPrice";
             productPrice.ReadOnly = true;
             // 
-            // ProductDescription
+            // productDescription
             // 
             productDescription.HeaderText = "Description";
-            productDescription.Name = "ProductDescription";
+            productDescription.Name = "productDescription";
             productDescription.ReadOnly = true;
             // 
             // panelSeparator1
@@ -236,7 +236,7 @@
             buttonRemove.FlatStyle = FlatStyle.Flat;
             buttonRemove.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonRemove.ForeColor = Color.White;
-            buttonRemove.Location = new Point(12, 464);
+            buttonRemove.Location = new Point(12, 381);
             buttonRemove.Name = "buttonRemove";
             buttonRemove.Size = new Size(117, 34);
             buttonRemove.TabIndex = 45;
@@ -248,7 +248,7 @@
             buttonApply.FlatStyle = FlatStyle.Flat;
             buttonApply.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonApply.ForeColor = Color.White;
-            buttonApply.Location = new Point(129, 464);
+            buttonApply.Location = new Point(129, 381);
             buttonApply.Name = "buttonApply";
             buttonApply.Size = new Size(117, 34);
             buttonApply.TabIndex = 46;

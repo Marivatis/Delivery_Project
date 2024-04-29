@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Delivery_Project.DataControl.Users;
+using Delivery_Project.DataControl.Workplaces;
 using Delivery_Project.Forms.Templates;
 
 namespace Delivery_Project.Forms.Provider
@@ -18,8 +19,9 @@ namespace Delivery_Project.Forms.Provider
         private FormPlaceEditor formPlaceEditor;
 
         private DeliveryProvider provider;
+        private DeliveryPlace place;
 
-        public FormProvider(ref DeliveryProvider provider) : base()
+        public FormProvider(ref DeliveryProvider provider): base()
         {
             InitializeComponent();
 
@@ -28,18 +30,12 @@ namespace Delivery_Project.Forms.Provider
 
         private void buttonMyProfile_Click(object sender, EventArgs e)
         {
-            formProfile = new FormProviderProfile(Location);
+            formProfile = new FormProviderProfile(Location, ref provider);
             formProfile.FormClosed += Enable;
 
             Enabled = false;
             formProfile.Show();
         }
-
-        private void Enable(object? sender, FormClosedEventArgs e)
-        {
-            Enabled = true;
-        }
-
         private void buttonEditPlace_Click(object sender, EventArgs e)
         {
             formPlaceEditor = new FormPlaceEditor();
@@ -47,6 +43,10 @@ namespace Delivery_Project.Forms.Provider
 
             Enabled = false;
             formPlaceEditor.Show();
+        }
+        private void Enable(object? sender, FormClosedEventArgs e)
+        {
+            Enabled = true;
         }
     }
 }

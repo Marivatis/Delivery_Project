@@ -1,15 +1,6 @@
 [
   {
-    "Login": "PROV",
-    "Password": "PROV",
-    "PhoneNumber": "No_Phone_Number"
-  },
-  {
-    "Login": "Prov",
-    "Password": "prov",
-    "PhoneNumber": "0638887766"
-  },
-  {
+    "PlaceCode": 1000,
     "Login": "prov",
     "Password": "prov",
     "PhoneNumber": "380998887766"

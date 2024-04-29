@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            comboBoxPlaces = new ComboBox();
-            buttonAddPlace = new Button();
             buttonEdit2 = new Button();
             buttonEdit1 = new Button();
             labelPassword = new Label();
@@ -39,32 +37,8 @@
             labelLogin = new Label();
             textBoxLogin = new TextBox();
             labelMyProfileTitle = new Label();
+            buttonDeleteAccount = new Button();
             SuspendLayout();
-            // 
-            // comboBoxPlaces
-            // 
-            comboBoxPlaces.BackColor = Color.FromArgb(31, 31, 31);
-            comboBoxPlaces.FlatStyle = FlatStyle.Flat;
-            comboBoxPlaces.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            comboBoxPlaces.ForeColor = Color.White;
-            comboBoxPlaces.FormattingEnabled = true;
-            comboBoxPlaces.Location = new Point(40, 459);
-            comboBoxPlaces.Name = "comboBoxPlaces";
-            comboBoxPlaces.Size = new Size(250, 33);
-            comboBoxPlaces.TabIndex = 53;
-            comboBoxPlaces.Text = "Work place...";
-            // 
-            // buttonAddPlace
-            // 
-            buttonAddPlace.FlatStyle = FlatStyle.Flat;
-            buttonAddPlace.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonAddPlace.ForeColor = Color.White;
-            buttonAddPlace.Location = new Point(40, 498);
-            buttonAddPlace.Name = "buttonAddPlace";
-            buttonAddPlace.Size = new Size(250, 40);
-            buttonAddPlace.TabIndex = 52;
-            buttonAddPlace.Text = "Add new place";
-            buttonAddPlace.UseVisualStyleBackColor = true;
             // 
             // buttonEdit2
             // 
@@ -77,6 +51,7 @@
             buttonEdit2.TabIndex = 62;
             buttonEdit2.Text = "Edit";
             buttonEdit2.UseVisualStyleBackColor = true;
+            buttonEdit2.Click += buttonEdit2_Click;
             // 
             // buttonEdit1
             // 
@@ -89,13 +64,14 @@
             buttonEdit1.TabIndex = 61;
             buttonEdit1.Text = "Edit";
             buttonEdit1.UseVisualStyleBackColor = true;
+            buttonEdit1.Click += buttonEdit1_Click;
             // 
             // labelPassword
             // 
             labelPassword.AutoSize = true;
             labelPassword.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelPassword.ForeColor = Color.White;
-            labelPassword.Location = new Point(40, 293);
+            labelPassword.Location = new Point(40, 292);
             labelPassword.Name = "labelPassword";
             labelPassword.Size = new Size(111, 30);
             labelPassword.TabIndex = 60;
@@ -105,6 +81,7 @@
             // 
             textBoxPassword.BackColor = Color.FromArgb(61, 61, 61);
             textBoxPassword.BorderStyle = BorderStyle.FixedSingle;
+            textBoxPassword.Enabled = false;
             textBoxPassword.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxPassword.ForeColor = Color.White;
             textBoxPassword.Location = new Point(40, 326);
@@ -118,7 +95,7 @@
             labelPhoneNumber.AutoSize = true;
             labelPhoneNumber.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelPhoneNumber.ForeColor = Color.White;
-            labelPhoneNumber.Location = new Point(40, 193);
+            labelPhoneNumber.Location = new Point(40, 192);
             labelPhoneNumber.Name = "labelPhoneNumber";
             labelPhoneNumber.Size = new Size(166, 30);
             labelPhoneNumber.TabIndex = 58;
@@ -128,6 +105,7 @@
             // 
             textBoxPhoneNumber.BackColor = Color.FromArgb(61, 61, 61);
             textBoxPhoneNumber.BorderStyle = BorderStyle.FixedSingle;
+            textBoxPhoneNumber.Enabled = false;
             textBoxPhoneNumber.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxPhoneNumber.ForeColor = Color.White;
             textBoxPhoneNumber.Location = new Point(40, 226);
@@ -141,7 +119,7 @@
             labelLogin.AutoSize = true;
             labelLogin.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelLogin.ForeColor = Color.White;
-            labelLogin.Location = new Point(40, 123);
+            labelLogin.Location = new Point(40, 122);
             labelLogin.Name = "labelLogin";
             labelLogin.Size = new Size(75, 30);
             labelLogin.TabIndex = 56;
@@ -151,6 +129,7 @@
             // 
             textBoxLogin.BackColor = Color.FromArgb(61, 61, 61);
             textBoxLogin.BorderStyle = BorderStyle.FixedSingle;
+            textBoxLogin.Enabled = false;
             textBoxLogin.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             textBoxLogin.ForeColor = Color.White;
             textBoxLogin.Location = new Point(40, 156);
@@ -170,11 +149,26 @@
             labelMyProfileTitle.TabIndex = 54;
             labelMyProfileTitle.Text = "My Profile";
             // 
+            // buttonDeleteAccount
+            // 
+            buttonDeleteAccount.FlatAppearance.BorderSize = 0;
+            buttonDeleteAccount.FlatStyle = FlatStyle.Flat;
+            buttonDeleteAccount.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonDeleteAccount.ForeColor = Color.White;
+            buttonDeleteAccount.Location = new Point(1, 1);
+            buttonDeleteAccount.Name = "buttonDeleteAccount";
+            buttonDeleteAccount.Size = new Size(103, 25);
+            buttonDeleteAccount.TabIndex = 63;
+            buttonDeleteAccount.Text = "Delete account";
+            buttonDeleteAccount.UseVisualStyleBackColor = true;
+            buttonDeleteAccount.Click += buttonDeleteAccount_Click;
+            // 
             // FormProviderProfile
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(330, 550);
+            Controls.Add(buttonDeleteAccount);
             Controls.Add(buttonEdit2);
             Controls.Add(buttonEdit1);
             Controls.Add(labelPassword);
@@ -184,13 +178,9 @@
             Controls.Add(labelLogin);
             Controls.Add(textBoxLogin);
             Controls.Add(labelMyProfileTitle);
-            Controls.Add(comboBoxPlaces);
-            Controls.Add(buttonAddPlace);
             Name = "FormProviderProfile";
             Text = "FormProviderProfile";
             Load += FormProviderProfile_Load;
-            Controls.SetChildIndex(buttonAddPlace, 0);
-            Controls.SetChildIndex(comboBoxPlaces, 0);
             Controls.SetChildIndex(labelMyProfileTitle, 0);
             Controls.SetChildIndex(textBoxLogin, 0);
             Controls.SetChildIndex(labelLogin, 0);
@@ -200,14 +190,12 @@
             Controls.SetChildIndex(labelPassword, 0);
             Controls.SetChildIndex(buttonEdit1, 0);
             Controls.SetChildIndex(buttonEdit2, 0);
+            Controls.SetChildIndex(buttonDeleteAccount, 0);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private ComboBox comboBoxPlaces;
-        private Button buttonAddPlace;
         private Button buttonEdit2;
         private Button buttonEdit1;
         private Label labelPassword;
@@ -217,5 +205,6 @@
         private Label labelLogin;
         private TextBox textBoxLogin;
         private Label labelMyProfileTitle;
+        private Button buttonDeleteAccount;
     }
 }

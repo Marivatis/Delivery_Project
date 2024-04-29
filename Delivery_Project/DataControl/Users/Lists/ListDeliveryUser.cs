@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Delivery_Project.DataControl.Interfaces;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Delivery_Project.DataControl.Users.Lists
 {
-    public abstract class ListDeliveryUser<T> : IEnumerable<T>, ICollection<T> 
+    public abstract class ListDeliveryUser<T> : IEnumerable<T>, ICollection<T>
         where T : DeliveryUser
     {
         protected List<T> _listUsers;
