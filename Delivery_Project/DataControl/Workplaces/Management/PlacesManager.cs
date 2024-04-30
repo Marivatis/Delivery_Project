@@ -1,5 +1,6 @@
 ﻿using Delivery_Project.DataControl.DataManagement;
 using Delivery_Project.DataControl.DataValidation;
+using Delivery_Project.DataControl.FormManagement;
 using Delivery_Project.DataControl.UserManagement;
 using Delivery_Project.DataControl.Workplaces.Lists;
 using Microsoft.VisualBasic.Logging;
@@ -23,40 +24,39 @@ namespace Delivery_Project.DataControl.Workplaces.Management
 
         private void Initialize()
         {
-            UserManager.GetDeliveryPlace += GetDeliveryPlace;
-            
             DeliveryPlace.ValidateName += PlaceDataValidator.ValidateName;
             DeliveryPlace.ValidateDescription += PlaceDataValidator.ValidateDescription;
+            DeliveryPlace.ValidateAddress += PlaceDataValidator.ValidateAddress;
 
             Read_DeliveryPlaces();
+
+            UserManager.QuerryGetDeliveryPlace += GetDeliveryPlace;
+            FormManager.QuerryGetDeliveryPlace += GetDeliveryPlace;
+
+            DeliveryPlace.PlaceChanged += Write_Places;
 
             deliveryPlaces.AddedPlace += Write_Places;
         }
 
-        private DeliveryPlace? GetDeliveryPlace()
+        private bool GetDeliveryPlace(int placeCode, out DeliveryPlace? place)
         {
-            DeliveryPlace place = GetDeliveryPlace(0);
-
-            if (place != null)
-                deliveryPlaces.Add(place);
-
-            return place;
-        }
-        private DeliveryPlace? GetDeliveryPlace(int placeCode)
-        {
-            DeliveryPlace? place = null;
-
             if (placeCode == 0)
             {
                 place = new DeliveryPlace();
                 place.PlaceCode = GetPlaceCode();
 
-                return place;
+                deliveryPlaces.Add(place);
+                return true;
             }
 
             place = deliveryPlaces?.FirstOrDefault(p => p.PlaceCode == placeCode);
 
-            return place;
+            if (place != null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private int GetPlaceCode()

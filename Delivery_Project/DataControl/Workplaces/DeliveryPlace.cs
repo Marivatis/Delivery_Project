@@ -17,8 +17,7 @@ namespace Delivery_Project.DataControl.Workplaces
 
         public delegate bool ValidateProperty<T>(T property, ref string message);
 
-        public static event Action<DeliveryPlace>? PlaceChanged;
-        public static event Action<DeliveryPlace, PlaceMenu>? PlaceMenuChanged;
+        public static event Action? PlaceChanged;
 
         public static ValidateProperty<string>? ValidateName;
         public static ValidateProperty<string>? ValidateAddress;
@@ -36,6 +35,8 @@ namespace Delivery_Project.DataControl.Workplaces
             _description = description;
 
             _menu = new PlaceMenu();
+
+            PlaceMenu.MenuChanged += MenuChanged;
         }
         
         public int PlaceCode
@@ -60,7 +61,7 @@ namespace Delivery_Project.DataControl.Workplaces
                 if (isValid)
                 {
                     _name = value;
-                    PlaceChanged?.Invoke(this);
+                    PlaceChanged?.Invoke();
                 }
                 else
                 {
@@ -84,7 +85,7 @@ namespace Delivery_Project.DataControl.Workplaces
                 if (isValid)
                 {
                     _address = value;
-                    PlaceChanged?.Invoke(this);
+                    PlaceChanged?.Invoke();
                 }
                 else
                 {
@@ -108,7 +109,7 @@ namespace Delivery_Project.DataControl.Workplaces
                 if (isValid)
                 {
                     _description = value;
-                    PlaceChanged?.Invoke(this);
+                    PlaceChanged?.Invoke();
                 }
                 else
                 {
@@ -125,9 +126,14 @@ namespace Delivery_Project.DataControl.Workplaces
             set
             {
                 _menu = value;
-                PlaceChanged?.Invoke(this);
-                PlaceMenuChanged?.Invoke(this, _menu);                
+
+                PlaceChanged?.Invoke();
             }
+        }
+
+        private void MenuChanged()
+        {
+            PlaceChanged?.Invoke();
         }
     }
 }

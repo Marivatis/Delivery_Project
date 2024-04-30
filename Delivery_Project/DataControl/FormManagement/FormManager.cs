@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using Microsoft.VisualBasic.ApplicationServices;
 using System.CodeDom;
+using Delivery_Project.DataControl.Workplaces;
+using Delivery_Project.DataControl.Workplaces.Management;
 
 namespace Delivery_Project.DataControl.FormManagement
 {
@@ -24,11 +26,13 @@ namespace Delivery_Project.DataControl.FormManagement
         private FormCourier? formCourier;
         private FormProvider? formProvider;
 
-        public static RegisterCustomer? QuerryRegistrerCustomer;
+        public static EntryCustomer? QuerryRegistrerCustomer;
         public static RegisterCourier? QuerryRegistrerCourier;
         public static RegisterProvider? QuerryRegistrerProvider;
         public static LoginUser? QuerryLoginCustomer;
         public static Func<DeliveryUser, bool>? QuerryDeleteAccount;
+
+        public static GetPlaceHandler? QuerryGetDeliveryPlace;
 
         public FormManager()
         {
@@ -50,13 +54,12 @@ namespace Delivery_Project.DataControl.FormManagement
 
             FormCourierProfile.DeleteAccount += QuerryDeleteAccount;
             FormCourierProfile.AccountDeleted += AccountDeleted;
-
-            FormProviderProfile.DeleteAccount += QuerryDeleteAccount;
-            FormProviderProfile.AccountDeleted += AccountDeleted;
-
             FormCourierRegistration.RegisterCourier += QuerryRegistrerCourier;
             FormCourierRegistration.RegistrationComplete += RegistrationComplete;
 
+            FormProvider.GetDeliveryPlace += QuerryGetDeliveryPlace;
+            FormProviderProfile.DeleteAccount += QuerryDeleteAccount;
+            FormProviderProfile.AccountDeleted += AccountDeleted;
             FormProviderRegistration.RegisterProvider += QuerryRegistrerProvider;
             FormProviderRegistration.RegistrationComplete += RegistrationComplete;
         }

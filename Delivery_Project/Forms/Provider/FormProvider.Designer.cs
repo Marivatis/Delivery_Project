@@ -29,22 +29,18 @@
         private void InitializeComponent()
         {
             label5 = new Label();
-            label2 = new Label();
-            label3 = new Label();
+            labelPlaceAddress = new Label();
+            labelPlaceDescription = new Label();
             labelPlaceName = new Label();
             dataGridView1 = new DataGridView();
-            productName = new DataGridViewTextBoxColumn();
-            productPrice = new DataGridViewTextBoxColumn();
-            productDescription = new DataGridViewTextBoxColumn();
             panelSeparator1 = new Panel();
             labelProductName = new Label();
-            textBoxLogin = new TextBox();
+            textBoxProductName = new TextBox();
             buttonMyProfile = new Button();
             labelProductPrice = new Label();
             textBoxProductPrice = new TextBox();
             labelProductDescription = new Label();
             textBoxProductDescription = new TextBox();
-            buttonChooseProduct = new Button();
             buttonRemove = new Button();
             buttonApply = new Button();
             buttonAddProduct = new Button();
@@ -64,29 +60,29 @@
             label5.TabIndex = 35;
             label5.Text = "Menu:";
             // 
-            // label2
+            // labelPlaceAddress
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = SystemColors.Control;
-            label2.Location = new Point(280, 67);
-            label2.MaximumSize = new Size(500, 25);
-            label2.Name = "label2";
-            label2.Size = new Size(131, 25);
-            label2.TabIndex = 34;
-            label2.Text = "Place address";
+            labelPlaceAddress.AutoSize = true;
+            labelPlaceAddress.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            labelPlaceAddress.ForeColor = SystemColors.Control;
+            labelPlaceAddress.Location = new Point(280, 67);
+            labelPlaceAddress.MaximumSize = new Size(500, 25);
+            labelPlaceAddress.Name = "labelPlaceAddress";
+            labelPlaceAddress.Size = new Size(131, 25);
+            labelPlaceAddress.TabIndex = 34;
+            labelPlaceAddress.Text = "Place address";
             // 
-            // label3
+            // labelPlaceDescription
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            label3.ForeColor = SystemColors.Control;
-            label3.Location = new Point(280, 92);
-            label3.MaximumSize = new Size(700, 63);
-            label3.Name = "label3";
-            label3.Size = new Size(688, 42);
-            label3.TabIndex = 33;
-            label3.Text = "Place description Place description Place description Place description Place description Place description Place description Place description Place description ";
+            labelPlaceDescription.AutoSize = true;
+            labelPlaceDescription.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            labelPlaceDescription.ForeColor = SystemColors.Control;
+            labelPlaceDescription.Location = new Point(280, 92);
+            labelPlaceDescription.MaximumSize = new Size(700, 63);
+            labelPlaceDescription.Name = "labelPlaceDescription";
+            labelPlaceDescription.Size = new Size(688, 42);
+            labelPlaceDescription.TabIndex = 33;
+            labelPlaceDescription.Text = "Place description Place description Place description Place description Place description Place description Place description Place description Place description ";
             // 
             // labelPlaceName
             // 
@@ -102,31 +98,16 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { productName, productPrice, productDescription });
             dataGridView1.Location = new Point(280, 192);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(708, 306);
+            dataGridView1.Size = new Size(700, 306);
             dataGridView1.TabIndex = 31;
-            // 
-            // productName
-            // 
-            productName.HeaderText = "Product";
-            productName.Name = "productName";
-            productName.ReadOnly = true;
-            // 
-            // productPrice
-            // 
-            productPrice.HeaderText = "Price";
-            productPrice.Name = "productPrice";
-            productPrice.ReadOnly = true;
-            // 
-            // productDescription
-            // 
-            productDescription.HeaderText = "Description";
-            productDescription.Name = "productDescription";
-            productDescription.ReadOnly = true;
+            dataGridView1.CellClick += DataGridView1_CellClick;
             // 
             // panelSeparator1
             // 
@@ -147,17 +128,19 @@
             labelProductName.TabIndex = 38;
             labelProductName.Text = "Product name:";
             // 
-            // textBoxLogin
+            // textBoxProductName
             // 
-            textBoxLogin.BackColor = Color.FromArgb(61, 61, 61);
-            textBoxLogin.BorderStyle = BorderStyle.FixedSingle;
-            textBoxLogin.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            textBoxLogin.ForeColor = Color.White;
-            textBoxLogin.Location = new Point(12, 192);
-            textBoxLogin.Name = "textBoxLogin";
-            textBoxLogin.Size = new Size(234, 33);
-            textBoxLogin.TabIndex = 37;
-            textBoxLogin.Text = "Enter product name";
+            textBoxProductName.BackColor = Color.FromArgb(61, 61, 61);
+            textBoxProductName.BorderStyle = BorderStyle.FixedSingle;
+            textBoxProductName.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            textBoxProductName.ForeColor = Color.White;
+            textBoxProductName.Location = new Point(12, 192);
+            textBoxProductName.Name = "textBoxProductName";
+            textBoxProductName.Size = new Size(234, 33);
+            textBoxProductName.TabIndex = 37;
+            textBoxProductName.Text = "Enter product name";
+            textBoxProductName.Enter += textBoxProductName_Enter;
+            textBoxProductName.Leave += textBoxProductName_Leave;
             // 
             // buttonMyProfile
             // 
@@ -195,6 +178,9 @@
             textBoxProductPrice.Size = new Size(234, 33);
             textBoxProductPrice.TabIndex = 40;
             textBoxProductPrice.Text = "Enter product price";
+            textBoxProductPrice.Enter += textBoxProductPrice_Enter;
+            textBoxProductPrice.KeyPress += textBoxProductPrice_KeyPress;
+            textBoxProductPrice.Leave += textBoxProductPrice_Leave;
             // 
             // labelProductDescription
             // 
@@ -218,18 +204,8 @@
             textBoxProductDescription.Size = new Size(234, 33);
             textBoxProductDescription.TabIndex = 42;
             textBoxProductDescription.Text = "Enter product description";
-            // 
-            // buttonChooseProduct
-            // 
-            buttonChooseProduct.FlatStyle = FlatStyle.Flat;
-            buttonChooseProduct.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonChooseProduct.ForeColor = Color.White;
-            buttonChooseProduct.Location = new Point(754, 504);
-            buttonChooseProduct.Name = "buttonChooseProduct";
-            buttonChooseProduct.Size = new Size(234, 34);
-            buttonChooseProduct.TabIndex = 44;
-            buttonChooseProduct.Text = "Choose product";
-            buttonChooseProduct.UseVisualStyleBackColor = true;
+            textBoxProductDescription.Enter += textBoxProductDescription_Enter;
+            textBoxProductDescription.Leave += textBoxProductDescription_Leave;
             // 
             // buttonRemove
             // 
@@ -242,6 +218,7 @@
             buttonRemove.TabIndex = 45;
             buttonRemove.Text = "Remove";
             buttonRemove.UseVisualStyleBackColor = true;
+            buttonRemove.Click += buttonRemove_Click;
             // 
             // buttonApply
             // 
@@ -254,25 +231,27 @@
             buttonApply.TabIndex = 46;
             buttonApply.Text = "Apply";
             buttonApply.UseVisualStyleBackColor = true;
+            buttonApply.Click += buttonApply_Click;
             // 
             // buttonAddProduct
             // 
             buttonAddProduct.FlatStyle = FlatStyle.Flat;
             buttonAddProduct.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonAddProduct.ForeColor = Color.White;
-            buttonAddProduct.Location = new Point(12, 504);
+            buttonAddProduct.Location = new Point(746, 504);
             buttonAddProduct.Name = "buttonAddProduct";
             buttonAddProduct.Size = new Size(234, 34);
             buttonAddProduct.TabIndex = 47;
             buttonAddProduct.Text = "Add new product";
             buttonAddProduct.UseVisualStyleBackColor = true;
+            buttonAddProduct.Click += buttonAddProduct_Click;
             // 
             // buttonEditPlace
             // 
             buttonEditPlace.FlatStyle = FlatStyle.Flat;
             buttonEditPlace.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonEditPlace.ForeColor = Color.White;
-            buttonEditPlace.Location = new Point(12, 38);
+            buttonEditPlace.Location = new Point(746, 35);
             buttonEditPlace.Name = "buttonEditPlace";
             buttonEditPlace.Size = new Size(234, 34);
             buttonEditPlace.TabIndex = 49;
@@ -289,36 +268,35 @@
             Controls.Add(buttonAddProduct);
             Controls.Add(buttonApply);
             Controls.Add(buttonRemove);
-            Controls.Add(buttonChooseProduct);
             Controls.Add(labelProductDescription);
             Controls.Add(textBoxProductDescription);
             Controls.Add(labelProductPrice);
             Controls.Add(textBoxProductPrice);
             Controls.Add(buttonMyProfile);
             Controls.Add(labelProductName);
-            Controls.Add(textBoxLogin);
+            Controls.Add(textBoxProductName);
             Controls.Add(panelSeparator1);
             Controls.Add(label5);
-            Controls.Add(label2);
-            Controls.Add(label3);
+            Controls.Add(labelPlaceAddress);
+            Controls.Add(labelPlaceDescription);
             Controls.Add(labelPlaceName);
             Controls.Add(dataGridView1);
             Name = "FormProvider";
             Text = "FormProvider";
+            Load += FormProvider_Load;
             Controls.SetChildIndex(dataGridView1, 0);
             Controls.SetChildIndex(labelPlaceName, 0);
-            Controls.SetChildIndex(label3, 0);
-            Controls.SetChildIndex(label2, 0);
+            Controls.SetChildIndex(labelPlaceDescription, 0);
+            Controls.SetChildIndex(labelPlaceAddress, 0);
             Controls.SetChildIndex(label5, 0);
             Controls.SetChildIndex(panelSeparator1, 0);
-            Controls.SetChildIndex(textBoxLogin, 0);
+            Controls.SetChildIndex(textBoxProductName, 0);
             Controls.SetChildIndex(labelProductName, 0);
             Controls.SetChildIndex(buttonMyProfile, 0);
             Controls.SetChildIndex(textBoxProductPrice, 0);
             Controls.SetChildIndex(labelProductPrice, 0);
             Controls.SetChildIndex(textBoxProductDescription, 0);
             Controls.SetChildIndex(labelProductDescription, 0);
-            Controls.SetChildIndex(buttonChooseProduct, 0);
             Controls.SetChildIndex(buttonRemove, 0);
             Controls.SetChildIndex(buttonApply, 0);
             Controls.SetChildIndex(buttonAddProduct, 0);
@@ -328,25 +306,22 @@
             PerformLayout();
         }
 
+
         #endregion
 
         private Label label5;
-        private Label label2;
-        private Label label3;
+        private Label labelPlaceAddress;
+        private Label labelPlaceDescription;
         private Label labelPlaceName;
         private DataGridView dataGridView1;
         private Panel panelSeparator1;
         private Label labelProductName;
-        private TextBox textBoxLogin;
+        private TextBox textBoxProductName;
         private Button buttonMyProfile;
-        private DataGridViewTextBoxColumn productName;
-        private DataGridViewTextBoxColumn productPrice;
-        private DataGridViewTextBoxColumn productDescription;
         private Label labelProductPrice;
         private TextBox textBoxProductPrice;
         private Label labelProductDescription;
         private TextBox textBoxProductDescription;
-        private Button buttonChooseProduct;
         private Button buttonRemove;
         private Button buttonApply;
         private Button buttonAddProduct;

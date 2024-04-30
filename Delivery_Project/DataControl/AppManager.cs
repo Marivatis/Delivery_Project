@@ -26,8 +26,9 @@ namespace Delivery_Project.DataControl
         {
             dataManager = new DataManager();
             userManager = new UserManager();
-            formManager = new FormManager();
             placesManager = new PlacesManager();
+
+            formManager = new FormManager();
         }
 
         public void Run()

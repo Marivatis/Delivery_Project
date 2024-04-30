@@ -5,6 +5,7 @@ using Delivery_Project.DataControl.Users;
 using Delivery_Project.DataControl.Users.Lists;
 using Delivery_Project.DataControl.Workplaces;
 using Delivery_Project.DataControl.Workplaces.Lists;
+using Delivery_Project.DataControl.Workplaces.Management;
 using Delivery_Project.Forms.Courier;
 using Delivery_Project.Forms.Customer;
 using Delivery_Project.Forms.Entry;
@@ -26,7 +27,7 @@ namespace Delivery_Project.DataControl.UserManagement
         private ListDeliveryCouriers? deliveryCouriers;
         private ListDeliveryProvider? deliveryProviders;
 
-        public static Func<DeliveryPlace>? GetDeliveryPlace;
+        public static GetPlaceHandler? QuerryGetDeliveryPlace;
         
         public UserManager()
         {
@@ -105,7 +106,9 @@ namespace Delivery_Project.DataControl.UserManagement
 
             DeliveryProvider provider = new DeliveryProvider(user.Login, user.Password, user.PhoneNumber);
 
-            DeliveryPlace? place = GetDeliveryPlace?.Invoke();
+            DeliveryPlace? place = null;
+
+            QuerryGetDeliveryPlace?.Invoke(0, out place);
 
             bool isConnected = provider.ConnectPlace(place, ref message);
 

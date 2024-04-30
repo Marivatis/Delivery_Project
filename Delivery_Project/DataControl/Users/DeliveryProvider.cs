@@ -24,7 +24,7 @@ namespace Delivery_Project.DataControl.Users
             set { _placeCode = value; }
         }
 
-        public bool ConnectPlace(DeliveryPlace place, ref string message)
+        public bool ConnectPlace(DeliveryPlace? place, ref string message)
         {
             if (place is null)
             {

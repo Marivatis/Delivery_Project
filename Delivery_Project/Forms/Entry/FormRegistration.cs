@@ -15,7 +15,7 @@ namespace Delivery_Project.Forms.Entry
 {
     public partial class FormRegistration : CustomBorderForm
     {
-        public static RegisterCustomer? RegisterCustomer;
+        public static EntryCustomer? RegisterCustomer;
 
         public static event Action<Type>? RegistrationComplete;
 

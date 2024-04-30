@@ -17,7 +17,7 @@ namespace Delivery_Project.Forms.Entry
     public partial class FormLogin : CustomBorderForm
     {
         public static Action? ShowRegistrationForm;
-        public static RegisterCustomer? LoginUser;
+        public static EntryCustomer? LoginUser;
 
         public static event EventHandler? LoginComplete;
 

@@ -30,13 +30,12 @@
         {
             richTextBox1 = new RichTextBox();
             labelPlaceName = new Label();
-            textBoxPlacename = new TextBox();
+            textBoxPlaceName = new TextBox();
             labelProductName = new Label();
-            textBoxLogin = new TextBox();
+            textBoxAddress = new TextBox();
             label1 = new Label();
             labelRegistration = new Label();
             buttonSaveChanges = new Button();
-            buttonDelete = new Button();
             SuspendLayout();
             // 
             // richTextBox1
@@ -48,60 +47,66 @@
             richTextBox1.Name = "richTextBox1";
             richTextBox1.Size = new Size(700, 63);
             richTextBox1.TabIndex = 6;
-            richTextBox1.Text = "";
+            richTextBox1.Text = "Enter place description";
+            richTextBox1.Enter += richTextBox1_Enter;
+            richTextBox1.Leave += richTextBox1_Leave;
             // 
             // labelPlaceName
             // 
             labelPlaceName.AutoSize = true;
             labelPlaceName.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             labelPlaceName.ForeColor = Color.White;
-            labelPlaceName.Location = new Point(12, 98);
+            labelPlaceName.Location = new Point(11, 95);
             labelPlaceName.Name = "labelPlaceName";
             labelPlaceName.Size = new Size(151, 32);
             labelPlaceName.TabIndex = 40;
             labelPlaceName.Text = "Place name:";
             // 
-            // textBoxPlacename
+            // textBoxPlaceName
             // 
-            textBoxPlacename.BackColor = Color.FromArgb(61, 61, 61);
-            textBoxPlacename.BorderStyle = BorderStyle.FixedSingle;
-            textBoxPlacename.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxPlacename.ForeColor = Color.White;
-            textBoxPlacename.Location = new Point(12, 134);
-            textBoxPlacename.Name = "textBoxPlacename";
-            textBoxPlacename.Size = new Size(430, 39);
-            textBoxPlacename.TabIndex = 39;
-            textBoxPlacename.Text = "Enter place name";
+            textBoxPlaceName.BackColor = Color.FromArgb(61, 61, 61);
+            textBoxPlaceName.BorderStyle = BorderStyle.FixedSingle;
+            textBoxPlaceName.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxPlaceName.ForeColor = Color.White;
+            textBoxPlaceName.Location = new Point(11, 132);
+            textBoxPlaceName.Name = "textBoxPlaceName";
+            textBoxPlaceName.Size = new Size(430, 39);
+            textBoxPlaceName.TabIndex = 39;
+            textBoxPlaceName.Text = "Enter place name";
+            textBoxPlaceName.Enter += textBoxPlaceName_Enter;
+            textBoxPlaceName.Leave += textBoxPlaceName_Leave;
             // 
             // labelProductName
             // 
             labelProductName.AutoSize = true;
             labelProductName.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelProductName.ForeColor = Color.White;
-            labelProductName.Location = new Point(12, 176);
+            labelProductName.Location = new Point(12, 174);
             labelProductName.Name = "labelProductName";
             labelProductName.Size = new Size(150, 30);
             labelProductName.TabIndex = 42;
             labelProductName.Text = "Place address:";
             // 
-            // textBoxLogin
+            // textBoxAddress
             // 
-            textBoxLogin.BackColor = Color.FromArgb(61, 61, 61);
-            textBoxLogin.BorderStyle = BorderStyle.FixedSingle;
-            textBoxLogin.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxLogin.ForeColor = Color.White;
-            textBoxLogin.Location = new Point(12, 210);
-            textBoxLogin.Name = "textBoxLogin";
-            textBoxLogin.Size = new Size(430, 33);
-            textBoxLogin.TabIndex = 41;
-            textBoxLogin.Text = "Enter place address";
+            textBoxAddress.BackColor = Color.FromArgb(61, 61, 61);
+            textBoxAddress.BorderStyle = BorderStyle.FixedSingle;
+            textBoxAddress.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxAddress.ForeColor = Color.White;
+            textBoxAddress.Location = new Point(12, 209);
+            textBoxAddress.Name = "textBoxAddress";
+            textBoxAddress.Size = new Size(430, 33);
+            textBoxAddress.TabIndex = 41;
+            textBoxAddress.Text = "Enter place address";
+            textBoxAddress.Enter += textBoxAddress_Enter;
+            textBoxAddress.Leave += textBoxAddress_Leave;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(12, 246);
+            label1.Location = new Point(12, 245);
             label1.Name = "label1";
             label1.Size = new Size(186, 30);
             label1.TabIndex = 43;
@@ -123,51 +128,38 @@
             buttonSaveChanges.FlatStyle = FlatStyle.Flat;
             buttonSaveChanges.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonSaveChanges.ForeColor = Color.White;
-            buttonSaveChanges.Location = new Point(12, 365);
+            buttonSaveChanges.Location = new Point(462, 368);
             buttonSaveChanges.Name = "buttonSaveChanges";
             buttonSaveChanges.Size = new Size(250, 40);
             buttonSaveChanges.TabIndex = 46;
             buttonSaveChanges.Text = "Save changes";
             buttonSaveChanges.UseVisualStyleBackColor = true;
-            // 
-            // buttonDelete
-            // 
-            buttonDelete.FlatStyle = FlatStyle.Flat;
-            buttonDelete.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonDelete.ForeColor = Color.White;
-            buttonDelete.Location = new Point(462, 365);
-            buttonDelete.Name = "buttonDelete";
-            buttonDelete.Size = new Size(250, 40);
-            buttonDelete.TabIndex = 47;
-            buttonDelete.Text = "Delete place";
-            buttonDelete.UseVisualStyleBackColor = true;
+            buttonSaveChanges.Click += buttonSaveChanges_Click;
             // 
             // FormPlaceEditor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(725, 420);
-            Controls.Add(buttonDelete);
             Controls.Add(buttonSaveChanges);
             Controls.Add(labelRegistration);
             Controls.Add(label1);
             Controls.Add(labelProductName);
-            Controls.Add(textBoxLogin);
+            Controls.Add(textBoxAddress);
             Controls.Add(labelPlaceName);
-            Controls.Add(textBoxPlacename);
+            Controls.Add(textBoxPlaceName);
             Controls.Add(richTextBox1);
             Name = "FormPlaceEditor";
             Text = "FormPlaceEditor";
             Load += FormPlaceEditor_Load;
             Controls.SetChildIndex(richTextBox1, 0);
-            Controls.SetChildIndex(textBoxPlacename, 0);
+            Controls.SetChildIndex(textBoxPlaceName, 0);
             Controls.SetChildIndex(labelPlaceName, 0);
-            Controls.SetChildIndex(textBoxLogin, 0);
+            Controls.SetChildIndex(textBoxAddress, 0);
             Controls.SetChildIndex(labelProductName, 0);
             Controls.SetChildIndex(label1, 0);
             Controls.SetChildIndex(labelRegistration, 0);
             Controls.SetChildIndex(buttonSaveChanges, 0);
-            Controls.SetChildIndex(buttonDelete, 0);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -176,12 +168,11 @@
 
         private RichTextBox richTextBox1;
         private Label labelPlaceName;
-        private TextBox textBoxPlacename;
+        private TextBox textBoxPlaceName;
         private Label labelProductName;
-        private TextBox textBoxLogin;
+        private TextBox textBoxAddress;
         private Label label1;
         private Label labelRegistration;
         private Button buttonSaveChanges;
-        private Button buttonDelete;
     }
 }

@@ -1,9 +1,15 @@
 [
   {
     "PlaceCode": 1000,
-    "Name": "No_Name",
+    "Name": "Kuliny",
     "Address": "No_Address",
-    "Description": "No_Description",
-    "Menu": []
+    "Description": "This is Kuliny!",
+    "Menu": [
+      {
+        "Name": "Kulin",
+        "Price": 60,
+        "Description": "This is Kulin!"
+      }
+    ]
   }
 ]
