@@ -10,6 +10,7 @@ namespace Delivery_Project.DataControl.Workplaces
     public class DeliveryPlace : IDeliveryPlaceCode
     {
         private int _placeCode;
+        private int _deliveryPrice;
         private string _name;
         private string _address;
         private string _description;
@@ -19,6 +20,7 @@ namespace Delivery_Project.DataControl.Workplaces
 
         public static event Action? PlaceChanged;
 
+        public static ValidateProperty<int>? ValidateDeliveryPrice;
         public static ValidateProperty<string>? ValidateName;
         public static ValidateProperty<string>? ValidateAddress;
         public static ValidateProperty<string>? ValidateDescription;
@@ -45,6 +47,30 @@ namespace Delivery_Project.DataControl.Workplaces
             set { _placeCode =  value; }
         }
 
+        public int DeliveryPrice
+        {
+            get
+            {
+                return _deliveryPrice;
+            }
+            set
+            {
+                bool isValid = false;
+                string message = "Something went wrong.";
+
+                isValid = ValidateDeliveryPrice?.Invoke(value, ref message) ?? false;
+
+                if (isValid)
+                {
+                    _deliveryPrice = value;
+                    PlaceChanged?.Invoke();
+                }
+                else
+                {
+                    throw new InvalidDataException(message);
+                }
+            }
+        }
         public string Name
         {
             get

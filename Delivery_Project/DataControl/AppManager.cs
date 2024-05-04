@@ -16,6 +16,7 @@ namespace Delivery_Project.DataControl
         private UserManager userManager;
         private DataManager dataManager;
         private PlacesManager placesManager;
+        private OrdersManager ordersManager;
 
         public AppManager() 
         {
@@ -27,6 +28,7 @@ namespace Delivery_Project.DataControl
             dataManager = new DataManager();
             userManager = new UserManager();
             placesManager = new PlacesManager();
+            ordersManager = new OrdersManager();
 
             formManager = new FormManager();
         }

@@ -36,6 +36,8 @@
             label1 = new Label();
             labelRegistration = new Label();
             buttonSaveChanges = new Button();
+            labelPlaceDeliveryPrice = new Label();
+            textBoxPlaceDeliveryPrice = new TextBox();
             SuspendLayout();
             // 
             // richTextBox1
@@ -43,7 +45,7 @@
             richTextBox1.BackColor = Color.FromArgb(61, 61, 61);
             richTextBox1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             richTextBox1.ForeColor = Color.White;
-            richTextBox1.Location = new Point(12, 280);
+            richTextBox1.Location = new Point(11, 351);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.Size = new Size(700, 63);
             richTextBox1.TabIndex = 6;
@@ -81,7 +83,7 @@
             labelProductName.AutoSize = true;
             labelProductName.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelProductName.ForeColor = Color.White;
-            labelProductName.Location = new Point(12, 174);
+            labelProductName.Location = new Point(11, 245);
             labelProductName.Name = "labelProductName";
             labelProductName.Size = new Size(150, 30);
             labelProductName.TabIndex = 42;
@@ -93,7 +95,7 @@
             textBoxAddress.BorderStyle = BorderStyle.FixedSingle;
             textBoxAddress.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             textBoxAddress.ForeColor = Color.White;
-            textBoxAddress.Location = new Point(12, 209);
+            textBoxAddress.Location = new Point(11, 280);
             textBoxAddress.Name = "textBoxAddress";
             textBoxAddress.Size = new Size(430, 33);
             textBoxAddress.TabIndex = 41;
@@ -106,7 +108,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(12, 245);
+            label1.Location = new Point(11, 316);
             label1.Name = "label1";
             label1.Size = new Size(186, 30);
             label1.TabIndex = 43;
@@ -128,7 +130,7 @@
             buttonSaveChanges.FlatStyle = FlatStyle.Flat;
             buttonSaveChanges.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonSaveChanges.ForeColor = Color.White;
-            buttonSaveChanges.Location = new Point(462, 368);
+            buttonSaveChanges.Location = new Point(461, 439);
             buttonSaveChanges.Name = "buttonSaveChanges";
             buttonSaveChanges.Size = new Size(250, 40);
             buttonSaveChanges.TabIndex = 46;
@@ -136,11 +138,39 @@
             buttonSaveChanges.UseVisualStyleBackColor = true;
             buttonSaveChanges.Click += buttonSaveChanges_Click;
             // 
+            // labelPlaceDeliveryPrice
+            // 
+            labelPlaceDeliveryPrice.AutoSize = true;
+            labelPlaceDeliveryPrice.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            labelPlaceDeliveryPrice.ForeColor = Color.White;
+            labelPlaceDeliveryPrice.Location = new Point(11, 174);
+            labelPlaceDeliveryPrice.Name = "labelPlaceDeliveryPrice";
+            labelPlaceDeliveryPrice.Size = new Size(208, 30);
+            labelPlaceDeliveryPrice.TabIndex = 48;
+            labelPlaceDeliveryPrice.Text = "Place delivery price:";
+            // 
+            // textBoxPlaceDeliveryPrice
+            // 
+            textBoxPlaceDeliveryPrice.BackColor = Color.FromArgb(61, 61, 61);
+            textBoxPlaceDeliveryPrice.BorderStyle = BorderStyle.FixedSingle;
+            textBoxPlaceDeliveryPrice.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxPlaceDeliveryPrice.ForeColor = Color.White;
+            textBoxPlaceDeliveryPrice.Location = new Point(11, 209);
+            textBoxPlaceDeliveryPrice.Name = "textBoxPlaceDeliveryPrice";
+            textBoxPlaceDeliveryPrice.Size = new Size(430, 33);
+            textBoxPlaceDeliveryPrice.TabIndex = 47;
+            textBoxPlaceDeliveryPrice.Text = "Enter place delivery price";
+            textBoxPlaceDeliveryPrice.Enter += textBoxPlaceDeliveryPrice_Enter;
+            textBoxPlaceDeliveryPrice.Leave += textBoxPlaceDeliveryPrice_Leave;
+            textBoxPlaceDeliveryPrice.KeyPress += textBoxPlaceDeliveryPrice_KeyPress;
+            // 
             // FormPlaceEditor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(725, 420);
+            ClientSize = new Size(725, 492);
+            Controls.Add(labelPlaceDeliveryPrice);
+            Controls.Add(textBoxPlaceDeliveryPrice);
             Controls.Add(buttonSaveChanges);
             Controls.Add(labelRegistration);
             Controls.Add(label1);
@@ -160,6 +190,8 @@
             Controls.SetChildIndex(label1, 0);
             Controls.SetChildIndex(labelRegistration, 0);
             Controls.SetChildIndex(buttonSaveChanges, 0);
+            Controls.SetChildIndex(textBoxPlaceDeliveryPrice, 0);
+            Controls.SetChildIndex(labelPlaceDeliveryPrice, 0);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -174,5 +206,7 @@
         private Label label1;
         private Label labelRegistration;
         private Button buttonSaveChanges;
+        private Label labelPlaceDeliveryPrice;
+        private TextBox textBoxPlaceDeliveryPrice;
     }
 }

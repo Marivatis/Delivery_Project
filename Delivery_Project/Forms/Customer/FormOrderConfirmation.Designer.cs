@@ -36,7 +36,7 @@
             labelPhoneNumber = new Label();
             textBoxPhoneNumber = new TextBox();
             buttonOrder = new Button();
-            label4 = new Label();
+            labelTotalPrice = new Label();
             SuspendLayout();
             // 
             // labelCart
@@ -44,7 +44,7 @@
             labelCart.AutoSize = true;
             labelCart.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelCart.ForeColor = SystemColors.Control;
-            labelCart.Location = new Point(40, 245);
+            labelCart.Location = new Point(40, 244);
             labelCart.Name = "labelCart";
             labelCart.Size = new Size(108, 30);
             labelCart.TabIndex = 22;
@@ -84,6 +84,8 @@
             textBoxAddress.Size = new Size(250, 33);
             textBoxAddress.TabIndex = 39;
             textBoxAddress.Text = "Enter your address";
+            textBoxAddress.Enter += textBoxAddress_Enter;
+            textBoxAddress.Leave += textBoxAddress_Leave;
             // 
             // labelAddress
             // 
@@ -101,7 +103,7 @@
             labelPhoneNumber.AutoSize = true;
             labelPhoneNumber.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             labelPhoneNumber.ForeColor = Color.White;
-            labelPhoneNumber.Location = new Point(40, 96);
+            labelPhoneNumber.Location = new Point(40, 95);
             labelPhoneNumber.Name = "labelPhoneNumber";
             labelPhoneNumber.Size = new Size(166, 30);
             labelPhoneNumber.TabIndex = 37;
@@ -118,6 +120,8 @@
             textBoxPhoneNumber.Size = new Size(250, 33);
             textBoxPhoneNumber.TabIndex = 36;
             textBoxPhoneNumber.Text = "Enter your phone number";
+            textBoxPhoneNumber.Enter += textBoxPhoneNumber_Enter;
+            textBoxPhoneNumber.Leave += textBoxPhoneNumber_Leave;
             // 
             // buttonOrder
             // 
@@ -130,25 +134,26 @@
             buttonOrder.TabIndex = 40;
             buttonOrder.Text = "Order";
             buttonOrder.UseVisualStyleBackColor = true;
+            buttonOrder.Click += buttonOrder_Click;
             // 
-            // label4
+            // labelTotalPrice
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.ForeColor = SystemColors.Control;
-            label4.Location = new Point(40, 411);
-            label4.MaximumSize = new Size(400, 50);
-            label4.Name = "label4";
-            label4.Size = new Size(165, 25);
-            label4.TabIndex = 41;
-            label4.Text = "Total price: 150@";
+            labelTotalPrice.AutoSize = true;
+            labelTotalPrice.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            labelTotalPrice.ForeColor = SystemColors.Control;
+            labelTotalPrice.Location = new Point(40, 411);
+            labelTotalPrice.MaximumSize = new Size(400, 50);
+            labelTotalPrice.Name = "labelTotalPrice";
+            labelTotalPrice.Size = new Size(165, 25);
+            labelTotalPrice.TabIndex = 41;
+            labelTotalPrice.Text = "Total price: 150@";
             // 
             // FormOrderConfirmation
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(330, 550);
-            Controls.Add(label4);
+            Controls.Add(labelTotalPrice);
             Controls.Add(buttonOrder);
             Controls.Add(textBoxAddress);
             Controls.Add(labelAddress);
@@ -168,7 +173,7 @@
             Controls.SetChildIndex(labelAddress, 0);
             Controls.SetChildIndex(textBoxAddress, 0);
             Controls.SetChildIndex(buttonOrder, 0);
-            Controls.SetChildIndex(label4, 0);
+            Controls.SetChildIndex(labelTotalPrice, 0);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -183,6 +188,6 @@
         private Label labelPhoneNumber;
         private TextBox textBoxPhoneNumber;
         private Button buttonOrder;
-        private Label label4;
+        private Label labelTotalPrice;
     }
 }

@@ -104,6 +104,9 @@ namespace Delivery_Project.DataControl.Workplaces
             }
         }
 
-
+        public override string ToString()
+        {
+            return $"Name: {_name}, Price: {_price}, Description: {_description}";
+        }
     }
 }

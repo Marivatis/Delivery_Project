@@ -1,8 +1,20 @@
 [
   {
     "PlaceCode": 1000,
+    "Login": "Kuliny",
+    "Password": "kuliny",
+    "PhoneNumber": "0998887755"
+  },
+  {
+    "PlaceCode": 1001,
     "Login": "prov",
     "Password": "prov",
-    "PhoneNumber": "0998887755"
+    "PhoneNumber": "380112223344"
+  },
+  {
+    "PlaceCode": 1002,
+    "Login": "prov2",
+    "Password": "prov2",
+    "PhoneNumber": "0689991213"
   }
 ]

@@ -33,6 +33,11 @@ namespace Delivery_Project.DataControl.FormManagement
         public static Func<DeliveryUser, bool>? QuerryDeleteAccount;
 
         public static GetPlaceHandler? QuerryGetDeliveryPlace;
+        public static Func<List<DeliveryPlace>?>? QuerryGetDeliveryPlaceList;
+
+        public static OrderHandler? QuerryMakeOrder;
+        public static DeclineOrder? QuerryDeclineOrder;
+        public static Func<string, DeliveryOrder?>? QuerryGetActiveOrder;
 
         public FormManager()
         {
@@ -49,8 +54,12 @@ namespace Delivery_Project.DataControl.FormManagement
             FormRegistration.RegisterCustomer += QuerryRegistrerCustomer;
             FormRegistration.RegistrationComplete += RegistrationComplete;
 
+            FormCustomer.GetDeliveryPlacesList += QuerryGetDeliveryPlaceList;
+            FormCustomer.DeclineOrder += QuerryDeclineOrder;
+            FormCustomer.GetActiveOrder += QuerryGetActiveOrder;
             FormCustomerProfile.DeleteAccount += QuerryDeleteAccount;
             FormCustomerProfile.AccountDeleted += AccountDeleted;
+            FormOrderConfirmation.MakeOrder += QuerryMakeOrder;
 
             FormCourierProfile.DeleteAccount += QuerryDeleteAccount;
             FormCourierProfile.AccountDeleted += AccountDeleted;

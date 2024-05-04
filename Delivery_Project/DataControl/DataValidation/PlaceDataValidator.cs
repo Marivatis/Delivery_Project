@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -10,6 +11,22 @@ namespace Delivery_Project.DataControl.DataValidation
 {
     public class PlaceDataValidator : MainDataValidator
     {
+        public static bool ValidateDeliveryPrice(int deliveryPrice, ref string message)
+        {
+            if (deliveryPrice < 0)
+            {
+                message = "Delivery price can`t be lower than 0 UAH.";
+                return false;
+            }
+
+            if (deliveryPrice > 500)
+            {
+                message = "Delivery price can`t be higher than 500 UAH.";
+                return false;
+            }
+
+            return true;
+        }
         public static bool ValidateName(string name, ref string message)
         {
             if (string.IsNullOrEmpty(name))

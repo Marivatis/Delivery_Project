@@ -1,0 +1,72 @@
+[
+  {
+    "OrderStatus": 4,
+    "CustomerLogin": "admin",
+    "CustomerPhone": "0637878813",
+    "CustomerAddress": "Admin address",
+    "ProviderPlaceName": "Kuliny",
+    "ProviderPlaceAddress": "Kuliny address",
+    "CustomerPayment": 80,
+    "CourierEarning": 116,
+    "Cart": {
+      "Cart": {
+        "Hotdog": 1
+      },
+      "ProductPrice": 80,
+      "Count": 1
+    }
+  },
+  {
+    "OrderStatus": 4,
+    "CustomerLogin": "admin",
+    "CustomerPhone": "0637878813",
+    "CustomerAddress": "Admin address",
+    "ProviderPlaceName": "Kuliny",
+    "ProviderPlaceAddress": "Kuliny address",
+    "CustomerPayment": 60,
+    "CourierEarning": 112,
+    "Cart": {
+      "Cart": {
+        "Kulin": 1
+      },
+      "ProductPrice": 0,
+      "Count": 1
+    }
+  },
+  {
+    "OrderStatus": 4,
+    "CustomerLogin": "admin",
+    "CustomerPhone": "0637878813",
+    "CustomerAddress": "Admin address",
+    "ProviderPlaceName": "Kuliny",
+    "ProviderPlaceAddress": "Kuliny address",
+    "CustomerPayment": 140,
+    "CourierEarning": 128,
+    "Cart": {
+      "Cart": {
+        "Kulin": 1,
+        "Hotdog": 1
+      },
+      "ProductPrice": 0,
+      "Count": 2
+    }
+  },
+  {
+    "OrderStatus": 4,
+    "CustomerLogin": "admin",
+    "CustomerPhone": "0637878813",
+    "CustomerAddress": "Admin address",
+    "ProviderPlaceName": "Kuliny",
+    "ProviderPlaceAddress": "Kuliny address",
+    "CustomerPayment": 200,
+    "CourierEarning": 140,
+    "Cart": {
+      "Cart": {
+        "Kulin": 2,
+        "Hotdog": 1
+      },
+      "ProductPrice": 0,
+      "Count": 2
+    }
+  }
+]

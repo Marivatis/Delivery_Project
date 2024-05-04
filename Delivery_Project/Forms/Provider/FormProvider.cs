@@ -76,6 +76,7 @@ namespace Delivery_Project.Forms.Provider
         private void FormProvider_Load(object sender, EventArgs e)
         {
             labelPlaceName.Text = place.Name;
+            labelPlaceDeliveryPrice.Text = $"Delivery price: {place.DeliveryPrice} UAH";
             labelPlaceAddress.Text = place.Address;
             labelPlaceDescription.Text = place.Description;
 
@@ -165,7 +166,7 @@ namespace Delivery_Project.Forms.Provider
                 return;
             }
         }
-        
+
         // DataGridView product select function
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {

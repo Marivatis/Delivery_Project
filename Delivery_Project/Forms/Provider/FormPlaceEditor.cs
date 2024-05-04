@@ -26,6 +26,7 @@ namespace Delivery_Project.Forms.Provider
         private void FormPlaceEditor_Load(object sender, EventArgs e)
         {
             textBoxPlaceName.Text = place.Name;
+            textBoxPlaceDeliveryPrice.Text = place.DeliveryPrice.ToString();
             textBoxAddress.Text = place.Address;
             richTextBox1.Text = place.Description;
 
@@ -38,9 +39,10 @@ namespace Delivery_Project.Forms.Provider
             try
             {
                 place.Name = textBoxPlaceName.Text;
+                place.DeliveryPrice = Convert.ToInt32(textBoxPlaceDeliveryPrice.Text);
                 place.Address = textBoxAddress.Text;
                 place.Description = richTextBox1.Text;
-                
+
                 Close();
             }
             catch (InvalidDataException ex)
@@ -49,7 +51,7 @@ namespace Delivery_Project.Forms.Provider
             }
         }
 
-        // Field place nameusefull design
+        // Field place name usefull design
         private void textBoxPlaceName_Enter(object sender, EventArgs e)
         {
             if (textBoxPlaceName.Text == "Enter place name")
@@ -62,6 +64,30 @@ namespace Delivery_Project.Forms.Provider
             if (string.IsNullOrEmpty(textBoxPlaceName.Text))
             {
                 textBoxPlaceName.Text = "Enter place name";
+            }
+        }
+
+        // Field place delivery price usefull design
+        private void textBoxPlaceDeliveryPrice_Enter(object sender, EventArgs e)
+        {
+            if (textBoxPlaceDeliveryPrice.Text == "Enter place delivery price")
+            {
+                textBoxPlaceDeliveryPrice.Clear();
+            }
+        }
+        private void textBoxPlaceDeliveryPrice_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxPlaceDeliveryPrice.Text))
+            {
+                textBoxPlaceDeliveryPrice.Text = "Enter place delivery price";
+            }
+        }
+        private void textBoxPlaceDeliveryPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                MessageBox.Show("Price field must contain only numbers");
+                e.Handled = true;
             }
         }
 

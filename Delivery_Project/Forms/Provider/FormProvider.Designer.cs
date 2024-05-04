@@ -45,6 +45,7 @@
             buttonApply = new Button();
             buttonAddProduct = new Button();
             buttonEditPlace = new Button();
+            labelPlaceDeliveryPrice = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -65,7 +66,7 @@
             labelPlaceAddress.AutoSize = true;
             labelPlaceAddress.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             labelPlaceAddress.ForeColor = SystemColors.Control;
-            labelPlaceAddress.Location = new Point(280, 67);
+            labelPlaceAddress.Location = new Point(280, 91);
             labelPlaceAddress.MaximumSize = new Size(500, 25);
             labelPlaceAddress.Name = "labelPlaceAddress";
             labelPlaceAddress.Size = new Size(131, 25);
@@ -77,8 +78,8 @@
             labelPlaceDescription.AutoSize = true;
             labelPlaceDescription.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             labelPlaceDescription.ForeColor = SystemColors.Control;
-            labelPlaceDescription.Location = new Point(280, 92);
-            labelPlaceDescription.MaximumSize = new Size(700, 63);
+            labelPlaceDescription.Location = new Point(280, 116);
+            labelPlaceDescription.MaximumSize = new Size(700, 42);
             labelPlaceDescription.Name = "labelPlaceDescription";
             labelPlaceDescription.Size = new Size(688, 42);
             labelPlaceDescription.TabIndex = 33;
@@ -100,6 +101,7 @@
             // 
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.BackgroundColor = Color.FromArgb(61, 61, 61);
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(280, 192);
             dataGridView1.Name = "dataGridView1";
@@ -259,11 +261,24 @@
             buttonEditPlace.UseVisualStyleBackColor = true;
             buttonEditPlace.Click += buttonEditPlace_Click;
             // 
+            // labelPlaceDeliveryPrice
+            // 
+            labelPlaceDeliveryPrice.AutoSize = true;
+            labelPlaceDeliveryPrice.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            labelPlaceDeliveryPrice.ForeColor = SystemColors.Control;
+            labelPlaceDeliveryPrice.Location = new Point(280, 67);
+            labelPlaceDeliveryPrice.MaximumSize = new Size(500, 25);
+            labelPlaceDeliveryPrice.Name = "labelPlaceDeliveryPrice";
+            labelPlaceDeliveryPrice.Size = new Size(183, 25);
+            labelPlaceDeliveryPrice.TabIndex = 50;
+            labelPlaceDeliveryPrice.Text = "Place delivery price";
+            // 
             // FormProvider
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1000, 550);
+            Controls.Add(labelPlaceDeliveryPrice);
             Controls.Add(buttonEditPlace);
             Controls.Add(buttonAddProduct);
             Controls.Add(buttonApply);
@@ -301,6 +316,7 @@
             Controls.SetChildIndex(buttonApply, 0);
             Controls.SetChildIndex(buttonAddProduct, 0);
             Controls.SetChildIndex(buttonEditPlace, 0);
+            Controls.SetChildIndex(labelPlaceDeliveryPrice, 0);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -326,5 +342,6 @@
         private Button buttonApply;
         private Button buttonAddProduct;
         private Button buttonEditPlace;
+        private Label labelPlaceDeliveryPrice;
     }
 }

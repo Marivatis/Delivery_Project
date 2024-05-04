@@ -1,14 +1,8 @@
 [
   {
-    "Address": "No_Address",
+    "Address": "Admin address",
     "Login": "admin",
     "Password": "admin",
     "PhoneNumber": "0637878813"
-  },
-  {
-    "Address": "No_Address",
-    "Login": "provi",
-    "Password": "provi",
-    "PhoneNumber": "0112223344"
   }
 ]

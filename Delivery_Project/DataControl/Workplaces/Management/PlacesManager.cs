@@ -24,6 +24,7 @@ namespace Delivery_Project.DataControl.Workplaces.Management
 
         private void Initialize()
         {
+            DeliveryPlace.ValidateDeliveryPrice += PlaceDataValidator.ValidateDeliveryPrice;
             DeliveryPlace.ValidateName += PlaceDataValidator.ValidateName;
             DeliveryPlace.ValidateDescription += PlaceDataValidator.ValidateDescription;
             DeliveryPlace.ValidateAddress += PlaceDataValidator.ValidateAddress;
@@ -32,6 +33,7 @@ namespace Delivery_Project.DataControl.Workplaces.Management
 
             UserManager.QuerryGetDeliveryPlace += GetDeliveryPlace;
             FormManager.QuerryGetDeliveryPlace += GetDeliveryPlace;
+            FormManager.QuerryGetDeliveryPlaceList += () => deliveryPlaces?.List;
 
             DeliveryPlace.PlaceChanged += Write_Places;
 
