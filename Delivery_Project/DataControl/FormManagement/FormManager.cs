@@ -39,6 +39,12 @@ namespace Delivery_Project.DataControl.FormManagement
         public static DeclineOrder? QuerryDeclineOrder;
         public static Func<string, DeliveryOrder?>? QuerryGetActiveOrder;
 
+        public static Func<List<DeliveryOrder>?>? QuerryGetOrdersList;
+        public static Func<string, DeliveryOrder?>? QuerryGetTakenOrder;
+        public static Func<string, bool>? QuerryOrderOnTheWay;
+        public static TakeOrder? QuerryTakeOrder;
+        public static FinishOrder? QuerryFinishOrder;
+
         public FormManager()
         {
             Initialize();
@@ -61,6 +67,11 @@ namespace Delivery_Project.DataControl.FormManagement
             FormCustomerProfile.AccountDeleted += AccountDeleted;
             FormOrderConfirmation.MakeOrder += QuerryMakeOrder;
 
+            FormCourier.GetWaitingOrdersList += QuerryGetOrdersList;
+            FormCourier.GetTakenOrder += QuerryGetTakenOrder;
+            FormCourier.OrderOnTheWay += QuerryOrderOnTheWay;
+            FormCourier.TakeOrder += QuerryTakeOrder;
+            FormCourier.FinishOrder += QuerryFinishOrder;
             FormCourierProfile.DeleteAccount += QuerryDeleteAccount;
             FormCourierProfile.AccountDeleted += AccountDeleted;
             FormCourierRegistration.RegisterCourier += QuerryRegistrerCourier;

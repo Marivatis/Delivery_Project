@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Delivery_Project.DataControl.Users;
 
 namespace Delivery_Project.DataControl.Workplaces.Management
 {
@@ -30,6 +31,12 @@ namespace Delivery_Project.DataControl.Workplaces.Management
             FormManager.QuerryMakeOrder += MakeOrder;
             FormManager.QuerryDeclineOrder += DeclineOrder;
             FormManager.QuerryGetActiveOrder += GetActiveOrder;
+            FormManager.QuerryGetOrdersList += GetWaitingOrdersList;
+            FormManager.QuerryGetTakenOrder += GetTakenOrder;
+            FormManager.QuerryOrderOnTheWay += OrderOnTheWay;
+            FormManager.QuerryFinishOrder += FinishOrder;
+            
+            FormManager.QuerryTakeOrder += TakeOrder;
         }
 
         private void ListDeliveryOrders_OrdersListChanged()
@@ -77,6 +84,53 @@ namespace Delivery_Project.DataControl.Workplaces.Management
             order.OrderStatus = DeliveryOrderStatus.Declined;
             return true;
         }
+        private bool TakeOrder(DeliveryOrder? order, DeliveryCourier courier, ref string message)
+        {
+            if (order is null)
+            {
+                message = "Choose any order before take one.";
+                return false;
+            }
+
+            if (IsAnyTakenOrder(order.CustomerLogin))
+            {
+                message = "This ordes`s already been taken.";
+                return false;
+            }
+
+            order.OrderStatus = DeliveryOrderStatus.Accepted;
+            order.CourierLogin = courier.Login;
+            order.CourierPhone = courier.PhoneNumber;
+
+            return true;
+        }
+        private bool OrderOnTheWay(string courierLogin)
+        {
+            DeliveryOrder? order = deliveryOrders.FirstOrDefault(o => o.CourierLogin == courierLogin &&
+                                                                      o.OrderStatus == DeliveryOrderStatus.Accepted);
+
+            if (order is null)
+                return false;
+
+            order.OrderStatus = DeliveryOrderStatus.OnTheWay;
+            return true;
+        }
+        private bool FinishOrder(string courierLogin, ref string message)
+        {
+            DeliveryOrder? order = deliveryOrders.FirstOrDefault(o => o.CourierLogin == courierLogin &&
+                                                                      o.OrderStatus == DeliveryOrderStatus.OnTheWay);
+
+            if (order is null)
+            {
+                message = "Can`t find your order.";
+                return false;
+            }
+
+            message = "Order successfully delivered.";
+            order.OrderStatus = DeliveryOrderStatus.Delivered;
+            return true;
+        }
+
         private DeliveryOrder? GetActiveOrder(string customerLogin)
         {
             if (!IsAnyActiveOrder(customerLogin))
@@ -84,14 +138,30 @@ namespace Delivery_Project.DataControl.Workplaces.Management
 
             return deliveryOrders.First(o => o.CustomerLogin == customerLogin);
         }
+        private DeliveryOrder? GetTakenOrder(string courierLogin)
+        {
+            return deliveryOrders.FirstOrDefault(o => o.CourierLogin == courierLogin &&
+                                                      o.OrderStatus == DeliveryOrderStatus.Accepted ||
+                                                      o.OrderStatus == DeliveryOrderStatus.OnTheWay);
+        }
+
+        private List<DeliveryOrder>? GetWaitingOrdersList()
+        {
+            return deliveryOrders.Where(o => o.OrderStatus == DeliveryOrderStatus.Waiting).ToList();
+        }
 
         private bool IsAnyActiveOrder(string customerLogin)
         {
-            bool isAny = deliveryOrders.Any(o => o.CustomerLogin == customerLogin &&
-                                                 o.OrderStatus == DeliveryOrderStatus.Waiting ||
-                                                 o.OrderStatus == DeliveryOrderStatus.Accepted ||
-                                                 o.OrderStatus == DeliveryOrderStatus.OnTheWay);
-            return isAny;
+            return deliveryOrders.Any(o => o.CustomerLogin == customerLogin &&
+                                           o.OrderStatus == DeliveryOrderStatus.Waiting ||
+                                           o.OrderStatus == DeliveryOrderStatus.Accepted ||
+                                           o.OrderStatus == DeliveryOrderStatus.OnTheWay);
+        }
+        private bool IsAnyTakenOrder(string customerLogin)
+        {
+            return deliveryOrders.Any(o => o.CustomerLogin == customerLogin &&
+                                           o.OrderStatus == DeliveryOrderStatus.Accepted ||
+                                           o.OrderStatus == DeliveryOrderStatus.OnTheWay);
         }
 
         private void Write_DeliveryOrders()

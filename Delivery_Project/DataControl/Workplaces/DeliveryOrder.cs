@@ -12,6 +12,8 @@ namespace Delivery_Project.DataControl.Workplaces
     public class DeliveryOrder
     {
         private DeliveryOrderStatus orderStatus;
+        private string courierLogin;
+        private string courierPhone;
         private string customerLogin;
         private string customerPhone;
         private string customerAddress;
@@ -44,6 +46,16 @@ namespace Delivery_Project.DataControl.Workplaces
                 orderStatus = value;
                 OrderStatusChanged?.Invoke(this, new OrderStatusEventArgs(orderStatus, customerLogin));
             }
+        }
+        public string CourierLogin
+        {
+            get { return courierLogin; }
+            set { courierLogin = value; }
+        }
+        public string CourierPhone
+        {
+            get { return customerPhone; }
+            set { customerPhone = value; }
         }
         public string CustomerLogin
         {
@@ -80,7 +92,7 @@ namespace Delivery_Project.DataControl.Workplaces
             get { return courierEarning; }
             set { courierEarning = value; }
         }
-        public ProductCart Cart
+        public ProductCart OrderCart
         {
             get { return cart; }
             set { cart = value; }

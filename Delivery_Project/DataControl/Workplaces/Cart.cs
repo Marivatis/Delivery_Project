@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,9 +22,13 @@ namespace Delivery_Project.DataControl.Workplaces
 
         public Dictionary<string, int> Cart => _cart;
 
-        public int ProductPrice => _productPrice;
-        public int Count => _cart.Count;
-
+        public int ProductPrice
+        {
+            get { return _productPrice; }
+            set { _productPrice = value; }
+        }
+        public int Count => ProductCount();
+        
         public void Add(Product item)
         {
             if (_cart.ContainsKey(item.Name))
@@ -54,6 +59,17 @@ namespace Delivery_Project.DataControl.Workplaces
 
             _productPrice = 0;
             CartChanged?.Invoke();
+        }
+        public int ProductCount()
+        {
+            int count = 0;
+
+            foreach (var key in _cart)
+            {
+                count += key.Value;
+            }
+
+            return count;
         }
 
         public override string ToString()

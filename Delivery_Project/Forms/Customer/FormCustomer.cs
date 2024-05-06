@@ -93,7 +93,7 @@ namespace Delivery_Project.Forms.Customer
                 return;
 
             comboBoxPlaces.SelectedItem = order.ProviderPlaceName;
-            productCart = order.Cart;
+            productCart = order.OrderCart;
             currentOrderStatus = order.OrderStatus;
 
             labelOrderStatus.Visible = true;
@@ -101,6 +101,11 @@ namespace Delivery_Project.Forms.Customer
             buttonOrder.Text = "Decline";
 
             ListBoxCart_Load();
+
+            comboBoxPlaces.Enabled = false;
+            buttonAdd.Enabled = false;
+            buttonRemove.Enabled = false;
+            buttonAddToCart.Enabled = false;
         }
 
         private void InitializeComboBox()
@@ -268,6 +273,11 @@ namespace Delivery_Project.Forms.Customer
 
             Enabled = false;
             formOrderConfirmation.Show();
+
+            comboBoxPlaces.Enabled = false;
+            buttonAdd.Enabled = false;
+            buttonRemove.Enabled = false;
+            buttonAddToCart.Enabled = false;
         }
         private void buttonOrder_Decline_Click()
         {
@@ -306,6 +316,11 @@ namespace Delivery_Project.Forms.Customer
             labelOrderStatus.Visible = false;
             labelOrderStatus.Text = "Order status: ";
             buttonOrder.Text = "Order";
+
+            comboBoxPlaces.Enabled = true;
+            buttonAdd.Enabled = true;
+            buttonRemove.Enabled = true;
+            buttonAddToCart.Enabled = true;
         }
 
         private void FormOrderConfirmation_FormClosed(object? sender, FormClosedEventArgs e)

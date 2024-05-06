@@ -81,7 +81,7 @@
             buttonAddToCart.FlatStyle = FlatStyle.Flat;
             buttonAddToCart.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonAddToCart.ForeColor = Color.White;
-            buttonAddToCart.Location = new Point(746, 494);
+            buttonAddToCart.Location = new Point(746, 504);
             buttonAddToCart.Name = "buttonAddToCart";
             buttonAddToCart.Size = new Size(234, 34);
             buttonAddToCart.TabIndex = 23;
@@ -136,7 +136,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(700, 297);
+            dataGridView1.Size = new Size(700, 307);
             dataGridView1.TabIndex = 17;
             dataGridView1.CellClick += DataGridView1_CellClick;
             // 
@@ -145,7 +145,7 @@
             buttonOrder.FlatStyle = FlatStyle.Flat;
             buttonOrder.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonOrder.ForeColor = Color.White;
-            buttonOrder.Location = new Point(12, 494);
+            buttonOrder.Location = new Point(12, 504);
             buttonOrder.Name = "buttonOrder";
             buttonOrder.Size = new Size(234, 34);
             buttonOrder.TabIndex = 26;
@@ -276,7 +276,7 @@
             labelOrderStatus.AutoSize = true;
             labelOrderStatus.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             labelOrderStatus.ForeColor = SystemColors.Control;
-            labelOrderStatus.Location = new Point(12, 463);
+            labelOrderStatus.Location = new Point(12, 473);
             labelOrderStatus.MaximumSize = new Size(400, 50);
             labelOrderStatus.Name = "labelOrderStatus";
             labelOrderStatus.Size = new Size(126, 25);
