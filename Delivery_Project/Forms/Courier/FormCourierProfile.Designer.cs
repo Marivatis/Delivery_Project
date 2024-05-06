@@ -80,6 +80,7 @@
             buttonEdit2.TabIndex = 46;
             buttonEdit2.Text = "Edit";
             buttonEdit2.UseVisualStyleBackColor = true;
+            buttonEdit2.Click += buttonEdit2_Click;
             // 
             // buttonEdit1
             // 
@@ -92,6 +93,7 @@
             buttonEdit1.TabIndex = 45;
             buttonEdit1.Text = "Edit";
             buttonEdit1.UseVisualStyleBackColor = true;
+            buttonEdit1.Click += buttonEdit1_Click;
             // 
             // labelCardNumber
             // 

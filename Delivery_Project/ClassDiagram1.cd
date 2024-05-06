@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Delivery_Project.DataControl.DataManagement.DataManager">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQACAAAAAAAgAAAAAAEAAACAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>DataControl\DataManagement\DataManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Delivery_Project.DataControl.DataManagement.JsonDataManagement.JsonDataManager">
+    <Position X="3" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>DataControl\DataManagement\JsonDataManagement\JsonDataManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Delivery_Project.DataControl.DataValidation.MainDataValidator">
+    <Position X="2.75" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>DataControl\DataValidation\MainDataValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Delivery_Project.DataControl.DataValidation.PlaceDataValidator">
+    <Position X="2.75" Y="7" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAgAAAAAAAQAAAAA=</HashCode>
+      <FileName>DataControl\DataValidation\PlaceDataValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Delivery_Project.DataControl.DataValidation.ProductDataValidator">
+    <Position X="0.5" Y="7" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgCAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataControl\DataValidation\ProductDataValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Delivery_Project.DataControl.DataValidation.UserDataValidator">
+    <Position X="5" Y="7" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>DataControl\DataValidation\UserDataValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

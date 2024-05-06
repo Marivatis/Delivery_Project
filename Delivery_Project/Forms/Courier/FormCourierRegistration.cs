@@ -29,6 +29,7 @@ namespace Delivery_Project.Forms.Courier
             this.user = user;
         }
 
+        // On load form functions
         private void FormCourierRegisteration_Load(object sender, EventArgs e)
         {
             if (user.PhoneNumber != "No_Phone_Number")
@@ -37,6 +38,7 @@ namespace Delivery_Project.Forms.Courier
             CenterToScreen();
         }
 
+        // Registration button click event hendler
         private void buttonRegister_Click(object sender, EventArgs e)
         {
             string phoneNumber = textBoxPhoneNumber.Text;

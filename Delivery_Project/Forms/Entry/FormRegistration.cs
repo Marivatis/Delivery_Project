@@ -34,20 +34,19 @@ namespace Delivery_Project.Forms.Entry
         // Registration button click event hendler
         private void buttonRegister_Click(object sender, EventArgs e)
         {
-            if (textBoxPassword.Text != textBoxRepeatPassword.Text)
+            string login = textBoxLogin.Text;
+            string password = textBoxPassword.Text;
+            string repeatPassword = textBoxRepeatPassword.Text;
+            
+            if (login == "Enter your login" || password == "Enter your password" || repeatPassword == "Repeat your password")
             {
-                labelMessage.Text = "Passwords don`t match.";
-                labelMessage.Visible = true;
+                LabelMessage_Show("Login or password fields are empty.");
                 return;
             }
 
-            string login = textBoxLogin.Text;
-            string password = textBoxPassword.Text;
-            
-            if (login == "Enter your login" || password == "Enter your password")
+            if (textBoxPassword.Text != textBoxRepeatPassword.Text)
             {
-                labelMessage.Text = "Login or password fields are empty.";
-                labelMessage.Visible = true;
+                LabelMessage_Show("Passwords don`t match.");
                 return;
             }
 
@@ -61,9 +60,15 @@ namespace Delivery_Project.Forms.Entry
             }
             else
             {
-                labelMessage.Text = message;
-                labelMessage.Visible = true;
+                LabelMessage_Show(message);
             }
+        }
+
+        // Show message labes with given text
+        private void LabelMessage_Show(string message)
+        {
+            labelMessage.Text = message;
+            labelMessage.Visible = true;
         }
 
         // Field login usefull design

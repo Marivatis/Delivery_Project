@@ -13,12 +13,14 @@ namespace Delivery_Project.DataControl.Workplaces.Management
 {
     public class OrdersManager
     {
-        private ListDeliveryOrders deliveryOrders;
+        private ListDeliveryOrders _deliveryOrders;
 
         public static event EventHandler<OrderStatusEventArgs>? OrderStatusChanged;
 
         public OrdersManager()
         {
+            _deliveryOrders = new ListDeliveryOrders();
+
             Initialize();
         }
 
@@ -39,13 +41,15 @@ namespace Delivery_Project.DataControl.Workplaces.Management
             FormManager.QuerryTakeOrder += TakeOrder;
         }
 
+        // Sorts and writes orders list when it`s been changed
         private void ListDeliveryOrders_OrdersListChanged()
         {
-            deliveryOrders = new ListDeliveryOrders(deliveryOrders.OrderBy(o => o.OrderStatus).ToList());
+            _deliveryOrders = new ListDeliveryOrders(_deliveryOrders.OrderBy(o => o.OrderStatus).ToList());
 
             Write_DeliveryOrders();
         }
 
+        // Orders handler unit
         private bool MakeOrder(DeliveryOrder order, ref string message)
         {
             if (IsAnyActiveOrder(order.CustomerLogin)) 
@@ -54,7 +58,7 @@ namespace Delivery_Project.DataControl.Workplaces.Management
                 return false;
             }
 
-            deliveryOrders.Add(order);
+            _deliveryOrders.Add(order);
             OrderStatusChanged?.Invoke(this, new OrderStatusEventArgs(order.OrderStatus, order.CustomerLogin));
 
             return true;
@@ -73,7 +77,7 @@ namespace Delivery_Project.DataControl.Workplaces.Management
                 return false;
             }
 
-            DeliveryOrder order = deliveryOrders.First(o => o.CustomerLogin == customerLogin);
+            DeliveryOrder order = _deliveryOrders.First(o => o.CustomerLogin == customerLogin);
 
             if (order is null)
             {
@@ -84,7 +88,7 @@ namespace Delivery_Project.DataControl.Workplaces.Management
             order.OrderStatus = DeliveryOrderStatus.Declined;
             return true;
         }
-        private bool TakeOrder(DeliveryOrder? order, DeliveryCourier courier, ref string message)
+        private bool TakeOrder(DeliveryOrder order, DeliveryCourier courier, ref string message)
         {
             if (order is null)
             {
@@ -106,7 +110,7 @@ namespace Delivery_Project.DataControl.Workplaces.Management
         }
         private bool OrderOnTheWay(string courierLogin)
         {
-            DeliveryOrder? order = deliveryOrders.FirstOrDefault(o => o.CourierLogin == courierLogin &&
+            DeliveryOrder? order = _deliveryOrders.FirstOrDefault(o => o.CourierLogin == courierLogin &&
                                                                       o.OrderStatus == DeliveryOrderStatus.Accepted);
 
             if (order is null)
@@ -117,7 +121,7 @@ namespace Delivery_Project.DataControl.Workplaces.Management
         }
         private bool FinishOrder(string courierLogin, ref string message)
         {
-            DeliveryOrder? order = deliveryOrders.FirstOrDefault(o => o.CourierLogin == courierLogin &&
+            DeliveryOrder? order = _deliveryOrders.FirstOrDefault(o => o.CourierLogin == courierLogin &&
                                                                       o.OrderStatus == DeliveryOrderStatus.OnTheWay);
 
             if (order is null)
@@ -131,48 +135,53 @@ namespace Delivery_Project.DataControl.Workplaces.Management
             return true;
         }
 
+        // Returns active customer order with given login
         private DeliveryOrder? GetActiveOrder(string customerLogin)
         {
             if (!IsAnyActiveOrder(customerLogin))
                 return null;
 
-            return deliveryOrders.First(o => o.CustomerLogin == customerLogin);
+            return _deliveryOrders.First(o => o.CustomerLogin == customerLogin);
         }
+        // Return taken courier order with given login
         private DeliveryOrder? GetTakenOrder(string courierLogin)
         {
-            return deliveryOrders.FirstOrDefault(o => o.CourierLogin == courierLogin &&
+            return _deliveryOrders.FirstOrDefault(o => o.CourierLogin == courierLogin &&
                                                       o.OrderStatus == DeliveryOrderStatus.Accepted ||
                                                       o.OrderStatus == DeliveryOrderStatus.OnTheWay);
         }
 
+        // Returns list of orders with Waiting status
         private List<DeliveryOrder>? GetWaitingOrdersList()
         {
-            return deliveryOrders.Where(o => o.OrderStatus == DeliveryOrderStatus.Waiting).ToList();
+            return _deliveryOrders.Where(o => o.OrderStatus == DeliveryOrderStatus.Waiting).ToList();
         }
 
+        // Returns true if customer with given login has any active order
         private bool IsAnyActiveOrder(string customerLogin)
         {
-            return deliveryOrders.Any(o => o.CustomerLogin == customerLogin &&
+            return _deliveryOrders.Any(o => o.CustomerLogin == customerLogin &&
                                            o.OrderStatus == DeliveryOrderStatus.Waiting ||
                                            o.OrderStatus == DeliveryOrderStatus.Accepted ||
                                            o.OrderStatus == DeliveryOrderStatus.OnTheWay);
         }
+        // Returns true if customer with given login has any taken order
         private bool IsAnyTakenOrder(string customerLogin)
         {
-            return deliveryOrders.Any(o => o.CustomerLogin == customerLogin &&
+            return _deliveryOrders.Any(o => o.CustomerLogin == customerLogin &&
                                            o.OrderStatus == DeliveryOrderStatus.Accepted ||
                                            o.OrderStatus == DeliveryOrderStatus.OnTheWay);
         }
 
+        // Writes field _deliveryOrders to json
         private void Write_DeliveryOrders()
         {
-            Write_List(deliveryOrders.List, "Orders");
+            Write_List(_deliveryOrders.List, "Orders");
         }
-        private void Write_List<T>(List<T> list, string fileName)
+        // Writes given list to json
+        private static void Write_List<T>(List<T> list, string fileName)
         {
-            bool isWritten = false;
-
-            isWritten = DataManager.WriteListToJson(list, fileName);
+            bool isWritten = DataManager.WriteListToJson(list, fileName);
 
             if (!isWritten)
             {
@@ -180,12 +189,12 @@ namespace Delivery_Project.DataControl.Workplaces.Management
             }
         }
 
+        // Reads field _deliveryOrders from json
         private void Read_DeliveryOrders()
         {
-            bool isRead = false;
-            List<DeliveryOrder> orders = new List<DeliveryOrder>();
+            List<DeliveryOrder> orders = new();
 
-            isRead = DataManager.ReadListFromJson("Orders", ref orders);
+            bool isRead = DataManager.ReadListFromJson("Orders", ref orders);
 
             if (!isRead)
             {
@@ -193,7 +202,7 @@ namespace Delivery_Project.DataControl.Workplaces.Management
                 return;
             }
 
-            deliveryOrders = new ListDeliveryOrders(orders);
+            _deliveryOrders = new ListDeliveryOrders(orders);
         }
     }
 }

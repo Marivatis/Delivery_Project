@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace Delivery_Project.DataControl.Workplaces.Management
 {
-    public delegate bool GetPlaceHandler(int placeCode, out DeliveryPlace? place);
+    public delegate void GetPlaceHandler(int placeCode, out DeliveryPlace? place);
 }

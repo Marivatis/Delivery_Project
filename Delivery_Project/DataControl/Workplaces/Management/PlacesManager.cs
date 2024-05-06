@@ -15,10 +15,12 @@ namespace Delivery_Project.DataControl.Workplaces.Management
 {
     public class PlacesManager
     {
-        private ListDeliveryPlaces? deliveryPlaces;
+        private ListDeliveryPlaces _deliveryPlaces;
 
-        public PlacesManager() 
+        public PlacesManager()
         {
+            _deliveryPlaces = new ListDeliveryPlaces();
+            
             Initialize();
         }
 
@@ -33,48 +35,51 @@ namespace Delivery_Project.DataControl.Workplaces.Management
 
             UserManager.QuerryGetDeliveryPlace += GetDeliveryPlace;
             FormManager.QuerryGetDeliveryPlace += GetDeliveryPlace;
-            FormManager.QuerryGetDeliveryPlaceList += () => deliveryPlaces?.List;
+            FormManager.QuerryGetDeliveryPlaceList += GetDeliveryPlaceList;
 
             DeliveryPlace.PlaceChanged += Write_Places;
 
-            deliveryPlaces.AddedPlace += Write_Places;
+            _deliveryPlaces.AddedPlace += Write_Places;
         }
 
-        private bool GetDeliveryPlace(int placeCode, out DeliveryPlace? place)
+        // Returns null if failed to find valid places
+        private List<DeliveryPlace> GetDeliveryPlaceList()
+        {
+            List<DeliveryPlace> list = _deliveryPlaces.Where(p => p.Address != "No_Address").ToList();
+
+            return list;
+        }
+        // Returns null if failed to find place and returns place if place was found 
+        private void GetDeliveryPlace(int placeCode, out DeliveryPlace? place)
         {
             if (placeCode == 0)
             {
                 place = new DeliveryPlace();
                 place.PlaceCode = GetPlaceCode();
 
-                deliveryPlaces.Add(place);
-                return true;
+                _deliveryPlaces.Add(place);
+                return;
             }
 
-            place = deliveryPlaces?.FirstOrDefault(p => p.PlaceCode == placeCode);
-
-            if (place != null)
-            {
-                return true;
-            }
-
-            return false;
+            place = _deliveryPlaces.FirstOrDefault(p => p.PlaceCode == placeCode);
         }
-
+        // Return new valid place code
         private int GetPlaceCode()
         {
-            if (deliveryPlaces.Count == 0)
+            if (_deliveryPlaces.Count == 0)
                 return 1000;
 
-            int maxCode = deliveryPlaces.Max(p =>  p.PlaceCode) + 1;
+            int maxCode = _deliveryPlaces.Max(p =>  p.PlaceCode) + 1;
 
             return maxCode;
         }
 
+        // Writes field _deliveryPlaces to json
         private void Write_Places()
         {
-            Write_List(deliveryPlaces.List, "Places");
+            Write_List(_deliveryPlaces.List, "Places");
         }
+        // Writes given list to json
         private void Write_List<T>(List<T> list, string fileName)
         {
             bool isWritten = false;
@@ -87,6 +92,7 @@ namespace Delivery_Project.DataControl.Workplaces.Management
             }
         }
 
+        // Reads field _deliveryPlaces from json
         private void Read_DeliveryPlaces()
         {
             bool isRead = false;
@@ -100,8 +106,13 @@ namespace Delivery_Project.DataControl.Workplaces.Management
                 return;
             }
 
-            deliveryPlaces = new ListDeliveryPlaces(places);
-        }
+            _deliveryPlaces = new ListDeliveryPlaces(places);
 
+            //if (_deliveryPlaces.Count == 0)
+            //{
+            //    MessageBox.Show("Failed to load any delivery places.");
+            //    return;
+            //}
+        }
     }
 }

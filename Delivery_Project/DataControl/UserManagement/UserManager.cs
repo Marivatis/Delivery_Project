@@ -23,20 +23,24 @@ namespace Delivery_Project.DataControl.UserManagement
 {
     public class UserManager
     {
-        private ListDeliveryCustomers? deliveryCustomers;
-        private ListDeliveryCouriers? deliveryCouriers;
-        private ListDeliveryProvider? deliveryProviders;
+        private ListDeliveryCustomers _deliveryCustomers;
+        private ListDeliveryCouriers _deliveryCouriers;
+        private ListDeliveryProvider _deliveryProviders;
 
         public static GetPlaceHandler? QuerryGetDeliveryPlace;
-        
+
         public UserManager()
         {
+            _deliveryCustomers = new ListDeliveryCustomers();
+            _deliveryCouriers = new ListDeliveryCouriers();
+            _deliveryProviders = new ListDeliveryProvider();
+
             Initialize();
         }
 
         private void Initialize()
         {
-            DeliveryUser.ValidateLogin += UserDataValidator.ValidateLogin;
+            DeliveryUser.ValidateLogin += ValidateLogin;
             DeliveryUser.ValidatePassword += UserDataValidator.ValidatePassword;
             DeliveryUser.ValidatePhoneNumber += UserDataValidator.ValidatePhoneNumber;
             DeliveryCustomer.ValidateAddress += UserDataValidator.ValidateAddress;
@@ -54,14 +58,25 @@ namespace Delivery_Project.DataControl.UserManagement
 
             DeliveryUser.UserChanged += Write_UserList;            
 
-            deliveryCustomers.AddedUser += Write_UserList;
-            deliveryCouriers.AddedUser += Write_UserList;
-            deliveryProviders.AddedUser += Write_UserList;
-            
+            _deliveryCustomers.AddedUser += Write_UserList;
+            _deliveryCouriers.AddedUser += Write_UserList;
+            _deliveryProviders.AddedUser += Write_UserList;            
         }
 
-        // User properties validation unit
-       
+        // Validates new user login
+        private bool ValidateLogin(string login, ref string message)
+        {
+            if (!UserDataValidator.ValidateLogin(login, ref message))
+                return false;
+
+            if (IsLoginExist(login))
+            {
+                message = "This login is already used.";
+                return false;
+            }
+
+            return true;
+        }
 
         // User registration functions
         private bool RegisterCustomer(string login, string password, ref string message)
@@ -72,17 +87,13 @@ namespace Delivery_Project.DataControl.UserManagement
             if (!isValid)
                 return false;
             
-            var customerExists = deliveryCustomers.Any(c => c.Login == login) ||
-                                 deliveryCouriers.Any(c => c.Login == login) ||
-                                 deliveryProviders.Any(p => p.Login == login);    
-
-            if (customerExists)
+            if (IsLoginExist(login))
             {
                 message = "This login is already used.";
                 return false;
             }
 
-            deliveryCustomers?.Add(new DeliveryCustomer(login, password));
+            _deliveryCustomers.Add(new DeliveryCustomer(login, password));
             return true;
         }
         private bool RegisterCourier(DeliveryUser user, string cardNumber, ref string message)
@@ -92,7 +103,7 @@ namespace Delivery_Project.DataControl.UserManagement
             if (!isValid)
                 return false;
 
-            deliveryCouriers?.Add(new DeliveryCourier(user.Login, user.Password, user.PhoneNumber, cardNumber));
+            _deliveryCouriers.Add(new DeliveryCourier(user.Login, user.Password, user.PhoneNumber, cardNumber));
 
             return DeleteAcount(user); 
         }
@@ -115,18 +126,27 @@ namespace Delivery_Project.DataControl.UserManagement
             if (!isConnected)
                 return false;
             
-            deliveryProviders?.Add(provider);
+            _deliveryProviders.Add(provider);
 
             return DeleteAcount(user);
         }
 
+        // Returns true if given login already exists
+        public bool IsLoginExist(string login)
+        {
+            return  _deliveryCustomers.Any(c => c.Login == login) ||
+                    _deliveryCouriers.Any(c => c.Login == login) ||
+                    _deliveryProviders.Any(p => p.Login == login);
+        }
+
+        // Tries to log in account using given login and password
         private string LoginUser(string login, string password, out DeliveryUser? user)
         {
             string message = "Something went wrong";
 
-            user = deliveryCustomers.FirstOrDefault(c => c.Login == login);
-            user = deliveryCouriers.FirstOrDefault(c => c.Login == login) ?? user;
-            user = deliveryProviders.FirstOrDefault(p => p.Login == login) ?? user;
+            user = _deliveryCustomers.FirstOrDefault(c => c.Login == login);
+            user = _deliveryCouriers.FirstOrDefault(c => c.Login == login) ?? user;
+            user = _deliveryProviders.FirstOrDefault(p => p.Login == login) ?? user;
 
             if (user is null)
             {
@@ -144,22 +164,22 @@ namespace Delivery_Project.DataControl.UserManagement
 
             return message;
         }
-
+        // Deletes given account
         private bool DeleteAcount(DeliveryUser user)
         {
             bool isDeleted = false;
 
             if (user is DeliveryCustomer customer)
             {
-                isDeleted = deliveryCustomers?.Remove(customer) ?? false;
+                isDeleted = _deliveryCustomers?.Remove(customer) ?? false;
             }
             else if (user is DeliveryCourier courier)
             {
-                isDeleted = deliveryCouriers?.Remove(courier) ?? false;
+                isDeleted = _deliveryCouriers?.Remove(courier) ?? false;
             }
             else if (user is DeliveryProvider provider)
             {
-                isDeleted = deliveryProviders?.Remove(provider) ?? false;
+                isDeleted = _deliveryProviders?.Remove(provider) ?? false;
             }
 
             if (isDeleted)
@@ -170,21 +190,23 @@ namespace Delivery_Project.DataControl.UserManagement
             return isDeleted;
         }
 
+        // Writes specified user list to json depending on given user type
         private void Write_UserList(DeliveryUser user)
         {
             if (user is DeliveryCustomer customer)
             {
-                Write_List(deliveryCustomers?.List, "Customers");
+                Write_List(_deliveryCustomers.List, "Customers");
             }
             else if (user is DeliveryCourier courier)
             {
-                Write_List(deliveryCouriers?.List, "Couriers");
+                Write_List(_deliveryCouriers.List, "Couriers");
             }
             else if (user is DeliveryProvider provider)
             {
-                Write_List(deliveryProviders?.List, "Providers");
+                Write_List(_deliveryProviders.List, "Providers");
             }
         }
+        // Writes given user list to json
         private void Write_List<T>(List<T> list, string fileName)
         {
             bool isWritten = false;
@@ -197,6 +219,7 @@ namespace Delivery_Project.DataControl.UserManagement
             }
         }
 
+        // Read users lists unit
         private void Read_DeliveryCustomers()
         {
             bool isRead = false;
@@ -210,7 +233,7 @@ namespace Delivery_Project.DataControl.UserManagement
                 return;
             }
 
-            deliveryCustomers = new ListDeliveryCustomers(customers);
+            _deliveryCustomers = new ListDeliveryCustomers(customers);
         }
         private void Read_DeliveryCouriers()
         {
@@ -225,7 +248,7 @@ namespace Delivery_Project.DataControl.UserManagement
                 return;
             }
 
-            deliveryCouriers = new ListDeliveryCouriers(couriers);
+            _deliveryCouriers = new ListDeliveryCouriers(couriers);
         }
         private void Read_DeliveryProviders()
         {
@@ -240,7 +263,7 @@ namespace Delivery_Project.DataControl.UserManagement
                 return;
             }
 
-            deliveryProviders = new ListDeliveryProvider(providers);
+            _deliveryProviders = new ListDeliveryProvider(providers);
         }
     }
 }

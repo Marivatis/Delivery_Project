@@ -16,11 +16,12 @@ namespace Delivery_Project.Forms.Provider
 {
     public partial class FormProvider : CustomBorderForm
     {
-        private FormProviderProfile formProfile;
-        private FormPlaceEditor formPlaceEditor;
+        private FormProviderProfile? formProfile;
+        private FormPlaceEditor? formPlaceEditor;
 
         private DeliveryProvider provider;
         private DeliveryPlace place;
+
         private Product? selectedProduct;
 
         public static GetPlaceHandler? GetDeliveryPlace;
@@ -50,26 +51,13 @@ namespace Delivery_Project.Forms.Provider
         private void buttonMyProfile_Click(object sender, EventArgs e)
         {
             formProfile = new FormProviderProfile(Location, ref provider);
-            formProfile.FormClosed += Enable;
-
-            Enabled = false;
-            formProfile.Show();
+            formProfile.ShowDialog();
         }
         private void buttonEditPlace_Click(object sender, EventArgs e)
         {
             formPlaceEditor = new FormPlaceEditor(ref place);
-            formPlaceEditor.FormClosed += Enable;
-
-            Enabled = false;
-            formPlaceEditor.Show();
-        }
-        private void Enable(object? sender, FormClosedEventArgs e)
-        {
-            labelPlaceName.Text = place.Name;
-            labelPlaceAddress.Text = place.Address;
-            labelPlaceDescription.Text = place.Description;
-
-            Enabled = true;
+            formPlaceEditor.FormClosed += FormPlaceEditor_FormClosed;
+            formPlaceEditor.ShowDialog();
         }
 
         // On load form functions
@@ -87,10 +75,21 @@ namespace Delivery_Project.Forms.Provider
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = place.Menu.List;
 
+            dataGridView1.ClearSelection();
+
             dataGridView1.Columns["Name"].HeaderText = "Product";
             dataGridView1.Columns["Name"].Width = 150;
             dataGridView1.Columns["Price"].Width = 100;
             dataGridView1.Columns["Description"].Width = 407;
+        }
+
+        // FormPlaceEditor closed event handler
+        private void FormPlaceEditor_FormClosed(object? sender, FormClosedEventArgs e)
+        {
+            labelPlaceName.Text = place.Name;
+            labelPlaceDeliveryPrice.Text = $"Delivery price: {place.DeliveryPrice} UAH";
+            labelPlaceAddress.Text = place.Address;
+            labelPlaceDescription.Text = place.Description;
         }
 
         // New product add function

@@ -16,12 +16,13 @@ namespace Delivery_Project.Forms.Customer
 {
     public partial class FormOrderConfirmation : CustomBorderForm
     {
-        private Point parentLocation;
-        private DeliveryOrder order;
-        private DeliveryPlace place;
-        private DeliveryCustomer customer;
-        private ProductCart productCart;
-        private int totalPrice;
+        private Point _parentLocation;
+
+        private DeliveryOrder _order;
+        private DeliveryPlace _place;
+        private DeliveryCustomer _customer;
+        private ProductCart _productCart;
+        private int _totalPrice;
 
         public static OrderHandler? MakeOrder;
 
@@ -29,35 +30,37 @@ namespace Delivery_Project.Forms.Customer
         {
             InitializeComponent();
 
-            parentLocation = formLocation;
-            this.place = place;
-            this.customer = customer;
-            productCart = cart;
-            totalPrice = cart.ProductPrice + place.DeliveryPrice;
+            _parentLocation = formLocation;
+            this._place = place;
+            this._customer = customer;
+            _productCart = cart;
+            _totalPrice = cart.ProductPrice + place.DeliveryPrice;
         }
 
-
+        // On load form functions
         private void FormOrderConfirmation_Load(object sender, EventArgs e)
         {
-            Load_Cart();
+            ListBoxCart_Load();
 
-            textBoxPhoneNumber.Text = customer.PhoneNumber;
-            textBoxAddress.Text = customer.Address;
+            textBoxPhoneNumber.Text = _customer.PhoneNumber;
+            textBoxAddress.Text = _customer.Address;
 
-            labelTotalPrice.Text = $"Total price: {totalPrice} UAH";
+            labelTotalPrice.Text = $"Total price: {_totalPrice} UAH";
 
-            Location = parentLocation;
+            Location = _parentLocation;
         }
-        private void Load_Cart()
+        // Loads cart info using _productCart field
+        private void ListBoxCart_Load()
         {
             listBoxCart.Items.Clear();
 
-            foreach (var key in productCart.Cart)
+            foreach (var key in _productCart.Cart)
             {
-                listBoxCart.Items.Add(productCart.KeyToString(key));
+                listBoxCart.Items.Add(_productCart.KeyToString(key));
             }
         }
 
+        // Makes order querry
         private void buttonOrder_Click(object sender, EventArgs e)
         {
             if (textBoxPhoneNumber.Text == "Enter your phone number" || textBoxAddress.Text == "Enter your address")
@@ -74,8 +77,8 @@ namespace Delivery_Project.Forms.Customer
 
             try
             {
-                customer.PhoneNumber = textBoxPhoneNumber.Text;
-                customer.Address = textBoxAddress.Text;
+                _customer.PhoneNumber = textBoxPhoneNumber.Text;
+                _customer.Address = textBoxAddress.Text;
             }
             catch (InvalidDataException ex)
             {
@@ -83,10 +86,10 @@ namespace Delivery_Project.Forms.Customer
                 return;
             }
 
-            order = new DeliveryOrder(customer, place, productCart);
+            _order = new DeliveryOrder(_customer, _place, _productCart);
 
             string message = "Something went wrong";
-            bool isMade = MakeOrder?.Invoke(order, ref message) ?? false;
+            bool isMade = MakeOrder?.Invoke(_order, ref message) ?? false;
 
             if (!isMade)
             {
@@ -97,11 +100,7 @@ namespace Delivery_Project.Forms.Customer
             Close();
         }
 
-        public DeliveryOrder? GetOrder()
-        {
-            return order;
-        }
-
+        // Field phone number usefull design
         private void textBoxPhoneNumber_Enter(object sender, EventArgs e)
         {
             if (textBoxPhoneNumber.Text == "Enter your phone number")
@@ -117,6 +116,7 @@ namespace Delivery_Project.Forms.Customer
             }
         }
 
+        // Field address usefull design
         private void textBoxAddress_Enter(object sender, EventArgs e)
         {
             if (textBoxAddress.Text == "Enter your address")

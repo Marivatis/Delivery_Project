@@ -29,6 +29,7 @@ namespace Delivery_Project.Forms.Provider
             parentLocation = formLocation;
         }
 
+        // On load form functions
         private void FormProviderProfile_Load(object sender, EventArgs e)
         {
             textBoxLogin.Text = provider.Login;
@@ -41,13 +42,14 @@ namespace Delivery_Project.Forms.Provider
         // Login and phone number edit functionality
         private void buttonEdit1_Click(object sender, EventArgs e)
         {
-            if (buttonEdit1.Text == "Edit")
+            switch(buttonEdit1.Text)
             {
-                buttonEdit1_Edit_Click();
-            }
-            else if (buttonEdit1.Text == "Save")
-            {
-                buttonEdit1_Save_Click();
+                case "Edit":
+                    buttonEdit1_Edit_Click();
+                    break;
+                case "Save":
+                    buttonEdit1_Save_Click();
+                    break;
             }
         }
         private void buttonEdit1_Edit_Click()
@@ -78,13 +80,14 @@ namespace Delivery_Project.Forms.Provider
         // Password edit functionality
         private void buttonEdit2_Click(object sender, EventArgs e)
         {
-            if (buttonEdit2.Text == "Edit")
+            switch (buttonEdit2.Text)
             {
-                buttonEdit2_Edit_Click();
-            }
-            else if (buttonEdit2.Text == "Save")
-            {
-                buttonEdit2_Save_Click();
+                case "Edit":
+                    buttonEdit2_Edit_Click();
+                    break;
+                case "Save":
+                    buttonEdit2_Save_Click();
+                    break;
             }
         }
         private void buttonEdit2_Edit_Click()

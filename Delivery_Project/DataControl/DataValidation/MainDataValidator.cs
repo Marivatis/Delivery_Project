@@ -45,7 +45,6 @@ namespace Delivery_Project.DataControl.DataValidation
                 return true;
             }
 
-            //message = "Invalid address";
             return true;
         }
         public static bool ValidateCardNumber(string cardNumber, ref string message)

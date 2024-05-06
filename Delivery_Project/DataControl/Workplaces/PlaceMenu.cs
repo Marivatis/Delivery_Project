@@ -71,6 +71,15 @@ namespace Delivery_Project.DataControl.Workplaces
 
             return isRemoved;
         }
+        public bool Remove(Func<Product, bool> predicate)
+        {
+            Product? product = _products.FirstOrDefault(predicate);
+
+            if (product == null)
+                return false;
+
+            return _products.Remove(product);
+        }
 
         public IEnumerator<Product> GetEnumerator()
         {

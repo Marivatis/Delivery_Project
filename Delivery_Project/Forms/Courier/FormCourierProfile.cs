@@ -29,6 +29,7 @@ namespace Delivery_Project.Forms.Courier
             parentLocation = formLocation;
         }
 
+        // On load form functions
         private void FormCourierProfile_Load(object sender, EventArgs e)
         {
             textBoxLogin.Text = courier.Login;
@@ -145,6 +146,7 @@ namespace Delivery_Project.Forms.Courier
             }
         }
 
+        // Makes account delete querry
         private void buttonDeleteAccount_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to delete account?", "Action confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

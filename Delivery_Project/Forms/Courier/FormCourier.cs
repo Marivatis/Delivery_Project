@@ -12,17 +12,18 @@ using Delivery_Project.DataControl.Users;
 using Delivery_Project.DataControl.Workplaces;
 using Delivery_Project.DataControl.Workplaces.Management;
 using Delivery_Project.Forms.Templates;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Delivery_Project.Forms.Courier
 {
     public partial class FormCourier : CustomBorderForm
     {
-        private FormCourierProfile formProfile;
+        private FormCourierProfile? formProfile;
 
-        private DeliveryCourier courier;
+        private DeliveryCourier _courier;
 
-        private DeliveryOrder? selectedOrder;
-        private List<DeliveryOrder>? waitingOrdersList;
+        private DeliveryOrder? _selectedOrder;
+        private List<DeliveryOrder>? _waitingOrdersList;
 
         public static Func<List<DeliveryOrder>?>? GetWaitingOrdersList;
         public static Func<string, DeliveryOrder?>? GetTakenOrder;
@@ -34,9 +35,10 @@ namespace Delivery_Project.Forms.Courier
         {
             InitializeComponent();
 
-            this.courier = courier;
+            this._courier = courier;
         }
 
+        // On load form functions
         private void FormCourier_Load(object sender, EventArgs e)
         {
             CenterToScreen();
@@ -44,17 +46,16 @@ namespace Delivery_Project.Forms.Courier
             DataGridView_Load();
             TakenOrder_Load();
         }
-
         private void DataGridView_Load()
         {
-            waitingOrdersList = GetWaitingOrdersList?.Invoke();
+            _waitingOrdersList = GetWaitingOrdersList?.Invoke();
 
-            if (waitingOrdersList is null)
+            if (_waitingOrdersList is null)
                 return;
 
             dataGridView1.Rows.Clear();
 
-            foreach (var order in waitingOrdersList)
+            foreach (var order in _waitingOrdersList)
             {
                 dataGridView1.Rows.Add(order.CourierEarning, order.CustomerAddress, order.ProviderPlaceAddress);
             }
@@ -63,7 +64,7 @@ namespace Delivery_Project.Forms.Courier
         }
         private void TakenOrder_Load()
         {
-            DeliveryOrder? order = GetTakenOrder?.Invoke(courier.Login);
+            DeliveryOrder? order = GetTakenOrder?.Invoke(_courier.Login);
 
             if (order is null)
                 return;
@@ -80,9 +81,10 @@ namespace Delivery_Project.Forms.Courier
             else if (order.OrderStatus == DeliveryOrderStatus.OnTheWay)
                 buttonTakeOrder.Text = "Finish delivery";
 
-            selectedOrder = order;
+            _selectedOrder = order;
         }
 
+        // Order selection depending on DataGridView cell click
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
@@ -90,21 +92,23 @@ namespace Delivery_Project.Forms.Courier
             string customerAddress = row.Cells["DestinationAddress"].Value.ToString() ?? string.Empty;
             string providerPlaceAddress = row.Cells["ProviderAdress"].Value.ToString() ?? string.Empty;
 
-            selectedOrder = FindOrder(earning, customerAddress, providerPlaceAddress);
+            _selectedOrder = FindOrder(earning, customerAddress, providerPlaceAddress);
 
-            if (selectedOrder is null)
+            if (_selectedOrder is null)
                 return;
 
-            ShowOrderDetails(selectedOrder);
+            ShowOrderDetails(_selectedOrder);
         }
 
+        // Find order in orders list using given info
         private DeliveryOrder? FindOrder(int earning, string customerAddress, string providerPlaceAddress)
         {
-            return waitingOrdersList?.FirstOrDefault(o => o.CourierEarning == earning &&
-                                                    o.CustomerAddress == customerAddress &&
-                                                    o.ProviderPlaceAddress == providerPlaceAddress);
+            return _waitingOrdersList?.FirstOrDefault(o => o.CourierEarning == earning &&
+                                                           o.CustomerAddress == customerAddress &&
+                                                           o.ProviderPlaceAddress == providerPlaceAddress);
         }
 
+        // Shows all selected order details on form
         private void ShowOrderDetails(DeliveryOrder order)
         {
             listBoxOrderDetails.Items.Clear();
@@ -125,9 +129,11 @@ namespace Delivery_Project.Forms.Courier
             labelTotalEarning.Text = $"Total earning: {order.CourierEarning} UAH";
             labelTotalEarning.Visible = true;
         }
+        // Clears all selected order details on form
         private void ClearOrderDetails()
         {
-            waitingOrdersList?.Clear();
+            _waitingOrdersList?.Clear();
+            listBoxOrderDetails.Text = string.Empty;
             listBoxOrderDetails.Text = null;
 
             labelPlaceName.Text = $"Place name:";
@@ -142,21 +148,23 @@ namespace Delivery_Project.Forms.Courier
             labelTotalEarning.Visible = false;
         }
 
+        // Rehreshes _waitingOrdersList and DataGridView
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
             DataGridView_Load();
 
-            if (selectedOrder?.OrderStatus == DeliveryOrderStatus.Accepted || selectedOrder?.OrderStatus == DeliveryOrderStatus.OnTheWay)
+            if (_selectedOrder?.OrderStatus == DeliveryOrderStatus.Accepted || _selectedOrder?.OrderStatus == DeliveryOrderStatus.OnTheWay)
                 return;
 
             ClearOrderDetails();
         }
 
+        // Order delivery handler unit
         private void buttonTakeOrder_Click(object sender, EventArgs e)
         {
             switch (buttonTakeOrder.Text)
             {
-                case "Take Order":
+                case "Take order":
                     buttonTakeOrder_TakeOrder_Click();
                     break;
                 case "I`m on the way":
@@ -169,9 +177,15 @@ namespace Delivery_Project.Forms.Courier
         }
         private void buttonTakeOrder_TakeOrder_Click()
         {
+            if (_selectedOrder is null)
+            {
+                MessageBox.Show("Select some order before.");
+                return;
+            }
+
             string message = "Something went wrong";
 
-            bool isTaken = TakeOrder?.Invoke(selectedOrder, courier, ref message) ?? false;
+            bool isTaken = TakeOrder?.Invoke(_selectedOrder, _courier, ref message) ?? false;
 
             if (!isTaken)
             {
@@ -181,12 +195,12 @@ namespace Delivery_Project.Forms.Courier
 
             TakenOrder_Load();
 
-            waitingOrdersList?.Remove(selectedOrder);
+            _waitingOrdersList?.Remove(_selectedOrder);
             DataGridView_Load();
         }
         private void buttonTakeOrder_OnTheWay_Click()
         {
-            bool isOnTheWay = OrderOnTheWay?.Invoke(courier.Login) ?? false;
+            bool isOnTheWay = OrderOnTheWay?.Invoke(_courier.Login) ?? false;
 
             if (!isOnTheWay)
             {
@@ -194,9 +208,9 @@ namespace Delivery_Project.Forms.Courier
                 return;
             }
 
-            selectedOrder.OrderStatus = DeliveryOrderStatus.OnTheWay;
+            _selectedOrder.OrderStatus = DeliveryOrderStatus.OnTheWay;
 
-            labelDeliveryStatus.Text = $"Delivery status: {selectedOrder.OrderStatus}";
+            labelDeliveryStatus.Text = $"Delivery status: {_selectedOrder.OrderStatus}";
             labelDeliveryStatus.Visible = true;
 
             buttonTakeOrder.Text = "Finish delivery";
@@ -205,7 +219,7 @@ namespace Delivery_Project.Forms.Courier
         {
             string message = "Something went wrong.";
 
-            bool isFinished = FinishOrder?.Invoke(courier.Login, ref message) ?? false;
+            bool isFinished = FinishOrder?.Invoke(_courier.Login, ref message) ?? false;
 
             MessageBox.Show(message);
 
@@ -221,17 +235,11 @@ namespace Delivery_Project.Forms.Courier
             buttonTakeOrder.Text = "Take order";
         }
 
+        // Transition to profile form
         private void buttonMyProfile_Click(object sender, EventArgs e)
         {
-            formProfile = new FormCourierProfile(Location, ref courier);
-            formProfile.FormClosed += Enable;
-
-            Enabled = false;
-            formProfile.Show();
-        }
-        private void Enable(object? sender, FormClosedEventArgs e)
-        {
-            Enabled = true;
+            formProfile = new FormCourierProfile(Location, ref _courier);
+            formProfile.ShowDialog();
         }
     }
 }

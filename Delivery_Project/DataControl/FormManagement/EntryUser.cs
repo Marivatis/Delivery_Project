@@ -11,5 +11,5 @@ namespace Delivery_Project.DataControl.FormManagement
     public delegate bool RegisterCourier(DeliveryUser user, string cardNumber, ref string message);
     public delegate bool RegisterProvider(DeliveryUser user, string secretWord,  ref string message);
 
-    public delegate string LoginUser(string login, string password, out DeliveryUser user);
+    public delegate string LoginUser(string login, string password, out DeliveryUser? user);
 }
