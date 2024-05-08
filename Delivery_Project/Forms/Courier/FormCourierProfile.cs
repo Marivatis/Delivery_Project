@@ -63,8 +63,11 @@ namespace Delivery_Project.Forms.Courier
         {
             try
             {
-                courier.Login = textBoxLogin.Text;
-                courier.PhoneNumber = textBoxPhoneNumber.Text;
+                if (courier.Login != textBoxLogin.Text)
+                    courier.Login = textBoxLogin.Text;
+
+                if (courier.PhoneNumber != textBoxPhoneNumber.Text)
+                    courier.PhoneNumber = textBoxPhoneNumber.Text;
 
                 textBoxLogin.Enabled = false;
                 textBoxPhoneNumber.Enabled = false;
@@ -99,7 +102,9 @@ namespace Delivery_Project.Forms.Courier
         {
             try
             {
-                courier.Password = textBoxPassword.Text;
+                
+                if (courier.Password != textBoxPassword.Text)
+                    courier.Password = textBoxPassword.Text;
 
                 textBoxPassword.Enabled = false;
 
@@ -134,7 +139,8 @@ namespace Delivery_Project.Forms.Courier
         {
             try
             {
-                courier.CardNumber = textBoxCardNumber.Text;
+                if (courier.CardNumber != textBoxCardNumber.Text)
+                    courier.CardNumber = textBoxCardNumber.Text;
 
                 textBoxCardNumber.Enabled = false;
 

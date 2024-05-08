@@ -11,6 +11,22 @@ namespace Delivery_Project.DataControl.DataValidation
 {
     public class PlaceDataValidator : MainDataValidator
     {
+        public static bool ValidateDeliveryPercent(int deliveryPercent, ref string message)
+        {
+            if (deliveryPercent < 0)
+            {
+                message = "Delivery percent can`t be lover than 0%";
+                return false;
+            }
+
+            if (deliveryPercent > 75)
+            {
+                message = "Delivery percent can`t be higher than 75%";
+                return false;
+            }
+
+            return true;
+        }
         public static bool ValidateDeliveryPrice(int deliveryPrice, ref string message)
         {
             if (deliveryPrice < 0)

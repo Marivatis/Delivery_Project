@@ -47,6 +47,7 @@
             labelPlaceDescription = new Label();
             labelPlaceName = new Label();
             labelOrderStatus = new Label();
+            labelDeliveryPercent = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -69,7 +70,7 @@
             labelTotalPrice.AutoSize = true;
             labelTotalPrice.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             labelTotalPrice.ForeColor = SystemColors.Control;
-            labelTotalPrice.Location = new Point(12, 359);
+            labelTotalPrice.Location = new Point(12, 380);
             labelTotalPrice.MaximumSize = new Size(400, 50);
             labelTotalPrice.Name = "labelTotalPrice";
             labelTotalPrice.Size = new Size(172, 25);
@@ -204,7 +205,7 @@
             labelProductPrice.AutoSize = true;
             labelProductPrice.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             labelProductPrice.ForeColor = SystemColors.Control;
-            labelProductPrice.Location = new Point(12, 309);
+            labelProductPrice.Location = new Point(12, 355);
             labelProductPrice.MaximumSize = new Size(400, 50);
             labelProductPrice.Name = "labelProductPrice";
             labelProductPrice.Size = new Size(200, 25);
@@ -216,7 +217,7 @@
             labelDeliveryPrice.AutoSize = true;
             labelDeliveryPrice.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             labelDeliveryPrice.ForeColor = SystemColors.Control;
-            labelDeliveryPrice.Location = new Point(12, 334);
+            labelDeliveryPrice.Location = new Point(12, 330);
             labelDeliveryPrice.MaximumSize = new Size(400, 50);
             labelDeliveryPrice.Name = "labelDeliveryPrice";
             labelDeliveryPrice.Size = new Size(196, 25);
@@ -284,11 +285,24 @@
             labelOrderStatus.Text = "Order status:";
             labelOrderStatus.Visible = false;
             // 
+            // labelDeliveryPercent
+            // 
+            labelDeliveryPercent.AutoSize = true;
+            labelDeliveryPercent.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            labelDeliveryPercent.ForeColor = SystemColors.Control;
+            labelDeliveryPercent.Location = new Point(12, 305);
+            labelDeliveryPercent.MaximumSize = new Size(400, 50);
+            labelDeliveryPercent.Name = "labelDeliveryPercent";
+            labelDeliveryPercent.Size = new Size(219, 25);
+            labelDeliveryPercent.TabIndex = 56;
+            labelDeliveryPercent.Text = "Delivery percent: 0 UAH";
+            // 
             // FormCustomer
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1000, 550);
+            Controls.Add(labelDeliveryPercent);
             Controls.Add(labelOrderStatus);
             Controls.Add(labelPlaceDeliveryPrice);
             Controls.Add(labelPlaceAddress);
@@ -330,6 +344,7 @@
             Controls.SetChildIndex(labelPlaceAddress, 0);
             Controls.SetChildIndex(labelPlaceDeliveryPrice, 0);
             Controls.SetChildIndex(labelOrderStatus, 0);
+            Controls.SetChildIndex(labelDeliveryPercent, 0);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -357,5 +372,6 @@
         private Label labelPlaceDescription;
         private Label labelPlaceName;
         private Label labelOrderStatus;
+        private Label labelDeliveryPercent;
     }
 }

@@ -19,10 +19,10 @@ namespace Delivery_Project.Forms.Provider
         private FormProviderProfile? formProfile;
         private FormPlaceEditor? formPlaceEditor;
 
-        private DeliveryProvider provider;
-        private DeliveryPlace place;
+        private DeliveryProvider _provider;
+        private DeliveryPlace _place;
 
-        private Product? selectedProduct;
+        private Product? _selectedProduct;
 
         public static GetPlaceHandler? GetDeliveryPlace;
 
@@ -30,7 +30,7 @@ namespace Delivery_Project.Forms.Provider
         {
             InitializeComponent();
 
-            this.provider = provider;
+            _provider = provider;
 
             DeliveryPlace? place = null;
 
@@ -43,19 +43,19 @@ namespace Delivery_Project.Forms.Provider
                 return;
             }
 
-            this.place = place;
+            _place = place;
             DeliveryPlace.PlaceChanged += Load_DataGridView;
         }
 
         // Transition to profile and edit place forms
         private void buttonMyProfile_Click(object sender, EventArgs e)
         {
-            formProfile = new FormProviderProfile(Location, ref provider);
+            formProfile = new FormProviderProfile(Location, ref _provider);
             formProfile.ShowDialog();
         }
         private void buttonEditPlace_Click(object sender, EventArgs e)
         {
-            formPlaceEditor = new FormPlaceEditor(ref place);
+            formPlaceEditor = new FormPlaceEditor(ref _place);
             formPlaceEditor.FormClosed += FormPlaceEditor_FormClosed;
             formPlaceEditor.ShowDialog();
         }
@@ -63,17 +63,17 @@ namespace Delivery_Project.Forms.Provider
         // On load form functions
         private void FormProvider_Load(object sender, EventArgs e)
         {
-            labelPlaceName.Text = place.Name;
-            labelPlaceDeliveryPrice.Text = $"Delivery price: {place.DeliveryPrice} UAH";
-            labelPlaceAddress.Text = place.Address;
-            labelPlaceDescription.Text = place.Description;
+            labelPlaceName.Text = _place.Name;
+            labelPlaceDeliveryPrice.Text = $"Delivery price: {_place.DeliveryPrice} UAH";
+            labelPlaceAddress.Text = _place.Address;
+            labelPlaceDescription.Text = _place.Description;
 
             Load_DataGridView();
         }
         private void Load_DataGridView()
         {
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = place.Menu.List;
+            dataGridView1.DataSource = _place.Menu.ToList();
 
             dataGridView1.ClearSelection();
 
@@ -86,10 +86,10 @@ namespace Delivery_Project.Forms.Provider
         // FormPlaceEditor closed event handler
         private void FormPlaceEditor_FormClosed(object? sender, FormClosedEventArgs e)
         {
-            labelPlaceName.Text = place.Name;
-            labelPlaceDeliveryPrice.Text = $"Delivery price: {place.DeliveryPrice} UAH";
-            labelPlaceAddress.Text = place.Address;
-            labelPlaceDescription.Text = place.Description;
+            labelPlaceName.Text = _place.Name;
+            labelPlaceDeliveryPrice.Text = $"Delivery price: {_place.DeliveryPrice} UAH";
+            labelPlaceAddress.Text = _place.Address;
+            labelPlaceDescription.Text = _place.Description;
         }
 
         // New product add function
@@ -99,22 +99,26 @@ namespace Delivery_Project.Forms.Provider
 
             try
             {
-                place.Menu.Add(product);
+                _place.Menu.Add(product);
             }
             catch (InvalidDataException ex)
             {
                 MessageBox.Show(ex.Message);
             }
+
+            textBoxProductName.Text = "Enter product name";
+            textBoxProductPrice.Text = "Enter product price";
+            textBoxProductDescription.Text = "Enter product description";
         }
 
         // Product properties change apply function
         private void buttonApply_Click(object sender, EventArgs e)
         {
-            Product? product = place.Menu.FirstOrDefault(p => p.Name == selectedProduct?.Name);
+            Product? product = _place.Menu.FirstOrDefault(p => p.Name == _selectedProduct?.Name);
 
             if (product is null)
             {
-                MessageBox.Show($"Any product with name {selectedProduct?.Name} in menu.");
+                MessageBox.Show($"Any product with name {_selectedProduct?.Name} in menu.");
                 return;
             }
 
@@ -136,9 +140,14 @@ namespace Delivery_Project.Forms.Provider
 
             try
             {
-                product.Name = textBoxProductName.Text;
-                product.Price = Convert.ToInt32(textBoxProductPrice.Text);
-                product.Description = textBoxProductDescription.Text;
+                if (product.Name != textBoxProductName.Text) 
+                    product.Name = textBoxProductName.Text;
+
+                if (product.Price != Convert.ToInt32(textBoxProductPrice.Text))
+                    product.Price = Convert.ToInt32(textBoxProductPrice.Text);
+
+                if (product.Description != textBoxProductDescription.Text)
+                    product.Description = textBoxProductDescription.Text;
             }
             catch (InvalidDataException ex)
             {
@@ -149,15 +158,15 @@ namespace Delivery_Project.Forms.Provider
         // Product remove function
         private void buttonRemove_Click(object sender, EventArgs e)
         {
-            Product? product = place.Menu.FirstOrDefault(p => p.Name == selectedProduct?.Name);
+            Product? product = _place.Menu.FirstOrDefault(p => p.Name == _selectedProduct?.Name);
 
             if (product is null)
             {
-                MessageBox.Show($"Any product with name {selectedProduct?.Name} in menu.");
+                MessageBox.Show($"Any product with name {_selectedProduct?.Name} in menu.");
                 return;
             }
 
-            bool isRemoved = place.Menu.Remove(product);
+            bool isRemoved = _place.Menu.Remove(product);
 
             if (!isRemoved)
             {
@@ -172,14 +181,14 @@ namespace Delivery_Project.Forms.Provider
             if (e.RowIndex < 0 || e.RowIndex >= dataGridView1.Rows.Count)
                 return;
 
-            selectedProduct = dataGridView1.Rows[e.RowIndex].DataBoundItem as Product;
+            _selectedProduct = dataGridView1.Rows[e.RowIndex].DataBoundItem as Product;
 
-            if (selectedProduct is null)
+            if (_selectedProduct is null)
                 return;
 
-            textBoxProductName.Text = selectedProduct.Name;
-            textBoxProductPrice.Text = selectedProduct.Price.ToString();
-            textBoxProductDescription.Text = selectedProduct.Description;
+            textBoxProductName.Text = _selectedProduct.Name;
+            textBoxProductPrice.Text = _selectedProduct.Price.ToString();
+            textBoxProductDescription.Text = _selectedProduct.Description;
         }
 
         // Field product name usefull design

@@ -26,6 +26,7 @@ namespace Delivery_Project.Forms.Provider
         private void FormPlaceEditor_Load(object sender, EventArgs e)
         {
             textBoxPlaceName.Text = place.Name;
+            textBoxPlaceDeliveryPercent.Text = place.DeliveryPercent.ToString();
             textBoxPlaceDeliveryPrice.Text = place.DeliveryPrice.ToString();
             textBoxAddress.Text = place.Address;
             richTextBox1.Text = place.Description;
@@ -38,10 +39,20 @@ namespace Delivery_Project.Forms.Provider
         {
             try
             {
-                place.Name = textBoxPlaceName.Text;
-                place.DeliveryPrice = Convert.ToInt32(textBoxPlaceDeliveryPrice.Text);
-                place.Address = textBoxAddress.Text;
-                place.Description = richTextBox1.Text;
+                if (place.Name != textBoxPlaceName.Text)
+                    place.Name = textBoxPlaceName.Text;
+
+                if (place.DeliveryPercent != Convert.ToInt32(textBoxPlaceDeliveryPercent.Text))
+                    place.DeliveryPercent = Convert.ToInt32(textBoxPlaceDeliveryPercent.Text);
+
+                if (place.DeliveryPrice != Convert.ToInt32(textBoxPlaceDeliveryPrice.Text))
+                    place.DeliveryPrice = Convert.ToInt32(textBoxPlaceDeliveryPrice.Text);
+
+                if (place.Address != textBoxAddress.Text)
+                    place.Address = textBoxAddress.Text;
+
+                if (place.Description != richTextBox1.Text)
+                    place.Description = richTextBox1.Text;
 
                 Close();
             }
@@ -68,6 +79,30 @@ namespace Delivery_Project.Forms.Provider
         }
 
         // Field place delivery price usefull design
+        private void textBoxPlaceDeliveryPercent_Enter(object sender, EventArgs e)
+        {
+            if (textBoxPlaceDeliveryPercent.Text == "Enter place delivery percent")
+            {
+                textBoxPlaceDeliveryPercent.Clear();
+            }
+        }
+        private void textBoxPlaceDeliveryPercent_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxPlaceDeliveryPercent.Text))
+            {
+                textBoxPlaceDeliveryPercent.Text = "Enter place delivery percent";
+            }
+        }
+        private void textBoxPlaceDeliveryPercent_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                MessageBox.Show("Delivery percent field must contain only numbers");
+                e.Handled = true;
+            }
+        }
+
+        // Field place delivery price usefull design
         private void textBoxPlaceDeliveryPrice_Enter(object sender, EventArgs e)
         {
             if (textBoxPlaceDeliveryPrice.Text == "Enter place delivery price")
@@ -86,7 +121,7 @@ namespace Delivery_Project.Forms.Provider
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
-                MessageBox.Show("Price field must contain only numbers");
+                MessageBox.Show("Delivery price field must contain only numbers");
                 e.Handled = true;
             }
         }
@@ -122,5 +157,7 @@ namespace Delivery_Project.Forms.Provider
                 richTextBox1.Text = "Enter place description";
             }
         }
+
+
     }
 }

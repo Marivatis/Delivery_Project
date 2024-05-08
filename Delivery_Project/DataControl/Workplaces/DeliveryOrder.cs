@@ -11,103 +11,101 @@ namespace Delivery_Project.DataControl.Workplaces
 {
     public class DeliveryOrder
     {
-        private DeliveryOrderStatus orderStatus;
-        private string courierLogin;
-        private string courierPhone;
-        private string customerLogin;
-        private string customerPhone;
-        private string customerAddress;
-        private string providerPlaceName;
-        private string providerPlaceAddress;
-        private int customerPayment;
-        private int courierEarning;
-        private ProductCart cart;
+        private DeliveryOrderStatus _orderStatus;
+        private string _courierLogin;
+        private string _courierPhone;
+        private string _customerLogin;
+        private string _customerPhone;
+        private string _customerAddress;
+        private string _providerPlaceName;
+        private string _providerPlaceAddress;
+        private int _providerPlaceDeliveryPrice;
+        private int _providerPlaceDeliveryPercent;
+        private int _customerPayment;
+        private int _courierEarning;
+        private ProductCart _cart;
 
         public static event EventHandler<OrderStatusEventArgs>? OrderStatusChanged;
 
         public DeliveryOrder() { }
         public DeliveryOrder(DeliveryCustomer customer, DeliveryPlace place, ProductCart cart) 
         {
-            customerLogin = customer.Login;
-            customerPhone = customer.PhoneNumber;
-            customerAddress = customer.Address;
-            providerPlaceName = place.Name;
-            providerPlaceAddress = place.Address;
-            customerPayment = cart.ProductPrice + place.DeliveryPrice;
-            courierEarning = CalculateCourierEarning();
-            this.cart = cart;
+            _customerLogin = customer.Login;
+            _customerPhone = customer.PhoneNumber;
+            _customerAddress = customer.Address;
+            _providerPlaceName = place.Name;
+            _providerPlaceAddress = place.Address;
+            _providerPlaceDeliveryPrice = place.DeliveryPrice;
+            _providerPlaceDeliveryPercent = place.DeliveryPercent;
+            _customerPayment = cart.ProductPrice + place.DeliveryPrice;
+            _cart = cart;
+
+            _courierEarning = CalculateCourierEarning();
         }
 
         public DeliveryOrderStatus OrderStatus
         {
-            get { return orderStatus; }
+            get { return _orderStatus; }
             set 
             { 
-                orderStatus = value;
-                OrderStatusChanged?.Invoke(this, new OrderStatusEventArgs(orderStatus, customerLogin));
+                _orderStatus = value;
+                OrderStatusChanged?.Invoke(this, new OrderStatusEventArgs(_orderStatus, _customerLogin));
             }
         }
         public string CourierLogin
         {
-            get { return courierLogin; }
-            set { courierLogin = value; }
+            get { return _courierLogin; }
+            set { _courierLogin = value; }
         }
         public string CourierPhone
         {
-            get { return customerPhone; }
-            set { customerPhone = value; }
+            get { return _customerPhone; }
+            set { _customerPhone = value; }
         }
         public string CustomerLogin
         {
-            get { return customerLogin; }
-            set { customerLogin = value; }
+            get { return _customerLogin; }
+            set { _customerLogin = value; }
         }
         public string CustomerPhone
         {
-            get { return customerPhone; }
-            set { customerPhone = value; }
+            get { return _customerPhone; }
+            set { _customerPhone = value; }
         }
         public string CustomerAddress
         {
-            get { return customerAddress; }
-            set { customerAddress = value; }
+            get { return _customerAddress; }
+            set { _customerAddress = value; }
         }
         public string ProviderPlaceName
         {
-            get { return providerPlaceName; }
-            set { providerPlaceName = value; }
+            get { return _providerPlaceName; }
+            set { _providerPlaceName = value; }
         }
         public string ProviderPlaceAddress
         {
-            get { return providerPlaceAddress; }
-            set { providerPlaceAddress = value; }
+            get { return _providerPlaceAddress; }
+            set { _providerPlaceAddress = value; }
         }
         public int CustomerPayment
         {
-            get { return customerPayment; }
-            set { customerPayment = value; }
+            get { return _customerPayment; }
+            set { _customerPayment = value; }
         }
         public int CourierEarning
         {
-            get { return courierEarning; }
-            set { courierEarning = value; }
+            get { return _courierEarning; }
+            set { _courierEarning = value; }
         }
         public ProductCart OrderCart
         {
-            get { return cart; }
-            set { cart = value; }
+            get { return _cart; }
+            set { _cart = value; }
         }
 
         private int CalculateCourierEarning()
         {
-            int courierEarning = 100;
-
-            courierEarning += (int)(customerPayment * 0.2);
-
-            if (courierEarning > 400)
-                courierEarning = 400;
-
-            return courierEarning;
+            return (int)(_providerPlaceDeliveryPrice + _cart.ProductPrice * _providerPlaceDeliveryPercent / 100.0);
         }
     }
 }

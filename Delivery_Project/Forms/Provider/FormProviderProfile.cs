@@ -63,8 +63,11 @@ namespace Delivery_Project.Forms.Provider
         {
             try
             {
-                provider.Login = textBoxLogin.Text;
-                provider.PhoneNumber = textBoxPhoneNumber.Text;
+                if (provider.Login != textBoxLogin.Text)
+                    provider.Login = textBoxLogin.Text;
+
+                if (provider.PhoneNumber != textBoxPhoneNumber.Text)
+                    provider.PhoneNumber = textBoxPhoneNumber.Text;
 
                 textBoxLogin.Enabled = false;
                 textBoxPhoneNumber.Enabled = false;
@@ -100,7 +103,8 @@ namespace Delivery_Project.Forms.Provider
         {
             try
             {
-                provider.Password = textBoxPassword.Text;
+                if (provider.Password != textBoxPassword.Text)
+                    provider.Password = textBoxPassword.Text;
 
                 textBoxPassword.Enabled = false;
 

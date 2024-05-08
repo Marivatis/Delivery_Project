@@ -26,6 +26,7 @@ namespace Delivery_Project.DataControl.Workplaces.Management
 
         private void Initialize()
         {
+            DeliveryPlace.ValidateDeliveryPercent += PlaceDataValidator.ValidateDeliveryPercent;
             DeliveryPlace.ValidateDeliveryPrice += PlaceDataValidator.ValidateDeliveryPrice;
             DeliveryPlace.ValidateName += PlaceDataValidator.ValidateName;
             DeliveryPlace.ValidateDescription += PlaceDataValidator.ValidateDescription;

@@ -107,7 +107,7 @@ namespace Delivery_Project.Forms.Customer
         private void DataGridView_Load(DeliveryPlace place)
         {
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = place.Menu.List;
+            dataGridView1.DataSource = place.Menu.ToList();
             dataGridView1.ClearSelection();
 
             dataGridView1.Columns["Name"].HeaderText = "Product";
@@ -138,6 +138,7 @@ namespace Delivery_Project.Forms.Customer
                 listBoxCart.Items.Add(cart.KeyToString(key));
             }
 
+            labelDeliveryPercent.Text = $"Delivery percent: {cart.ProductPrice * place.DeliveryPercent / 100.0} UAH";
             labelProductPrice.Text = $"Products price: {cart.ProductPrice} UAH";
             labelTotalPrice.Text = $"Total price: {cart.ProductPrice + place?.DeliveryPrice} UAH";
         }
@@ -222,7 +223,7 @@ namespace Delivery_Project.Forms.Customer
             labelPlaceDescription.Text = _selectedPlace.Description;
 
             labelDeliveryPrice.Text = $"Delivery price: {_selectedPlace.DeliveryPrice} UAH";
-            labelPlaceDeliveryPrice.Text = $"Delivery price: {_selectedPlace.DeliveryPrice} UAH";
+            labelPlaceDeliveryPrice.Text = $"Delivery price: {_selectedPlace.DeliveryPrice} UAH | Delivery persent: {_selectedPlace.DeliveryPercent}%";
 
             ClearCartInfo();
 
@@ -281,7 +282,8 @@ namespace Delivery_Project.Forms.Customer
             _formOrderConfirmation = new FormOrderConfirmation(Location, _selectedPlace, _customer, _productCart);
             _formOrderConfirmation.ShowDialog();
 
-            CartFunctions_Enable(false);
+            if (_currentOrderStatus != null)
+                CartFunctions_Enable(false);
         }
         // Declines customer`s current order 
         private void buttonOrder_Decline_Click()

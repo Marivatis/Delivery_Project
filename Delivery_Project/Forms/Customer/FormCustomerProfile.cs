@@ -97,8 +97,11 @@ namespace Delivery_Project.Forms.Customer
         {
             try
             {
-                customer.Login = textBoxLogin.Text;
-                customer.PhoneNumber = textBoxPhoneNumber.Text;
+                if (customer.Login != textBoxLogin.Text)
+                    customer.Login = textBoxLogin.Text;
+
+                if (customer.PhoneNumber != textBoxPhoneNumber.Text)
+                    customer.PhoneNumber = textBoxPhoneNumber.Text;
 
                 textBoxLogin.Enabled = false;
                 textBoxPhoneNumber.Enabled = false;
@@ -133,7 +136,8 @@ namespace Delivery_Project.Forms.Customer
         {
             try
             {
-                customer.Password = textBoxPassword.Text;
+                if (customer.Password != textBoxPassword.Text)
+                    customer.Password = textBoxPassword.Text;
 
                 textBoxPassword.Enabled = false;
 
@@ -143,7 +147,6 @@ namespace Delivery_Project.Forms.Customer
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         // Address edit functionality
@@ -168,7 +171,8 @@ namespace Delivery_Project.Forms.Customer
         {
             try
             {
-                customer.Address = textBoxAddress.Text;
+                if (customer.Address != textBoxAddress.Text)
+                    customer.Address = textBoxAddress.Text;
 
                 textBoxAddress.Enabled = false;
 
