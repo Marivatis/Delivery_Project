@@ -35,11 +35,11 @@ namespace Delivery_Project.DataControl.DataValidation
                 return false;
             }
 
-            if (deliveryPrice > 500)
-            {
-                message = "Delivery price can`t be higher than 500 UAH.";
-                return false;
-            }
+            //if (deliveryPrice > 500)
+            //{
+            //    message = "Delivery price can`t be higher than 500 UAH.";
+            //    return false;
+            //}
 
             return true;
         }
@@ -51,7 +51,7 @@ namespace Delivery_Project.DataControl.DataValidation
                 return false;
             }
 
-            string pattern = "^[ a-zA-Z0-9]";
+            string pattern = "^[ a-zA-Z0-9А-ЯЄІЇҐа-яєіїґ]";
 
             if (!Regex.IsMatch(name, pattern))
             {
@@ -75,7 +75,7 @@ namespace Delivery_Project.DataControl.DataValidation
                 return false;
             }
 
-            string pattern = "^[ a-zA-Z0-9]";
+            string pattern = "^[ a-zA-Z0-9А-ЯЄІЇҐа-яєіїґ]";
 
             if (!Regex.IsMatch(description, pattern))
             {

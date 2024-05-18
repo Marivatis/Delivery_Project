@@ -15,7 +15,7 @@ using Delivery_Project.Forms.Templates;
 
 namespace Delivery_Project.Forms.Customer
 {
-    public partial class FormCustomerProfile : CustomBorderForm
+    public partial class FormCustomerProfile : TemplateCustomBorderForm
     {
         private FormCourierRegistration formCourierRegisteration;
         private FormProviderRegistration formProviderRegistration;
@@ -77,11 +77,11 @@ namespace Delivery_Project.Forms.Customer
         // Login and phone number edit functionality
         private void buttonEdit1_Click(object sender, EventArgs e)
         {
-            if (buttonEdit1.Text == "Edit")
+            if (buttonEditLoginPhone.Text == "Edit")
             {
                 buttonEdit1_Edit_Click();
             }
-            else if (buttonEdit1.Text == "Save")
+            else if (buttonEditLoginPhone.Text == "Save")
             {
                 buttonEdit1_Save_Click();
             }
@@ -91,7 +91,7 @@ namespace Delivery_Project.Forms.Customer
             textBoxLogin.Enabled = true;
             textBoxPhoneNumber.Enabled = true;
 
-            buttonEdit1.Text = "Save";
+            buttonEditLoginPhone.Text = "Save";
         }
         private void buttonEdit1_Save_Click()
         {
@@ -106,7 +106,7 @@ namespace Delivery_Project.Forms.Customer
                 textBoxLogin.Enabled = false;
                 textBoxPhoneNumber.Enabled = false;
 
-                buttonEdit1.Text = "Edit";
+                buttonEditLoginPhone.Text = "Edit";
             }
             catch (InvalidDataException ex)
             {
@@ -117,11 +117,11 @@ namespace Delivery_Project.Forms.Customer
         // Password edit functionality
         private void buttonEdit2_Click(object sender, EventArgs e)
         {
-            if (buttonEdit2.Text == "Edit")
+            if (buttonEditPassword.Text == "Edit")
             {
                 buttonEdit2_Edit_Click();
             }
-            else if (buttonEdit2.Text == "Save")
+            else if (buttonEditPassword.Text == "Save")
             {
                 buttonEdit2_Save_Click();
             }
@@ -130,7 +130,7 @@ namespace Delivery_Project.Forms.Customer
         {
             textBoxPassword.Enabled = true;
 
-            buttonEdit2.Text = "Save";
+            buttonEditPassword.Text = "Save";
         }
         private void buttonEdit2_Save_Click()
         {
@@ -141,7 +141,7 @@ namespace Delivery_Project.Forms.Customer
 
                 textBoxPassword.Enabled = false;
 
-                buttonEdit2.Text = "Edit";
+                buttonEditPassword.Text = "Edit";
             }
             catch (InvalidDataException ex)
             {
@@ -152,11 +152,11 @@ namespace Delivery_Project.Forms.Customer
         // Address edit functionality
         private void buttonEdit3_Click(object sender, EventArgs e)
         {
-            if (buttonEdit3.Text == "Edit")
+            if (buttonEditAddress.Text == "Edit")
             {
                 buttonEdit3_Edit_Click();
             }
-            else if (buttonEdit3.Text == "Save")
+            else if (buttonEditAddress.Text == "Save")
             {
                 buttonEdit3_Save_Click();
             }
@@ -165,7 +165,7 @@ namespace Delivery_Project.Forms.Customer
         {
             textBoxAddress.Enabled = true;
 
-            buttonEdit3.Text = "Save";
+            buttonEditAddress.Text = "Save";
         }
         private void buttonEdit3_Save_Click()
         {
@@ -176,7 +176,7 @@ namespace Delivery_Project.Forms.Customer
 
                 textBoxAddress.Enabled = false;
 
-                buttonEdit3.Text = "Edit";
+                buttonEditAddress.Text = "Edit";
             }
             catch (InvalidDataException ex)
             {

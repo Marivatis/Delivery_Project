@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panelSeparator1 = new Panel();
+            panelDecorativeSeparator = new Panel();
             buttonTakeOrder = new Button();
             labelOrderDetails = new Label();
             listBoxOrderDetails = new ListBox();
@@ -49,11 +49,11 @@
             // 
             // panelSeparator1
             // 
-            panelSeparator1.BackColor = Color.FromArgb(61, 61, 61);
-            panelSeparator1.Location = new Point(328, 27);
-            panelSeparator1.Name = "panelSeparator1";
-            panelSeparator1.Size = new Size(1, 522);
-            panelSeparator1.TabIndex = 32;
+            panelDecorativeSeparator.BackColor = Color.FromArgb(61, 61, 61);
+            panelDecorativeSeparator.Location = new Point(328, 27);
+            panelDecorativeSeparator.Name = "panelSeparator1";
+            panelDecorativeSeparator.Size = new Size(1, 522);
+            panelDecorativeSeparator.TabIndex = 32;
             // 
             // buttonTakeOrder
             // 
@@ -240,7 +240,7 @@
             Controls.Add(buttonMyProfile);
             Controls.Add(dataGridView1);
             Controls.Add(labelAvailableOrders);
-            Controls.Add(panelSeparator1);
+            Controls.Add(panelDecorativeSeparator);
             Controls.Add(buttonTakeOrder);
             Controls.Add(labelOrderDetails);
             Controls.Add(listBoxOrderDetails);
@@ -250,7 +250,7 @@
             Controls.SetChildIndex(listBoxOrderDetails, 0);
             Controls.SetChildIndex(labelOrderDetails, 0);
             Controls.SetChildIndex(buttonTakeOrder, 0);
-            Controls.SetChildIndex(panelSeparator1, 0);
+            Controls.SetChildIndex(panelDecorativeSeparator, 0);
             Controls.SetChildIndex(labelAvailableOrders, 0);
             Controls.SetChildIndex(dataGridView1, 0);
             Controls.SetChildIndex(buttonMyProfile, 0);
@@ -267,21 +267,21 @@
 
         #endregion
 
-        private Panel panelSeparator1;
-        private Button buttonTakeOrder;
-        private Label labelOrderDetails;
-        private ListBox listBoxOrderDetails;
-        private Label labelAvailableOrders;
+        private Panel panelDecorativeSeparator;
         private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn Earning;
+        private DataGridViewTextBoxColumn DestinationAddress;
+        private DataGridViewTextBoxColumn ProviderAdress;
+        private ListBox listBoxOrderDetails;
+        private Button buttonTakeOrder;
         private Button buttonMyProfile;
         private Button buttonRefresh;
+        private Label labelOrderDetails;
+        private Label labelAvailableOrders;
         private Label labelDeliveryStatus;
         private Label labelCustomerLogin;
         private Label labelCustomerPhone;
         private Label labelPlaceName;
         private Label labelTotalEarning;
-        private DataGridViewTextBoxColumn Earning;
-        private DataGridViewTextBoxColumn DestinationAddress;
-        private DataGridViewTextBoxColumn ProviderAdress;
     }
 }

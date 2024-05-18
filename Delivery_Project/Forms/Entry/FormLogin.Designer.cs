@@ -182,10 +182,10 @@
 
         private TextBox textBoxLogin;
         private TextBox textBoxPassword;
+        private Button buttonEnter;
         private Label labelLogin;
         private Label labelPassword;
         private Label labelLoginMain;
-        private Button buttonEnter;
         private Label labelTextAccount;
         private Label labelSignUp;
         private Label labelMessage;

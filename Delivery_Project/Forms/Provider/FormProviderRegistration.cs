@@ -13,7 +13,7 @@ using Delivery_Project.Forms.Templates;
 
 namespace Delivery_Project.Forms.Provider
 {
-    public partial class FormProviderRegistration : CustomBorderForm
+    public partial class FormProviderRegistration : TemplateCustomBorderForm
     {
         private DeliveryUser user;
 

@@ -26,7 +26,6 @@ namespace Delivery_Project.DataControl.Workplaces
         public static ValidateProperty<string>? ValidateName;
         public static ValidateProperty<string>? ValidateAddress;
         public static ValidateProperty<string>? ValidateDescription;
-        public static ValidateProperty<PlaceMenu>? ValidateMenu;
 
         public DeliveryPlace() : this(404) { }
         public DeliveryPlace(int placeCode) : this(placeCode, "No_Name", "No_Address", "No_Description") { }
@@ -40,7 +39,7 @@ namespace Delivery_Project.DataControl.Workplaces
 
             _menu = new PlaceMenu();
 
-            PlaceMenu.MenuChanged += MenuChanged;
+            PlaceMenu.MenuChanged += PlaceMenu_MenuChanged;
         }
         
         public int PlaceCode
@@ -183,7 +182,7 @@ namespace Delivery_Project.DataControl.Workplaces
             }
         }
 
-        private void MenuChanged()
+        private void PlaceMenu_MenuChanged()
         {
             PlaceChanged?.Invoke();
         }

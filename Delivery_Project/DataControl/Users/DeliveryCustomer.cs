@@ -46,7 +46,5 @@ namespace Delivery_Project.DataControl.Users
                 }
             }
         }
-
-
     }
 }

@@ -51,7 +51,7 @@ namespace Delivery_Project.DataControl.DataValidation
 
             if (4 > password.Length || password.Length > 14)
             {
-                message = "Password must be from 4 to 12 characters.";
+                message = "Password must be from 4 to 14 characters.";
                 return false;
             }
 

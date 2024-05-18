@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            buttonMyProfile = new Button();
+            buttonShowMyProfile = new Button();
             labelTotalPrice = new Label();
             buttonAddToCart = new Button();
-            buttonRemove = new Button();
-            labelCart = new Label();
-            listBoxCart = new ListBox();
-            dataGridView1 = new DataGridView();
-            buttonOrder = new Button();
-            buttonAdd = new Button();
-            panelSeparator1 = new Panel();
-            label5 = new Label();
-            comboBoxPlaces = new ComboBox();
+            buttonRemoveCartProduct = new Button();
+            labelCartTitle = new Label();
+            listBoxCustomerCart = new ListBox();
+            dataGridViewPlaceMenu = new DataGridView();
+            buttonMakeOrder = new Button();
+            buttonAddCartProduct = new Button();
+            panelDecorativeSeparator = new Panel();
+            labelMenuTitle = new Label();
+            comboBoxPlacesList = new ComboBox();
             labelProductPrice = new Label();
             labelDeliveryPrice = new Label();
             labelPlaceDeliveryPrice = new Label();
@@ -48,22 +48,22 @@
             labelPlaceName = new Label();
             labelOrderStatus = new Label();
             labelDeliveryPercent = new Label();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewPlaceMenu).BeginInit();
             SuspendLayout();
             // 
             // buttonMyProfile
             // 
-            buttonMyProfile.FlatAppearance.BorderSize = 0;
-            buttonMyProfile.FlatStyle = FlatStyle.Flat;
-            buttonMyProfile.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonMyProfile.ForeColor = Color.White;
-            buttonMyProfile.Location = new Point(1, 1);
-            buttonMyProfile.Name = "buttonMyProfile";
-            buttonMyProfile.Size = new Size(75, 25);
-            buttonMyProfile.TabIndex = 6;
-            buttonMyProfile.Text = "My Profile";
-            buttonMyProfile.UseVisualStyleBackColor = true;
-            buttonMyProfile.Click += buttonMyProfile_Click;
+            buttonShowMyProfile.FlatAppearance.BorderSize = 0;
+            buttonShowMyProfile.FlatStyle = FlatStyle.Flat;
+            buttonShowMyProfile.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonShowMyProfile.ForeColor = Color.White;
+            buttonShowMyProfile.Location = new Point(1, 1);
+            buttonShowMyProfile.Name = "buttonMyProfile";
+            buttonShowMyProfile.Size = new Size(75, 25);
+            buttonShowMyProfile.TabIndex = 6;
+            buttonShowMyProfile.Text = "My Profile";
+            buttonShowMyProfile.UseVisualStyleBackColor = true;
+            buttonShowMyProfile.Click += buttonMyProfile_Click;
             // 
             // labelTotalPrice
             // 
@@ -92,113 +92,113 @@
             // 
             // buttonRemove
             // 
-            buttonRemove.FlatStyle = FlatStyle.Flat;
-            buttonRemove.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonRemove.ForeColor = Color.White;
-            buttonRemove.Location = new Point(12, 268);
-            buttonRemove.Name = "buttonRemove";
-            buttonRemove.Size = new Size(117, 34);
-            buttonRemove.TabIndex = 21;
-            buttonRemove.Text = "Remove";
-            buttonRemove.UseVisualStyleBackColor = true;
-            buttonRemove.Click += buttonRemove_Click;
+            buttonRemoveCartProduct.FlatStyle = FlatStyle.Flat;
+            buttonRemoveCartProduct.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonRemoveCartProduct.ForeColor = Color.White;
+            buttonRemoveCartProduct.Location = new Point(12, 268);
+            buttonRemoveCartProduct.Name = "buttonRemove";
+            buttonRemoveCartProduct.Size = new Size(117, 34);
+            buttonRemoveCartProduct.TabIndex = 21;
+            buttonRemoveCartProduct.Text = "Remove";
+            buttonRemoveCartProduct.UseVisualStyleBackColor = true;
+            buttonRemoveCartProduct.Click += buttonRemove_Click;
             // 
             // labelCart
             // 
-            labelCart.AutoSize = true;
-            labelCart.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
-            labelCart.ForeColor = SystemColors.Control;
-            labelCart.Location = new Point(12, 35);
-            labelCart.Name = "labelCart";
-            labelCart.Size = new Size(108, 30);
-            labelCart.TabIndex = 20;
-            labelCart.Text = "Your cart:";
+            labelCartTitle.AutoSize = true;
+            labelCartTitle.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            labelCartTitle.ForeColor = SystemColors.Control;
+            labelCartTitle.Location = new Point(12, 35);
+            labelCartTitle.Name = "labelCart";
+            labelCartTitle.Size = new Size(108, 30);
+            labelCartTitle.TabIndex = 20;
+            labelCartTitle.Text = "Your cart:";
             // 
             // listBoxCart
             // 
-            listBoxCart.BackColor = Color.FromArgb(31, 31, 31);
-            listBoxCart.Font = new Font("Segoe UI", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            listBoxCart.ForeColor = Color.White;
-            listBoxCart.FormattingEnabled = true;
-            listBoxCart.ItemHeight = 21;
-            listBoxCart.Location = new Point(12, 69);
-            listBoxCart.Name = "listBoxCart";
-            listBoxCart.Size = new Size(234, 193);
-            listBoxCart.TabIndex = 19;
-            listBoxCart.SelectedValueChanged += ListBoxCart_SelectedValueChanged;
+            listBoxCustomerCart.BackColor = Color.FromArgb(31, 31, 31);
+            listBoxCustomerCart.Font = new Font("Segoe UI", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            listBoxCustomerCart.ForeColor = Color.White;
+            listBoxCustomerCart.FormattingEnabled = true;
+            listBoxCustomerCart.ItemHeight = 21;
+            listBoxCustomerCart.Location = new Point(12, 69);
+            listBoxCustomerCart.Name = "listBoxCart";
+            listBoxCustomerCart.Size = new Size(234, 193);
+            listBoxCustomerCart.TabIndex = 19;
+            listBoxCustomerCart.SelectedValueChanged += ListBoxCart_SelectedValueChanged;
             // 
             // dataGridView1
             // 
-            dataGridView1.AllowUserToResizeColumns = false;
-            dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.BackgroundColor = Color.FromArgb(61, 61, 61);
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(280, 191);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(700, 307);
-            dataGridView1.TabIndex = 17;
-            dataGridView1.CellClick += DataGridView1_CellClick;
+            dataGridViewPlaceMenu.AllowUserToResizeColumns = false;
+            dataGridViewPlaceMenu.AllowUserToResizeRows = false;
+            dataGridViewPlaceMenu.BackgroundColor = Color.FromArgb(61, 61, 61);
+            dataGridViewPlaceMenu.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewPlaceMenu.Location = new Point(280, 191);
+            dataGridViewPlaceMenu.Name = "dataGridView1";
+            dataGridViewPlaceMenu.ReadOnly = true;
+            dataGridViewPlaceMenu.RowTemplate.Height = 25;
+            dataGridViewPlaceMenu.Size = new Size(700, 307);
+            dataGridViewPlaceMenu.TabIndex = 17;
+            dataGridViewPlaceMenu.CellClick += DataGridView1_CellClick;
             // 
             // buttonOrder
             // 
-            buttonOrder.FlatStyle = FlatStyle.Flat;
-            buttonOrder.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonOrder.ForeColor = Color.White;
-            buttonOrder.Location = new Point(12, 504);
-            buttonOrder.Name = "buttonOrder";
-            buttonOrder.Size = new Size(234, 34);
-            buttonOrder.TabIndex = 26;
-            buttonOrder.Text = "Order";
-            buttonOrder.UseVisualStyleBackColor = true;
-            buttonOrder.Click += buttonOrder_Click;
+            buttonMakeOrder.FlatStyle = FlatStyle.Flat;
+            buttonMakeOrder.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonMakeOrder.ForeColor = Color.White;
+            buttonMakeOrder.Location = new Point(12, 504);
+            buttonMakeOrder.Name = "buttonOrder";
+            buttonMakeOrder.Size = new Size(234, 34);
+            buttonMakeOrder.TabIndex = 26;
+            buttonMakeOrder.Text = "Order";
+            buttonMakeOrder.UseVisualStyleBackColor = true;
+            buttonMakeOrder.Click += buttonOrder_Click;
             // 
             // buttonAdd
             // 
-            buttonAdd.FlatStyle = FlatStyle.Flat;
-            buttonAdd.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonAdd.ForeColor = Color.White;
-            buttonAdd.Location = new Point(129, 268);
-            buttonAdd.Name = "buttonAdd";
-            buttonAdd.Size = new Size(117, 34);
-            buttonAdd.TabIndex = 27;
-            buttonAdd.Text = "Add";
-            buttonAdd.UseVisualStyleBackColor = true;
-            buttonAdd.Click += buttonAdd_Click;
+            buttonAddCartProduct.FlatStyle = FlatStyle.Flat;
+            buttonAddCartProduct.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonAddCartProduct.ForeColor = Color.White;
+            buttonAddCartProduct.Location = new Point(129, 268);
+            buttonAddCartProduct.Name = "buttonAdd";
+            buttonAddCartProduct.Size = new Size(117, 34);
+            buttonAddCartProduct.TabIndex = 27;
+            buttonAddCartProduct.Text = "Add";
+            buttonAddCartProduct.UseVisualStyleBackColor = true;
+            buttonAddCartProduct.Click += buttonAdd_Click;
             // 
             // panelSeparator1
             // 
-            panelSeparator1.BackColor = Color.FromArgb(61, 61, 61);
-            panelSeparator1.Location = new Point(262, 26);
-            panelSeparator1.Name = "panelSeparator1";
-            panelSeparator1.Size = new Size(1, 522);
-            panelSeparator1.TabIndex = 28;
+            panelDecorativeSeparator.BackColor = Color.FromArgb(61, 61, 61);
+            panelDecorativeSeparator.Location = new Point(262, 26);
+            panelDecorativeSeparator.Name = "panelSeparator1";
+            panelDecorativeSeparator.Size = new Size(1, 522);
+            panelDecorativeSeparator.TabIndex = 28;
             // 
             // label5
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.ForeColor = SystemColors.Control;
-            label5.Location = new Point(280, 157);
-            label5.MaximumSize = new Size(400, 50);
-            label5.Name = "label5";
-            label5.Size = new Size(76, 30);
-            label5.TabIndex = 30;
-            label5.Text = "Menu:";
+            labelMenuTitle.AutoSize = true;
+            labelMenuTitle.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            labelMenuTitle.ForeColor = SystemColors.Control;
+            labelMenuTitle.Location = new Point(280, 157);
+            labelMenuTitle.MaximumSize = new Size(400, 50);
+            labelMenuTitle.Name = "label5";
+            labelMenuTitle.Size = new Size(76, 30);
+            labelMenuTitle.TabIndex = 30;
+            labelMenuTitle.Text = "Menu:";
             // 
             // comboBoxPlaces
             // 
-            comboBoxPlaces.BackColor = Color.FromArgb(31, 31, 31);
-            comboBoxPlaces.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxPlaces.FlatStyle = FlatStyle.Flat;
-            comboBoxPlaces.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            comboBoxPlaces.ForeColor = Color.White;
-            comboBoxPlaces.FormattingEnabled = true;
-            comboBoxPlaces.Location = new Point(746, 39);
-            comboBoxPlaces.Name = "comboBoxPlaces";
-            comboBoxPlaces.Size = new Size(234, 33);
-            comboBoxPlaces.TabIndex = 31;
+            comboBoxPlacesList.BackColor = Color.FromArgb(31, 31, 31);
+            comboBoxPlacesList.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxPlacesList.FlatStyle = FlatStyle.Flat;
+            comboBoxPlacesList.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            comboBoxPlacesList.ForeColor = Color.White;
+            comboBoxPlacesList.FormattingEnabled = true;
+            comboBoxPlacesList.Location = new Point(746, 39);
+            comboBoxPlacesList.Name = "comboBoxPlaces";
+            comboBoxPlacesList.Size = new Size(234, 33);
+            comboBoxPlacesList.TabIndex = 31;
             // 
             // labelProductPrice
             // 
@@ -310,33 +310,33 @@
             Controls.Add(labelPlaceName);
             Controls.Add(labelProductPrice);
             Controls.Add(labelDeliveryPrice);
-            Controls.Add(comboBoxPlaces);
+            Controls.Add(comboBoxPlacesList);
             Controls.Add(buttonAddToCart);
-            Controls.Add(label5);
-            Controls.Add(panelSeparator1);
-            Controls.Add(buttonAdd);
-            Controls.Add(buttonOrder);
+            Controls.Add(labelMenuTitle);
+            Controls.Add(panelDecorativeSeparator);
+            Controls.Add(buttonAddCartProduct);
+            Controls.Add(buttonMakeOrder);
             Controls.Add(labelTotalPrice);
-            Controls.Add(buttonRemove);
-            Controls.Add(labelCart);
-            Controls.Add(listBoxCart);
-            Controls.Add(dataGridView1);
-            Controls.Add(buttonMyProfile);
+            Controls.Add(buttonRemoveCartProduct);
+            Controls.Add(labelCartTitle);
+            Controls.Add(listBoxCustomerCart);
+            Controls.Add(dataGridViewPlaceMenu);
+            Controls.Add(buttonShowMyProfile);
             Name = "FormCustomer";
             Text = "FormCustomer";
             Load += FormCustomer_Load;
-            Controls.SetChildIndex(buttonMyProfile, 0);
-            Controls.SetChildIndex(dataGridView1, 0);
-            Controls.SetChildIndex(listBoxCart, 0);
-            Controls.SetChildIndex(labelCart, 0);
-            Controls.SetChildIndex(buttonRemove, 0);
+            Controls.SetChildIndex(buttonShowMyProfile, 0);
+            Controls.SetChildIndex(dataGridViewPlaceMenu, 0);
+            Controls.SetChildIndex(listBoxCustomerCart, 0);
+            Controls.SetChildIndex(labelCartTitle, 0);
+            Controls.SetChildIndex(buttonRemoveCartProduct, 0);
             Controls.SetChildIndex(labelTotalPrice, 0);
-            Controls.SetChildIndex(buttonOrder, 0);
-            Controls.SetChildIndex(buttonAdd, 0);
-            Controls.SetChildIndex(panelSeparator1, 0);
-            Controls.SetChildIndex(label5, 0);
+            Controls.SetChildIndex(buttonMakeOrder, 0);
+            Controls.SetChildIndex(buttonAddCartProduct, 0);
+            Controls.SetChildIndex(panelDecorativeSeparator, 0);
+            Controls.SetChildIndex(labelMenuTitle, 0);
             Controls.SetChildIndex(buttonAddToCart, 0);
-            Controls.SetChildIndex(comboBoxPlaces, 0);
+            Controls.SetChildIndex(comboBoxPlacesList, 0);
             Controls.SetChildIndex(labelDeliveryPrice, 0);
             Controls.SetChildIndex(labelProductPrice, 0);
             Controls.SetChildIndex(labelPlaceName, 0);
@@ -345,7 +345,7 @@
             Controls.SetChildIndex(labelPlaceDeliveryPrice, 0);
             Controls.SetChildIndex(labelOrderStatus, 0);
             Controls.SetChildIndex(labelDeliveryPercent, 0);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewPlaceMenu).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -353,18 +353,18 @@
 
         #endregion
 
-        private Button buttonMyProfile;
-        private Label labelTotalPrice;
+        private Panel panelDecorativeSeparator;
+        private ListBox listBoxCustomerCart;
+        private DataGridView dataGridViewPlaceMenu;
+        private ComboBox comboBoxPlacesList;
+        private Button buttonShowMyProfile;
         private Button buttonAddToCart;
-        private Button buttonRemove;
-        private Label labelCart;
-        private ListBox listBoxCart;
-        private DataGridView dataGridView1;
-        private Button buttonOrder;
-        private Button buttonAdd;
-        private Panel panelSeparator1;
-        private Label label5;
-        private ComboBox comboBoxPlaces;
+        private Button buttonRemoveCartProduct;
+        private Button buttonAddCartProduct;
+        private Button buttonMakeOrder;
+        private Label labelTotalPrice;
+        private Label labelCartTitle;
+        private Label labelMenuTitle;
         private Label labelProductPrice;
         private Label labelDeliveryPrice;
         private Label labelPlaceDeliveryPrice;

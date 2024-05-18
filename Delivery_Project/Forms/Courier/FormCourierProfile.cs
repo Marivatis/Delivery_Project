@@ -12,7 +12,7 @@ using Delivery_Project.Forms.Templates;
 
 namespace Delivery_Project.Forms.Courier
 {
-    public partial class FormCourierProfile : CustomBorderForm
+    public partial class FormCourierProfile : TemplateCustomBorderForm
     {
         private Point parentLocation;
         private DeliveryCourier courier;
@@ -43,11 +43,11 @@ namespace Delivery_Project.Forms.Courier
         // Login and phone number edit functionality
         private void buttonEdit1_Click(object sender, EventArgs e)
         {
-            if (buttonEdit1.Text == "Edit")
+            if (buttonEditLoginPhone.Text == "Edit")
             {
                 buttonEdit1_Edit_Click();
             }
-            else if (buttonEdit1.Text == "Save")
+            else if (buttonEditLoginPhone.Text == "Save")
             {
                 buttonEdit1_Save_Click();
             }
@@ -57,7 +57,7 @@ namespace Delivery_Project.Forms.Courier
             textBoxLogin.Enabled = true;
             textBoxPhoneNumber.Enabled = true;
 
-            buttonEdit1.Text = "Save";
+            buttonEditLoginPhone.Text = "Save";
         }
         private void buttonEdit1_Save_Click()
         {
@@ -72,7 +72,7 @@ namespace Delivery_Project.Forms.Courier
                 textBoxLogin.Enabled = false;
                 textBoxPhoneNumber.Enabled = false;
 
-                buttonEdit1.Text = "Edit";
+                buttonEditLoginPhone.Text = "Edit";
             }
             catch (InvalidDataException ex)
             {
@@ -83,11 +83,11 @@ namespace Delivery_Project.Forms.Courier
         // Password edit functionality
         private void buttonEdit2_Click(object sender, EventArgs e)
         {
-            if (buttonEdit2.Text == "Edit")
+            if (buttonEditPassword.Text == "Edit")
             {
                 buttonEdit2_Edit_Click();
             }
-            else if (buttonEdit2.Text == "Save")
+            else if (buttonEditPassword.Text == "Save")
             {
                 buttonEdit2_Save_Click();
             }
@@ -96,7 +96,7 @@ namespace Delivery_Project.Forms.Courier
         {
             textBoxPassword.Enabled = true;
 
-            buttonEdit2.Text = "Save";
+            buttonEditPassword.Text = "Save";
         }
         private void buttonEdit2_Save_Click()
         {
@@ -108,7 +108,7 @@ namespace Delivery_Project.Forms.Courier
 
                 textBoxPassword.Enabled = false;
 
-                buttonEdit2.Text = "Edit";
+                buttonEditPassword.Text = "Edit";
             }
             catch (InvalidDataException ex)
             {
@@ -120,11 +120,11 @@ namespace Delivery_Project.Forms.Courier
         // Card number edit functionality
         private void buttonEdit3_Click(object sender, EventArgs e)
         {
-            if (buttonEdit3.Text == "Edit")
+            if (buttonEditCardNumber.Text == "Edit")
             {
                 buttonEdit3_Edit_Click();
             }
-            else if (buttonEdit3.Text == "Save")
+            else if (buttonEditCardNumber.Text == "Save")
             {
                 buttonEdit3_Save_Click();
             }
@@ -133,7 +133,7 @@ namespace Delivery_Project.Forms.Courier
         {
             textBoxCardNumber.Enabled = true;
 
-            buttonEdit3.Text = "Save";
+            buttonEditCardNumber.Text = "Save";
         }
         private void buttonEdit3_Save_Click()
         {
@@ -144,7 +144,7 @@ namespace Delivery_Project.Forms.Courier
 
                 textBoxCardNumber.Enabled = false;
 
-                buttonEdit3.Text = "Edit";
+                buttonEditCardNumber.Text = "Edit";
             }
             catch (InvalidDataException ex)
             {

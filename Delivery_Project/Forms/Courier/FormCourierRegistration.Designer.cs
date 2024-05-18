@@ -34,7 +34,7 @@
             textBoxPhoneNumber = new TextBox();
             labelCardNumber = new Label();
             textBoxCardNumber = new TextBox();
-            labelMessage = new Label();
+            labelInformingMessage = new Label();
             SuspendLayout();
             // 
             // labelRegistration
@@ -113,22 +113,22 @@
             // 
             // labelMessage
             // 
-            labelMessage.AutoSize = true;
-            labelMessage.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            labelMessage.ForeColor = Color.White;
-            labelMessage.Location = new Point(40, 120);
-            labelMessage.Name = "labelMessage";
-            labelMessage.Size = new Size(97, 21);
-            labelMessage.TabIndex = 44;
-            labelMessage.Text = "No message";
-            labelMessage.Visible = false;
+            labelInformingMessage.AutoSize = true;
+            labelInformingMessage.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            labelInformingMessage.ForeColor = Color.White;
+            labelInformingMessage.Location = new Point(40, 120);
+            labelInformingMessage.Name = "labelMessage";
+            labelInformingMessage.Size = new Size(97, 21);
+            labelInformingMessage.TabIndex = 44;
+            labelInformingMessage.Text = "No message";
+            labelInformingMessage.Visible = false;
             // 
             // FormCourierRegisteration
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(330, 440);
-            Controls.Add(labelMessage);
+            Controls.Add(labelInformingMessage);
             Controls.Add(labelCardNumber);
             Controls.Add(textBoxCardNumber);
             Controls.Add(labelPhoneNumber);
@@ -144,19 +144,19 @@
             Controls.SetChildIndex(labelPhoneNumber, 0);
             Controls.SetChildIndex(textBoxCardNumber, 0);
             Controls.SetChildIndex(labelCardNumber, 0);
-            Controls.SetChildIndex(labelMessage, 0);
+            Controls.SetChildIndex(labelInformingMessage, 0);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label labelRegistration;
-        private Button buttonRegister;
-        private Label labelPhoneNumber;
         private TextBox textBoxPhoneNumber;
-        private Label labelCardNumber;
         private TextBox textBoxCardNumber;
-        private Label labelMessage;
+        private Button buttonRegister;
+        private Label labelRegistration;
+        private Label labelPhoneNumber;
+        private Label labelCardNumber;
+        private Label labelInformingMessage;
     }
 }

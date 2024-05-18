@@ -13,7 +13,7 @@ using Delivery_Project.Forms.Templates;
 
 namespace Delivery_Project.Forms.Entry
 {
-    public partial class FormRegistration : CustomBorderForm
+    public partial class FormRegistration : TemplateCustomBorderForm
     {
         public static EntryCustomer? RegisterCustomer;
 
@@ -37,7 +37,7 @@ namespace Delivery_Project.Forms.Entry
             string login = textBoxLogin.Text;
             string password = textBoxPassword.Text;
             string repeatPassword = textBoxRepeatPassword.Text;
-            
+
             if (login == "Enter your login" || password == "Enter your password" || repeatPassword == "Repeat your password")
             {
                 LabelMessage_Show("Login or password fields are empty.");
@@ -67,8 +67,8 @@ namespace Delivery_Project.Forms.Entry
         // Show message labes with given text
         private void LabelMessage_Show(string message)
         {
-            labelMessage.Text = message;
-            labelMessage.Visible = true;
+            labelInformingMessage.Text = message;
+            labelInformingMessage.Visible = true;
         }
 
         // Field login usefull design

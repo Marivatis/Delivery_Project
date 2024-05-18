@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            richTextBox1 = new RichTextBox();
+            richTextBoxPlaceDescription = new RichTextBox();
             labelPlaceName = new Label();
             textBoxPlaceName = new TextBox();
             labelProductName = new Label();
-            textBoxAddress = new TextBox();
-            label1 = new Label();
-            labelRegistration = new Label();
+            textBoxPlaceAddress = new TextBox();
+            labelPlaceDescription = new Label();
+            labelFormTitle = new Label();
             buttonSaveChanges = new Button();
             labelPlaceDeliveryPrice = new Label();
             textBoxPlaceDeliveryPrice = new TextBox();
@@ -44,16 +44,16 @@
             // 
             // richTextBox1
             // 
-            richTextBox1.BackColor = Color.FromArgb(61, 61, 61);
-            richTextBox1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            richTextBox1.ForeColor = Color.White;
-            richTextBox1.Location = new Point(11, 422);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(700, 63);
-            richTextBox1.TabIndex = 6;
-            richTextBox1.Text = "Enter place description";
-            richTextBox1.Enter += richTextBox1_Enter;
-            richTextBox1.Leave += richTextBox1_Leave;
+            richTextBoxPlaceDescription.BackColor = Color.FromArgb(61, 61, 61);
+            richTextBoxPlaceDescription.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            richTextBoxPlaceDescription.ForeColor = Color.White;
+            richTextBoxPlaceDescription.Location = new Point(11, 422);
+            richTextBoxPlaceDescription.Name = "richTextBox1";
+            richTextBoxPlaceDescription.Size = new Size(700, 63);
+            richTextBoxPlaceDescription.TabIndex = 6;
+            richTextBoxPlaceDescription.Text = "Enter place description";
+            richTextBoxPlaceDescription.Enter += richTextBox1_Enter;
+            richTextBoxPlaceDescription.Leave += richTextBox1_Leave;
             // 
             // labelPlaceName
             // 
@@ -93,39 +93,39 @@
             // 
             // textBoxAddress
             // 
-            textBoxAddress.BackColor = Color.FromArgb(61, 61, 61);
-            textBoxAddress.BorderStyle = BorderStyle.FixedSingle;
-            textBoxAddress.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxAddress.ForeColor = Color.White;
-            textBoxAddress.Location = new Point(11, 351);
-            textBoxAddress.Name = "textBoxAddress";
-            textBoxAddress.Size = new Size(430, 33);
-            textBoxAddress.TabIndex = 41;
-            textBoxAddress.Text = "Enter place address";
-            textBoxAddress.Enter += textBoxAddress_Enter;
-            textBoxAddress.Leave += textBoxAddress_Leave;
+            textBoxPlaceAddress.BackColor = Color.FromArgb(61, 61, 61);
+            textBoxPlaceAddress.BorderStyle = BorderStyle.FixedSingle;
+            textBoxPlaceAddress.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxPlaceAddress.ForeColor = Color.White;
+            textBoxPlaceAddress.Location = new Point(11, 351);
+            textBoxPlaceAddress.Name = "textBoxAddress";
+            textBoxPlaceAddress.Size = new Size(430, 33);
+            textBoxPlaceAddress.TabIndex = 41;
+            textBoxPlaceAddress.Text = "Enter place address";
+            textBoxPlaceAddress.Enter += textBoxAddress_Enter;
+            textBoxPlaceAddress.Leave += textBoxAddress_Leave;
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(11, 387);
-            label1.Name = "label1";
-            label1.Size = new Size(186, 30);
-            label1.TabIndex = 43;
-            label1.Text = "Place description:";
+            labelPlaceDescription.AutoSize = true;
+            labelPlaceDescription.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            labelPlaceDescription.ForeColor = Color.White;
+            labelPlaceDescription.Location = new Point(11, 387);
+            labelPlaceDescription.Name = "label1";
+            labelPlaceDescription.Size = new Size(186, 30);
+            labelPlaceDescription.TabIndex = 43;
+            labelPlaceDescription.Text = "Place description:";
             // 
             // labelRegistration
             // 
-            labelRegistration.AutoSize = true;
-            labelRegistration.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
-            labelRegistration.ForeColor = Color.White;
-            labelRegistration.Location = new Point(190, 29);
-            labelRegistration.Name = "labelRegistration";
-            labelRegistration.Size = new Size(344, 37);
-            labelRegistration.TabIndex = 45;
-            labelRegistration.Text = "Editing place information";
+            labelFormTitle.AutoSize = true;
+            labelFormTitle.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            labelFormTitle.ForeColor = Color.White;
+            labelFormTitle.Location = new Point(190, 29);
+            labelFormTitle.Name = "labelRegistration";
+            labelFormTitle.Size = new Size(344, 37);
+            labelFormTitle.TabIndex = 45;
+            labelFormTitle.Text = "Editing place information";
             // 
             // buttonSaveChanges
             // 
@@ -202,23 +202,23 @@
             Controls.Add(labelPlaceDeliveryPrice);
             Controls.Add(textBoxPlaceDeliveryPrice);
             Controls.Add(buttonSaveChanges);
-            Controls.Add(labelRegistration);
-            Controls.Add(label1);
+            Controls.Add(labelFormTitle);
+            Controls.Add(labelPlaceDescription);
             Controls.Add(labelProductName);
-            Controls.Add(textBoxAddress);
+            Controls.Add(textBoxPlaceAddress);
             Controls.Add(labelPlaceName);
             Controls.Add(textBoxPlaceName);
-            Controls.Add(richTextBox1);
+            Controls.Add(richTextBoxPlaceDescription);
             Name = "FormPlaceEditor";
             Text = "FormPlaceEditor";
             Load += FormPlaceEditor_Load;
-            Controls.SetChildIndex(richTextBox1, 0);
+            Controls.SetChildIndex(richTextBoxPlaceDescription, 0);
             Controls.SetChildIndex(textBoxPlaceName, 0);
             Controls.SetChildIndex(labelPlaceName, 0);
-            Controls.SetChildIndex(textBoxAddress, 0);
+            Controls.SetChildIndex(textBoxPlaceAddress, 0);
             Controls.SetChildIndex(labelProductName, 0);
-            Controls.SetChildIndex(label1, 0);
-            Controls.SetChildIndex(labelRegistration, 0);
+            Controls.SetChildIndex(labelPlaceDescription, 0);
+            Controls.SetChildIndex(labelFormTitle, 0);
             Controls.SetChildIndex(buttonSaveChanges, 0);
             Controls.SetChildIndex(textBoxPlaceDeliveryPrice, 0);
             Controls.SetChildIndex(labelPlaceDeliveryPrice, 0);
@@ -230,17 +230,17 @@
 
         #endregion
 
-        private RichTextBox richTextBox1;
-        private Label labelPlaceName;
+        private RichTextBox richTextBoxPlaceDescription;
         private TextBox textBoxPlaceName;
-        private Label labelProductName;
-        private TextBox textBoxAddress;
-        private Label label1;
-        private Label labelRegistration;
-        private Button buttonSaveChanges;
-        private Label labelPlaceDeliveryPrice;
         private TextBox textBoxPlaceDeliveryPrice;
-        private Label labelPlaceDeliveryPercent;
         private TextBox textBoxPlaceDeliveryPercent;
+        private TextBox textBoxPlaceAddress;
+        private Button buttonSaveChanges;
+        private Label labelFormTitle;
+        private Label labelPlaceName;
+        private Label labelProductName;
+        private Label labelPlaceDescription;
+        private Label labelPlaceDeliveryPrice;
+        private Label labelPlaceDeliveryPercent;
     }
 }

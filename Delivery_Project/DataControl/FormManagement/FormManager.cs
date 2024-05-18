@@ -52,7 +52,7 @@ namespace Delivery_Project.DataControl.FormManagement
 
         private void Initialize()
         {
-            CustomBorderForm.CustomFormClosed += CustomBorderForm_FormClosed;
+            TemplateCustomBorderForm.CustomFormClosed += CustomBorderForm_FormClosed;
 
             FormLogin.LoginUser += LoginUser;
             FormLogin.ShowRegistrationForm += FormRegistration_Show;

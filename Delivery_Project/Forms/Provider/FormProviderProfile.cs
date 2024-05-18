@@ -12,7 +12,7 @@ using Delivery_Project.Forms.Templates;
 
 namespace Delivery_Project.Forms.Provider
 {
-    public partial class FormProviderProfile : CustomBorderForm
+    public partial class FormProviderProfile : TemplateCustomBorderForm
     {
         private Point parentLocation;
         private DeliveryProvider provider;
@@ -42,7 +42,7 @@ namespace Delivery_Project.Forms.Provider
         // Login and phone number edit functionality
         private void buttonEdit1_Click(object sender, EventArgs e)
         {
-            switch(buttonEdit1.Text)
+            switch(buttonEditPassword.Text)
             {
                 case "Edit":
                     buttonEdit1_Edit_Click();
@@ -57,7 +57,7 @@ namespace Delivery_Project.Forms.Provider
             textBoxLogin.Enabled = true;
             textBoxPhoneNumber.Enabled = true;
 
-            buttonEdit1.Text = "Save";
+            buttonEditPassword.Text = "Save";
         }
         private void buttonEdit1_Save_Click()
         {
@@ -72,7 +72,7 @@ namespace Delivery_Project.Forms.Provider
                 textBoxLogin.Enabled = false;
                 textBoxPhoneNumber.Enabled = false;
 
-                buttonEdit1.Text = "Edit";
+                buttonEditPassword.Text = "Edit";
             }
             catch (InvalidDataException ex)
             {
@@ -83,7 +83,7 @@ namespace Delivery_Project.Forms.Provider
         // Password edit functionality
         private void buttonEdit2_Click(object sender, EventArgs e)
         {
-            switch (buttonEdit2.Text)
+            switch (buttonEditLoginPhone.Text)
             {
                 case "Edit":
                     buttonEdit2_Edit_Click();
@@ -97,7 +97,7 @@ namespace Delivery_Project.Forms.Provider
         {
             textBoxPassword.Enabled = true;
 
-            buttonEdit2.Text = "Save";
+            buttonEditLoginPhone.Text = "Save";
         }
         private void buttonEdit2_Save_Click()
         {
@@ -108,7 +108,7 @@ namespace Delivery_Project.Forms.Provider
 
                 textBoxPassword.Enabled = false;
 
-                buttonEdit2.Text = "Edit";
+                buttonEditLoginPhone.Text = "Edit";
             }
             catch (InvalidDataException ex)
             {

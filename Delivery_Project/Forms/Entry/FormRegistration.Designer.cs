@@ -31,12 +31,12 @@
             buttonRegister = new Button();
             labelLogin = new Label();
             textBoxLogin = new TextBox();
-            labelRegistration = new Label();
+            labelTitle = new Label();
             labelPassword = new Label();
             textBoxPassword = new TextBox();
-            label1 = new Label();
+            labelRepeatPassword = new Label();
             textBoxRepeatPassword = new TextBox();
-            labelMessage = new Label();
+            labelInformingMessage = new Label();
             SuspendLayout();
             // 
             // buttonRegister
@@ -77,16 +77,16 @@
             textBoxLogin.Enter += textBoxLogin_Enter;
             textBoxLogin.Leave += textBoxLogin_Leave;
             // 
-            // labelRegistration
+            // labelTitle
             // 
-            labelRegistration.AutoSize = true;
-            labelRegistration.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
-            labelRegistration.ForeColor = Color.White;
-            labelRegistration.Location = new Point(78, 35);
-            labelRegistration.Name = "labelRegistration";
-            labelRegistration.Size = new Size(175, 37);
-            labelRegistration.TabIndex = 17;
-            labelRegistration.Text = "Registration";
+            labelTitle.AutoSize = true;
+            labelTitle.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            labelTitle.ForeColor = Color.White;
+            labelTitle.Location = new Point(78, 35);
+            labelTitle.Name = "labelTitle";
+            labelTitle.Size = new Size(175, 37);
+            labelTitle.TabIndex = 17;
+            labelTitle.Text = "Registration";
             // 
             // labelPassword
             // 
@@ -115,14 +115,14 @@
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(40, 277);
-            label1.Name = "label1";
-            label1.Size = new Size(185, 30);
-            label1.TabIndex = 19;
-            label1.Text = "Repeat password:";
+            labelRepeatPassword.AutoSize = true;
+            labelRepeatPassword.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            labelRepeatPassword.ForeColor = Color.White;
+            labelRepeatPassword.Location = new Point(40, 277);
+            labelRepeatPassword.Name = "label1";
+            labelRepeatPassword.Size = new Size(185, 30);
+            labelRepeatPassword.TabIndex = 19;
+            labelRepeatPassword.Text = "Repeat password:";
             // 
             // textBoxRepeatPassword
             // 
@@ -140,25 +140,25 @@
             // 
             // labelMessage
             // 
-            labelMessage.AutoSize = true;
-            labelMessage.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            labelMessage.ForeColor = Color.White;
-            labelMessage.Location = new Point(40, 98);
-            labelMessage.Name = "labelMessage";
-            labelMessage.Size = new Size(97, 21);
-            labelMessage.TabIndex = 20;
-            labelMessage.Text = "No message";
-            labelMessage.Visible = false;
+            labelInformingMessage.AutoSize = true;
+            labelInformingMessage.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            labelInformingMessage.ForeColor = Color.White;
+            labelInformingMessage.Location = new Point(40, 98);
+            labelInformingMessage.Name = "labelMessage";
+            labelInformingMessage.Size = new Size(97, 21);
+            labelInformingMessage.TabIndex = 20;
+            labelInformingMessage.Text = "No message";
+            labelInformingMessage.Visible = false;
             // 
             // FormRegistration
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(330, 440);
-            Controls.Add(labelMessage);
-            Controls.Add(label1);
+            Controls.Add(labelInformingMessage);
+            Controls.Add(labelRepeatPassword);
             Controls.Add(textBoxRepeatPassword);
-            Controls.Add(labelRegistration);
+            Controls.Add(labelTitle);
             Controls.Add(labelPassword);
             Controls.Add(textBoxPassword);
             Controls.Add(buttonRegister);
@@ -172,24 +172,24 @@
             Controls.SetChildIndex(buttonRegister, 0);
             Controls.SetChildIndex(textBoxPassword, 0);
             Controls.SetChildIndex(labelPassword, 0);
-            Controls.SetChildIndex(labelRegistration, 0);
+            Controls.SetChildIndex(labelTitle, 0);
             Controls.SetChildIndex(textBoxRepeatPassword, 0);
-            Controls.SetChildIndex(label1, 0);
-            Controls.SetChildIndex(labelMessage, 0);
+            Controls.SetChildIndex(labelRepeatPassword, 0);
+            Controls.SetChildIndex(labelInformingMessage, 0);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button buttonRegister;
-        private Label labelLogin;
         private TextBox textBoxLogin;
-        private Label labelRegistration;
-        private Label labelPassword;
         private TextBox textBoxPassword;
-        private Label label1;
         private TextBox textBoxRepeatPassword;
-        private Label labelMessage;
+        private Button buttonRegister;
+        private Label labelTitle;
+        private Label labelInformingMessage;
+        private Label labelLogin;
+        private Label labelPassword;
+        private Label labelRepeatPassword;
     }
 }

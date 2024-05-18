@@ -15,7 +15,7 @@ using Delivery_Project.Forms.Templates;
 
 namespace Delivery_Project.Forms.Customer
 {
-    public partial class FormCustomer : CustomBorderForm
+    public partial class FormCustomer : TemplateCustomBorderForm
     {
         private FormCustomerProfile? _formProfile;
         private FormOrderConfirmation? _formOrderConfirmation;
@@ -58,13 +58,13 @@ namespace Delivery_Project.Forms.Customer
             if (_currentOrderStatus == DeliveryOrderStatus.Declined || _currentOrderStatus == DeliveryOrderStatus.Delivered)
             {
                 labelOrderStatus.Visible = false;
-                buttonOrder.Text = "Order";
+                buttonMakeOrder.Text = "Order";
             }
             else
             {
                 labelOrderStatus.Text = $"Order status: {_currentOrderStatus}";
                 labelOrderStatus.Visible = true;
-                buttonOrder.Text = "Decline";
+                buttonMakeOrder.Text = "Decline";
             }
         }
 
@@ -96,24 +96,24 @@ namespace Delivery_Project.Forms.Customer
         {
             foreach (var place in places)
             {
-                comboBoxPlaces.Items.Add(place.Name);
+                comboBoxPlacesList.Items.Add(place.Name);
             }
 
-            comboBoxPlaces.SelectedIndexChanged += ComboBoxPlaces_SelectedIndexChanged;
+            comboBoxPlacesList.SelectedIndexChanged += ComboBoxPlaces_SelectedIndexChanged;
 
-            comboBoxPlaces.SelectedIndex = 0;
+            comboBoxPlacesList.SelectedIndex = 0;
         }
         // Loads selected place info using given place
         private void DataGridView_Load(DeliveryPlace place)
         {
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = place.Menu.ToList();
-            dataGridView1.ClearSelection();
+            dataGridViewPlaceMenu.DataSource = null;
+            dataGridViewPlaceMenu.DataSource = place.Menu.ToList();
+            dataGridViewPlaceMenu.ClearSelection();
 
-            dataGridView1.Columns["Name"].HeaderText = "Product";
-            dataGridView1.Columns["Name"].Width = 150;
-            dataGridView1.Columns["Price"].Width = 100;
-            dataGridView1.Columns["Description"].Width = 407;
+            dataGridViewPlaceMenu.Columns["Name"].HeaderText = "Product";
+            dataGridViewPlaceMenu.Columns["Name"].Width = 150;
+            dataGridViewPlaceMenu.Columns["Price"].Width = 100;
+            dataGridViewPlaceMenu.Columns["Description"].Width = 407;
         }
         // Loads cart info using _productCart and _selectedPlace fields
         private void ListBoxCart_Load()
@@ -131,11 +131,11 @@ namespace Delivery_Project.Forms.Customer
         // Loads cart info using given cart and place
         private void ListBoxCart_Load(ProductCart cart, DeliveryPlace place)
         {
-            listBoxCart.Items.Clear();
+            listBoxCustomerCart.Items.Clear();
 
             foreach (var key in cart.Cart)
             {
-                listBoxCart.Items.Add(cart.KeyToString(key));
+                listBoxCustomerCart.Items.Add(cart.KeyToString(key));
             }
 
             labelDeliveryPercent.Text = $"Delivery percent: {cart.ProductPrice * place.DeliveryPercent / 100.0} UAH";
@@ -145,13 +145,13 @@ namespace Delivery_Project.Forms.Customer
         // Loads active customer order if it exists
         private void ActiveOrder_Load(DeliveryOrder order)
         {
-            comboBoxPlaces.SelectedItem = order.ProviderPlaceName;
+            comboBoxPlacesList.SelectedItem = order.ProviderPlaceName;
             _productCart = order.OrderCart;
             _currentOrderStatus = order.OrderStatus;
 
             labelOrderStatus.Visible = true;
             labelOrderStatus.Text = $"Order status: {_currentOrderStatus}";
-            buttonOrder.Text = "Decline";
+            buttonMakeOrder.Text = "Decline";
 
             CartFunctions_Enable(false);
 
@@ -195,14 +195,14 @@ namespace Delivery_Project.Forms.Customer
         // Changes selectedProductInCart on selected product in list box
         private void ListBoxCart_SelectedValueChanged(object sender, EventArgs e)
         {
-            string selectedProductInCartName = GetProductNameFromCart(listBoxCart.SelectedItem?.ToString());
+            string selectedProductInCartName = GetProductNameFromCart(listBoxCustomerCart.SelectedItem?.ToString());
 
             _selectedProductInCart = _selectedPlace?.Menu.First(p => p.Name == selectedProductInCartName);
         }
         // Changes place info depending on selected place
         private void ComboBoxPlaces_SelectedIndexChanged(object? sender, EventArgs e)
         {
-            string? selectedPlaceName = comboBoxPlaces.SelectedItem.ToString();
+            string? selectedPlaceName = comboBoxPlacesList.SelectedItem.ToString();
 
             if (selectedPlaceName is null)
             {
@@ -232,10 +232,10 @@ namespace Delivery_Project.Forms.Customer
         // Product selection depending on DataGridView cell click
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.RowIndex >= dataGridView1.Rows.Count)
+            if (e.RowIndex < 0 || e.RowIndex >= dataGridViewPlaceMenu.Rows.Count)
                 return;
 
-            _selectedProduct = dataGridView1.Rows[e.RowIndex].DataBoundItem as Product;
+            _selectedProduct = dataGridViewPlaceMenu.Rows[e.RowIndex].DataBoundItem as Product;
 
             if (_selectedProduct is null)
                 return;
@@ -251,7 +251,7 @@ namespace Delivery_Project.Forms.Customer
         // Order button switch depending on it`s text
         private void buttonOrder_Click(object sender, EventArgs e)
         {
-            switch (buttonOrder.Text)
+            switch (buttonMakeOrder.Text)
             {
                 case "Order":
                     buttonOrder_Order_Click();
@@ -260,7 +260,7 @@ namespace Delivery_Project.Forms.Customer
                     buttonOrder_Decline_Click();
 
                     ClearLabelOrderStatus();
-                    buttonOrder.Text = "Order";
+                    buttonMakeOrder.Text = "Order";
                     break;
             }
         }
@@ -338,10 +338,10 @@ namespace Delivery_Project.Forms.Customer
         // Changes main cart functionality Enable property depending on given enable
         private void CartFunctions_Enable(bool enable)
         {
-            comboBoxPlaces.Enabled = enable;
+            comboBoxPlacesList.Enabled = enable;
 
-            buttonAdd.Enabled = enable;
-            buttonRemove.Enabled = enable;
+            buttonAddCartProduct.Enabled = enable;
+            buttonRemoveCartProduct.Enabled = enable;
             buttonAddToCart.Enabled = enable;
         }
         // Returns product name from single listBoxString

@@ -11,7 +11,7 @@ namespace Delivery_Project.DataControl.Workplaces
     public class ProductCart
     {
         private Dictionary<string, int> _cart;
-        private int _productPrice;
+        private int _productsPrice;
 
         public static event Action? CartChanged;
 
@@ -24,32 +24,32 @@ namespace Delivery_Project.DataControl.Workplaces
 
         public int ProductPrice
         {
-            get { return _productPrice; }
-            set { _productPrice = value; }
+            get { return _productsPrice; }
+            set { _productsPrice = value; }
         }
-        public int Count => ProductCount();
+        public int Count => СountProducts();
         
-        public void Add(Product item)
+        public void Add(Product product)
         {
-            if (_cart.ContainsKey(item.Name))
-                _cart[item.Name]++;
+            if (_cart.ContainsKey(product.Name))
+                _cart[product.Name]++;
             else
-                _cart.Add(item.Name, 1);
+                _cart.Add(product.Name, 1);
 
-            _productPrice += item.Price;
+            _productsPrice += product.Price;
             CartChanged?.Invoke();
         }
-        public bool Remove(Product item)
+        public bool Remove(Product product)
         {
-            if (!_cart.ContainsKey(item.Name))
+            if (!_cart.ContainsKey(product.Name))
                 return false;
 
-            if (_cart[item.Name] > 1)
-                _cart[item.Name]--;
+            if (_cart[product.Name] > 1)
+                _cart[product.Name]--;
             else
-                _cart.Remove(item.Name);
+                _cart.Remove(product.Name);
 
-            _productPrice -= item.Price;
+            _productsPrice -= product.Price;
             CartChanged?.Invoke();
             return true;
         }
@@ -57,10 +57,10 @@ namespace Delivery_Project.DataControl.Workplaces
         {
             _cart.Clear();
 
-            _productPrice = 0;
+            _productsPrice = 0;
             CartChanged?.Invoke();
         }
-        public int ProductCount()
+        public int СountProducts()
         {
             int count = 0;
 

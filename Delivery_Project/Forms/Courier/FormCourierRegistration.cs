@@ -14,7 +14,7 @@ using Microsoft.VisualBasic.Logging;
 
 namespace Delivery_Project.Forms.Courier
 {
-    public partial class FormCourierRegistration : CustomBorderForm
+    public partial class FormCourierRegistration : TemplateCustomBorderForm
     {
         private DeliveryUser user;
 
@@ -46,8 +46,8 @@ namespace Delivery_Project.Forms.Courier
 
             if (phoneNumber == "Enter your phone number" || cardNumber == "Enter your card number")
             {
-                labelMessage.Text = "Phone or card number fields are empty.";
-                labelMessage.Visible = true;
+                labelInformingMessage.Text = "Phone or card number fields are empty.";
+                labelInformingMessage.Visible = true;
                 return;
             }
 
@@ -57,8 +57,8 @@ namespace Delivery_Project.Forms.Courier
             }
             catch (InvalidDataException ex)
             {
-                labelMessage.Text = ex.Message;
-                labelMessage.Visible = true;
+                labelInformingMessage.Text = ex.Message;
+                labelInformingMessage.Visible = true;
             }
 
             string message = "Something went wrong.";
@@ -71,8 +71,8 @@ namespace Delivery_Project.Forms.Courier
             }
             else
             {
-                labelMessage.Text = message;
-                labelMessage.Visible = true;
+                labelInformingMessage.Text = message;
+                labelInformingMessage.Visible = true;
             }
         }
 

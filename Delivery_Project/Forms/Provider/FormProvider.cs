@@ -14,7 +14,7 @@ using Delivery_Project.Forms.Templates;
 
 namespace Delivery_Project.Forms.Provider
 {
-    public partial class FormProvider : CustomBorderForm
+    public partial class FormProvider : TemplateCustomBorderForm
     {
         private FormProviderProfile? formProfile;
         private FormPlaceEditor? formPlaceEditor;
@@ -72,15 +72,15 @@ namespace Delivery_Project.Forms.Provider
         }
         private void Load_DataGridView()
         {
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = _place.Menu.ToList();
+            dataGridViewPlaceMenu.DataSource = null;
+            dataGridViewPlaceMenu.DataSource = _place.Menu.ToList();
 
-            dataGridView1.ClearSelection();
+            dataGridViewPlaceMenu.ClearSelection();
 
-            dataGridView1.Columns["Name"].HeaderText = "Product";
-            dataGridView1.Columns["Name"].Width = 150;
-            dataGridView1.Columns["Price"].Width = 100;
-            dataGridView1.Columns["Description"].Width = 407;
+            dataGridViewPlaceMenu.Columns["Name"].HeaderText = "Product";
+            dataGridViewPlaceMenu.Columns["Name"].Width = 150;
+            dataGridViewPlaceMenu.Columns["Price"].Width = 100;
+            dataGridViewPlaceMenu.Columns["Description"].Width = 407;
         }
 
         // FormPlaceEditor closed event handler
@@ -178,10 +178,10 @@ namespace Delivery_Project.Forms.Provider
         // DataGridView product select function
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.RowIndex >= dataGridView1.Rows.Count)
+            if (e.RowIndex < 0 || e.RowIndex >= dataGridViewPlaceMenu.Rows.Count)
                 return;
 
-            _selectedProduct = dataGridView1.Rows[e.RowIndex].DataBoundItem as Product;
+            _selectedProduct = dataGridViewPlaceMenu.Rows[e.RowIndex].DataBoundItem as Product;
 
             if (_selectedProduct is null)
                 return;

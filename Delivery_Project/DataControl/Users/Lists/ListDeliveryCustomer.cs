@@ -12,10 +12,5 @@ namespace Delivery_Project.DataControl.Users.Lists
     {
         public ListDeliveryCustomers() : this(new List<DeliveryCustomer>()) { }
         public ListDeliveryCustomers(List<DeliveryCustomer> customers) : base(customers) { }
-
-        public override void Add(DeliveryCustomer customer)
-        {
-            base.Add(customer);
-        }
     }
 }

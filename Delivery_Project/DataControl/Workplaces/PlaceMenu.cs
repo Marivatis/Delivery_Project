@@ -38,14 +38,14 @@ namespace Delivery_Project.DataControl.Workplaces
         public int Count => _products.Count;
         public bool IsReadOnly => false;
 
-        public void Add(Product item)
+        public void Add(Product product)
         {
             string message = "Something went wrong.";
 
-            if (!ValidateProduct(item, ref message))
+            if (!ValidateProduct(product, ref message))
                 throw new InvalidDataException(message);
 
-            _products.Add(item);           
+            _products.Add(product);           
 
             MenuChanged?.Invoke();
         }
@@ -54,9 +54,9 @@ namespace Delivery_Project.DataControl.Workplaces
             _products.Clear();
             MenuChanged?.Invoke();
         }
-        public bool Contains(Product item)
+        public bool Contains(Product product)
         {
-            return _products.Contains(item);
+            return _products.Contains(product);
         }
         public void CopyTo(Product[] array, int arrayIndex)
         {

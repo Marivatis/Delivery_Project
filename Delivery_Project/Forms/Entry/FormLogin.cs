@@ -14,7 +14,7 @@ using Delivery_Project.DataControl.FormManagement;
 
 namespace Delivery_Project.Forms.Entry
 {
-    public partial class FormLogin : CustomBorderForm
+    public partial class FormLogin : TemplateCustomBorderForm
     {
         public static Action? ShowRegistrationForm;
         public static EntryCustomer? LoginUser;

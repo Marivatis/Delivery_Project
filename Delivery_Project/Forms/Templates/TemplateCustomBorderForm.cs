@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Delivery_Project.Forms.Templates
 {
-    public partial class CustomBorderForm : Form
+    public partial class TemplateCustomBorderForm : Form
     {
         private int borderSize = 1;
         private int topMenuPanelSize = 25;
@@ -26,7 +26,7 @@ namespace Delivery_Project.Forms.Templates
 
         public static event EventHandler? CustomFormClosed;
 
-        protected CustomBorderForm()
+        protected TemplateCustomBorderForm()
         {
             InitializeComponent();
         }

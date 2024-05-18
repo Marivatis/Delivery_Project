@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            buttonEdit2 = new Button();
-            buttonEdit1 = new Button();
+            buttonEditLoginPhone = new Button();
+            buttonEditPassword = new Button();
             labelPassword = new Label();
             textBoxPassword = new TextBox();
             labelPhoneNumber = new Label();
@@ -42,29 +42,29 @@
             // 
             // buttonEdit2
             // 
-            buttonEdit2.FlatStyle = FlatStyle.Flat;
-            buttonEdit2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonEdit2.ForeColor = Color.White;
-            buttonEdit2.Location = new Point(224, 284);
-            buttonEdit2.Name = "buttonEdit2";
-            buttonEdit2.Size = new Size(66, 36);
-            buttonEdit2.TabIndex = 62;
-            buttonEdit2.Text = "Edit";
-            buttonEdit2.UseVisualStyleBackColor = true;
-            buttonEdit2.Click += buttonEdit2_Click;
+            buttonEditLoginPhone.FlatStyle = FlatStyle.Flat;
+            buttonEditLoginPhone.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonEditLoginPhone.ForeColor = Color.White;
+            buttonEditLoginPhone.Location = new Point(224, 284);
+            buttonEditLoginPhone.Name = "buttonEdit2";
+            buttonEditLoginPhone.Size = new Size(66, 36);
+            buttonEditLoginPhone.TabIndex = 62;
+            buttonEditLoginPhone.Text = "Edit";
+            buttonEditLoginPhone.UseVisualStyleBackColor = true;
+            buttonEditLoginPhone.Click += buttonEdit2_Click;
             // 
             // buttonEdit1
             // 
-            buttonEdit1.FlatStyle = FlatStyle.Flat;
-            buttonEdit1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonEdit1.ForeColor = Color.White;
-            buttonEdit1.Location = new Point(224, 114);
-            buttonEdit1.Name = "buttonEdit1";
-            buttonEdit1.Size = new Size(66, 36);
-            buttonEdit1.TabIndex = 61;
-            buttonEdit1.Text = "Edit";
-            buttonEdit1.UseVisualStyleBackColor = true;
-            buttonEdit1.Click += buttonEdit1_Click;
+            buttonEditPassword.FlatStyle = FlatStyle.Flat;
+            buttonEditPassword.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonEditPassword.ForeColor = Color.White;
+            buttonEditPassword.Location = new Point(224, 114);
+            buttonEditPassword.Name = "buttonEdit1";
+            buttonEditPassword.Size = new Size(66, 36);
+            buttonEditPassword.TabIndex = 61;
+            buttonEditPassword.Text = "Edit";
+            buttonEditPassword.UseVisualStyleBackColor = true;
+            buttonEditPassword.Click += buttonEdit1_Click;
             // 
             // labelPassword
             // 
@@ -169,8 +169,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(330, 550);
             Controls.Add(buttonDeleteAccount);
-            Controls.Add(buttonEdit2);
-            Controls.Add(buttonEdit1);
+            Controls.Add(buttonEditLoginPhone);
+            Controls.Add(buttonEditPassword);
             Controls.Add(labelPassword);
             Controls.Add(textBoxPassword);
             Controls.Add(labelPhoneNumber);
@@ -188,23 +188,24 @@
             Controls.SetChildIndex(labelPhoneNumber, 0);
             Controls.SetChildIndex(textBoxPassword, 0);
             Controls.SetChildIndex(labelPassword, 0);
-            Controls.SetChildIndex(buttonEdit1, 0);
-            Controls.SetChildIndex(buttonEdit2, 0);
+            Controls.SetChildIndex(buttonEditPassword, 0);
+            Controls.SetChildIndex(buttonEditLoginPhone, 0);
             Controls.SetChildIndex(buttonDeleteAccount, 0);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private Button buttonEdit2;
-        private Button buttonEdit1;
-        private Label labelPassword;
-        private TextBox textBoxPassword;
-        private Label labelPhoneNumber;
-        private TextBox textBoxPhoneNumber;
-        private Label labelLogin;
+
         private TextBox textBoxLogin;
-        private Label labelMyProfileTitle;
+        private TextBox textBoxPhoneNumber;
+        private TextBox textBoxPassword;
         private Button buttonDeleteAccount;
+        private Button buttonEditLoginPhone;
+        private Button buttonEditPassword;
+        private Label labelLogin;
+        private Label labelPhoneNumber;
+        private Label labelPassword;
+        private Label labelMyProfileTitle;
     }
 }

@@ -151,11 +151,11 @@
 
         #endregion
 
-        private Label labelSecretWord;
         private TextBox textBoxSecretWord;
-        private Label labelPhoneNumber;
         private TextBox textBoxPhoneNumber;
         private Button buttonRegister;
+        private Label labelSecretWord;
+        private Label labelPhoneNumber;
         private Label labelRegistration;
         private Label labelMessage;
     }

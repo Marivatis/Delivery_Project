@@ -14,7 +14,7 @@ using Delivery_Project.DataControl.Workplaces.Management;
 
 namespace Delivery_Project.Forms.Customer
 {
-    public partial class FormOrderConfirmation : CustomBorderForm
+    public partial class FormOrderConfirmation : TemplateCustomBorderForm
     {
         private Point _parentLocation;
 

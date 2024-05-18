@@ -9,7 +9,7 @@ namespace Delivery_Project.DataControl.Users
     public abstract class DeliveryUser
     {
         protected string _login;
-        protected string _password ;
+        protected string _password;
         protected string _phoneNumber;
 
         public delegate bool ValidateProperty<T>(T property, ref string message);

@@ -12,7 +12,7 @@ using Delivery_Project.Forms.Templates;
 
 namespace Delivery_Project.Forms.Provider
 {
-    public partial class FormPlaceEditor : CustomBorderForm
+    public partial class FormPlaceEditor : TemplateCustomBorderForm
     {
         private DeliveryPlace place;
 
@@ -28,8 +28,8 @@ namespace Delivery_Project.Forms.Provider
             textBoxPlaceName.Text = place.Name;
             textBoxPlaceDeliveryPercent.Text = place.DeliveryPercent.ToString();
             textBoxPlaceDeliveryPrice.Text = place.DeliveryPrice.ToString();
-            textBoxAddress.Text = place.Address;
-            richTextBox1.Text = place.Description;
+            textBoxPlaceAddress.Text = place.Address;
+            richTextBoxPlaceDescription.Text = place.Description;
 
             CenterToScreen();
         }
@@ -48,11 +48,11 @@ namespace Delivery_Project.Forms.Provider
                 if (place.DeliveryPrice != Convert.ToInt32(textBoxPlaceDeliveryPrice.Text))
                     place.DeliveryPrice = Convert.ToInt32(textBoxPlaceDeliveryPrice.Text);
 
-                if (place.Address != textBoxAddress.Text)
-                    place.Address = textBoxAddress.Text;
+                if (place.Address != textBoxPlaceAddress.Text)
+                    place.Address = textBoxPlaceAddress.Text;
 
-                if (place.Description != richTextBox1.Text)
-                    place.Description = richTextBox1.Text;
+                if (place.Description != richTextBoxPlaceDescription.Text)
+                    place.Description = richTextBoxPlaceDescription.Text;
 
                 Close();
             }
@@ -129,32 +129,32 @@ namespace Delivery_Project.Forms.Provider
         // Field place address usefull design
         private void textBoxAddress_Enter(object sender, EventArgs e)
         {
-            if (textBoxAddress.Text == "Enter place address")
+            if (textBoxPlaceAddress.Text == "Enter place address")
             {
-                textBoxAddress.Clear();
+                textBoxPlaceAddress.Clear();
             }
         }
         private void textBoxAddress_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBoxAddress.Text))
+            if (string.IsNullOrEmpty(textBoxPlaceAddress.Text))
             {
-                textBoxAddress.Text = "Enter place address";
+                textBoxPlaceAddress.Text = "Enter place address";
             }
         }
 
         // Field place description usefull design
         private void richTextBox1_Enter(object sender, EventArgs e)
         {
-            if (richTextBox1.Text == "Enter place description")
+            if (richTextBoxPlaceDescription.Text == "Enter place description")
             {
-                richTextBox1.Clear();
+                richTextBoxPlaceDescription.Clear();
             }
         }
         private void richTextBox1_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(richTextBox1.Text))
+            if (string.IsNullOrEmpty(richTextBoxPlaceDescription.Text))
             {
-                richTextBox1.Text = "Enter place description";
+                richTextBoxPlaceDescription.Text = "Enter place description";
             }
         }
 

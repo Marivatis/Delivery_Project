@@ -62,6 +62,5 @@ namespace Delivery_Project.DataControl.Users.Lists
         {
             return ((IEnumerable)_listUsers).GetEnumerator();
         }
-
     }
 }

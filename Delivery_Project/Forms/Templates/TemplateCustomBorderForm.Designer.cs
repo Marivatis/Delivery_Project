@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Delivery_Project.Forms.Templates
 {
-    partial class CustomBorderForm
+    partial class TemplateCustomBorderForm
     {
         /// <summary>
         ///  Required designer variable.

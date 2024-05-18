@@ -36,14 +36,14 @@
             labelPassword = new Label();
             textBoxPassword = new TextBox();
             labelAddress = new Label();
-            buttonEdit1 = new Button();
-            labelBecome1 = new Label();
-            labelBecome2 = new Label();
+            buttonEditLoginPhone = new Button();
+            labelBecomeProvider = new Label();
+            labelBecomePart2 = new Label();
             labelBecomeProvider = new Label();
             labelBecomeCourier = new Label();
-            buttonEdit2 = new Button();
+            buttonEditPassword = new Button();
             textBoxAddress = new TextBox();
-            buttonEdit3 = new Button();
+            buttonEditAddress = new Button();
             buttonDeleteAccount = new Button();
             SuspendLayout();
             // 
@@ -143,38 +143,38 @@
             // 
             // buttonEdit1
             // 
-            buttonEdit1.FlatStyle = FlatStyle.Flat;
-            buttonEdit1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonEdit1.ForeColor = Color.White;
-            buttonEdit1.Location = new Point(224, 124);
-            buttonEdit1.Name = "buttonEdit1";
-            buttonEdit1.Size = new Size(66, 36);
-            buttonEdit1.TabIndex = 27;
-            buttonEdit1.Text = "Edit";
-            buttonEdit1.UseVisualStyleBackColor = true;
-            buttonEdit1.Click += buttonEdit1_Click;
+            buttonEditLoginPhone.FlatStyle = FlatStyle.Flat;
+            buttonEditLoginPhone.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonEditLoginPhone.ForeColor = Color.White;
+            buttonEditLoginPhone.Location = new Point(224, 124);
+            buttonEditLoginPhone.Name = "buttonEdit1";
+            buttonEditLoginPhone.Size = new Size(66, 36);
+            buttonEditLoginPhone.TabIndex = 27;
+            buttonEditLoginPhone.Text = "Edit";
+            buttonEditLoginPhone.UseVisualStyleBackColor = true;
+            buttonEditLoginPhone.Click += buttonEdit1_Click;
             // 
             // labelBecome1
             // 
-            labelBecome1.AutoSize = true;
-            labelBecome1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            labelBecome1.ForeColor = Color.White;
-            labelBecome1.Location = new Point(38, 509);
-            labelBecome1.Name = "labelBecome1";
-            labelBecome1.Size = new Size(66, 21);
-            labelBecome1.TabIndex = 30;
-            labelBecome1.Text = "Become";
+            labelBecomeProvider.AutoSize = true;
+            labelBecomeProvider.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            labelBecomeProvider.ForeColor = Color.White;
+            labelBecomeProvider.Location = new Point(38, 509);
+            labelBecomeProvider.Name = "labelBecome1";
+            labelBecomeProvider.Size = new Size(66, 21);
+            labelBecomeProvider.TabIndex = 30;
+            labelBecomeProvider.Text = "Become";
             // 
             // labelBecome2
             // 
-            labelBecome2.AutoSize = true;
-            labelBecome2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            labelBecome2.ForeColor = Color.White;
-            labelBecome2.Location = new Point(175, 509);
-            labelBecome2.Name = "labelBecome2";
-            labelBecome2.Size = new Size(25, 21);
-            labelBecome2.TabIndex = 31;
-            labelBecome2.Text = "or";
+            labelBecomePart2.AutoSize = true;
+            labelBecomePart2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            labelBecomePart2.ForeColor = Color.White;
+            labelBecomePart2.Location = new Point(175, 509);
+            labelBecomePart2.Name = "labelBecome2";
+            labelBecomePart2.Size = new Size(25, 21);
+            labelBecomePart2.TabIndex = 31;
+            labelBecomePart2.Text = "or";
             // 
             // labelBecomeProvider
             // 
@@ -202,16 +202,16 @@
             // 
             // buttonEdit2
             // 
-            buttonEdit2.FlatStyle = FlatStyle.Flat;
-            buttonEdit2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonEdit2.ForeColor = Color.White;
-            buttonEdit2.Location = new Point(224, 296);
-            buttonEdit2.Name = "buttonEdit2";
-            buttonEdit2.Size = new Size(66, 36);
-            buttonEdit2.TabIndex = 34;
-            buttonEdit2.Text = "Edit";
-            buttonEdit2.UseVisualStyleBackColor = true;
-            buttonEdit2.Click += buttonEdit2_Click;
+            buttonEditPassword.FlatStyle = FlatStyle.Flat;
+            buttonEditPassword.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonEditPassword.ForeColor = Color.White;
+            buttonEditPassword.Location = new Point(224, 296);
+            buttonEditPassword.Name = "buttonEdit2";
+            buttonEditPassword.Size = new Size(66, 36);
+            buttonEditPassword.TabIndex = 34;
+            buttonEditPassword.Text = "Edit";
+            buttonEditPassword.UseVisualStyleBackColor = true;
+            buttonEditPassword.Click += buttonEdit2_Click;
             // 
             // textBoxAddress
             // 
@@ -228,16 +228,16 @@
             // 
             // buttonEdit3
             // 
-            buttonEdit3.FlatStyle = FlatStyle.Flat;
-            buttonEdit3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonEdit3.ForeColor = Color.White;
-            buttonEdit3.Location = new Point(224, 398);
-            buttonEdit3.Name = "buttonEdit3";
-            buttonEdit3.Size = new Size(66, 36);
-            buttonEdit3.TabIndex = 36;
-            buttonEdit3.Text = "Edit";
-            buttonEdit3.UseVisualStyleBackColor = true;
-            buttonEdit3.Click += buttonEdit3_Click;
+            buttonEditAddress.FlatStyle = FlatStyle.Flat;
+            buttonEditAddress.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonEditAddress.ForeColor = Color.White;
+            buttonEditAddress.Location = new Point(224, 398);
+            buttonEditAddress.Name = "buttonEdit3";
+            buttonEditAddress.Size = new Size(66, 36);
+            buttonEditAddress.TabIndex = 36;
+            buttonEditAddress.Text = "Edit";
+            buttonEditAddress.UseVisualStyleBackColor = true;
+            buttonEditAddress.Click += buttonEdit3_Click;
             // 
             // buttonDeleteAccount
             // 
@@ -259,14 +259,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(330, 550);
             Controls.Add(buttonDeleteAccount);
-            Controls.Add(buttonEdit3);
+            Controls.Add(buttonEditAddress);
             Controls.Add(textBoxAddress);
-            Controls.Add(buttonEdit2);
+            Controls.Add(buttonEditPassword);
             Controls.Add(labelBecomeCourier);
             Controls.Add(labelBecomeProvider);
-            Controls.Add(labelBecome2);
-            Controls.Add(labelBecome1);
-            Controls.Add(buttonEdit1);
+            Controls.Add(labelBecomePart2);
+            Controls.Add(labelBecomeProvider);
+            Controls.Add(buttonEditLoginPhone);
             Controls.Add(labelAddress);
             Controls.Add(labelPassword);
             Controls.Add(textBoxPassword);
@@ -286,14 +286,14 @@
             Controls.SetChildIndex(textBoxPassword, 0);
             Controls.SetChildIndex(labelPassword, 0);
             Controls.SetChildIndex(labelAddress, 0);
-            Controls.SetChildIndex(buttonEdit1, 0);
-            Controls.SetChildIndex(labelBecome1, 0);
-            Controls.SetChildIndex(labelBecome2, 0);
+            Controls.SetChildIndex(buttonEditLoginPhone, 0);
+            Controls.SetChildIndex(labelBecomeProvider, 0);
+            Controls.SetChildIndex(labelBecomePart2, 0);
             Controls.SetChildIndex(labelBecomeProvider, 0);
             Controls.SetChildIndex(labelBecomeCourier, 0);
-            Controls.SetChildIndex(buttonEdit2, 0);
+            Controls.SetChildIndex(buttonEditPassword, 0);
             Controls.SetChildIndex(textBoxAddress, 0);
-            Controls.SetChildIndex(buttonEdit3, 0);
+            Controls.SetChildIndex(buttonEditAddress, 0);
             Controls.SetChildIndex(buttonDeleteAccount, 0);
             ResumeLayout(false);
             PerformLayout();
@@ -301,22 +301,22 @@
 
         #endregion
 
+        private Button buttonDeleteAccount;
+        private Button buttonEditLoginPhone;
+        private Button buttonEditPassword;
+        private Button buttonEditAddress;
+        private TextBox textBoxPhoneNumber;
+        private TextBox textBoxPassword;
+        private TextBox textBoxLogin;
+        private TextBox textBoxAddress;
         private Label labelMyProfileTitle;
         private Label labelLogin;
-        private TextBox textBoxLogin;
         private Label labelPhoneNumber;
-        private TextBox textBoxPhoneNumber;
         private Label labelPassword;
-        private TextBox textBoxPassword;
         private Label labelAddress;
-        private Button buttonEdit1;
-        private Label labelBecome1;
-        private Label labelBecome2;
+        private Label labelBecomePart1;
+        private Label labelBecomePart2;
         private Label labelBecomeProvider;
         private Label labelBecomeCourier;
-        private Button buttonEdit2;
-        private TextBox textBoxAddress;
-        private Button buttonEdit3;
-        private Button buttonDeleteAccount;
     }
 }

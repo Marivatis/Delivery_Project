@@ -16,7 +16,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Delivery_Project.Forms.Courier
 {
-    public partial class FormCourier : CustomBorderForm
+    public partial class FormCourier : TemplateCustomBorderForm
     {
         private FormCourierProfile? formProfile;
 

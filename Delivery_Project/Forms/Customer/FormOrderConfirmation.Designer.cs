@@ -180,14 +180,14 @@
 
         #endregion
 
-        private Label labelCart;
-        private ListBox listBoxCart;
-        private Label labelOrderDetails;
         private TextBox textBoxAddress;
+        private TextBox textBoxPhoneNumber;
+        private ListBox listBoxCart;
+        private Button buttonOrder;
+        private Label labelCart;
+        private Label labelOrderDetails;
         private Label labelAddress;
         private Label labelPhoneNumber;
-        private TextBox textBoxPhoneNumber;
-        private Button buttonOrder;
         private Label labelTotalPrice;
     }
 }
