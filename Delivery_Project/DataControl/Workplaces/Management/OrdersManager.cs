@@ -13,7 +13,7 @@ namespace Delivery_Project.DataControl.Workplaces.Management
 {
     public class OrdersManager
     {
-        private ListDeliveryOrders _deliveryOrders;
+        public ListDeliveryOrders _deliveryOrders;
 
         public static event EventHandler<OrderStatusEventArgs>? OrderStatusChanged;
 
@@ -50,7 +50,7 @@ namespace Delivery_Project.DataControl.Workplaces.Management
         }
 
         // Orders handler unit
-        private bool MakeOrder(DeliveryOrder order, ref string message)
+        public bool MakeOrder(DeliveryOrder order, ref string message)
         {
             if (IsAnyActiveOrder(order.CustomerLogin)) 
             {
@@ -63,7 +63,7 @@ namespace Delivery_Project.DataControl.Workplaces.Management
 
             return true;
         }
-        private bool DeclineOrder(string customerLogin, ref string message)
+        public bool DeclineOrder(string customerLogin, ref string message)
         {
             if (string.IsNullOrEmpty(customerLogin))
             {
@@ -88,11 +88,17 @@ namespace Delivery_Project.DataControl.Workplaces.Management
             order.OrderStatus = DeliveryOrderStatus.Declined;
             return true;
         }
-        private bool TakeOrder(DeliveryOrder order, DeliveryCourier courier, ref string message)
+        public bool TakeOrder(DeliveryOrder order, DeliveryCourier courier, ref string message)
         {
             if (order is null)
             {
                 message = "Choose any order before take one.";
+                return false;
+            }
+
+            if (!IsAnyActiveOrder(order.CustomerLogin))
+            {
+                message = "This customer have no active orders.";
                 return false;
             }
 
@@ -102,13 +108,13 @@ namespace Delivery_Project.DataControl.Workplaces.Management
                 return false;
             }
 
-            order.OrderStatus = DeliveryOrderStatus.Accepted;
             order.CourierLogin = courier.Login;
             order.CourierPhone = courier.PhoneNumber;
+            order.OrderStatus = DeliveryOrderStatus.Accepted;
 
             return true;
         }
-        private bool OrderOnTheWay(string courierLogin)
+        public bool OrderOnTheWay(string courierLogin)
         {
             DeliveryOrder? order = _deliveryOrders.FirstOrDefault(o => o.CourierLogin == courierLogin &&
                                                                       o.OrderStatus == DeliveryOrderStatus.Accepted);
@@ -119,7 +125,7 @@ namespace Delivery_Project.DataControl.Workplaces.Management
             order.OrderStatus = DeliveryOrderStatus.OnTheWay;
             return true;
         }
-        private bool FinishOrder(string courierLogin, ref string message)
+        public bool FinishOrder(string courierLogin, ref string message)
         {
             DeliveryOrder? order = _deliveryOrders.FirstOrDefault(o => o.CourierLogin == courierLogin &&
                                                                       o.OrderStatus == DeliveryOrderStatus.OnTheWay);
@@ -135,13 +141,21 @@ namespace Delivery_Project.DataControl.Workplaces.Management
             return true;
         }
 
+        // Clears all orders manager data, even in files
+        public void Clear()
+        {
+            _deliveryOrders.Clear();
+
+            Write_DeliveryOrders();
+        }
+
         // Returns active customer order with given login
         private DeliveryOrder? GetActiveOrder(string customerLogin)
         {
             if (!IsAnyActiveOrder(customerLogin))
                 return null;
 
-            return _deliveryOrders.First(o => o.CustomerLogin == customerLogin);
+            return _deliveryOrders.FirstOrDefault(o => o.CustomerLogin == customerLogin);
         }
         // Return taken courier order with given login
         private DeliveryOrder? GetTakenOrder(string courierLogin)
@@ -161,9 +175,9 @@ namespace Delivery_Project.DataControl.Workplaces.Management
         private bool IsAnyActiveOrder(string customerLogin)
         {
             return _deliveryOrders.Any(o => o.CustomerLogin == customerLogin &&
-                                           o.OrderStatus == DeliveryOrderStatus.Waiting ||
+                                           (o.OrderStatus == DeliveryOrderStatus.Waiting ||
                                            o.OrderStatus == DeliveryOrderStatus.Accepted ||
-                                           o.OrderStatus == DeliveryOrderStatus.OnTheWay);
+                                           o.OrderStatus == DeliveryOrderStatus.OnTheWay));
         }
         // Returns true if customer with given login has any taken order
         private bool IsAnyTakenOrder(string customerLogin)

@@ -59,8 +59,8 @@ namespace Delivery_Project.DataControl.Workplaces
         }
         public string CourierPhone
         {
-            get { return _customerPhone; }
-            set { _customerPhone = value; }
+            get { return _courierPhone; }
+            set { _courierPhone = value; }
         }
         public string CustomerLogin
         {

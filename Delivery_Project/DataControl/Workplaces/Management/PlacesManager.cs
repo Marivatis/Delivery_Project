@@ -51,7 +51,7 @@ namespace Delivery_Project.DataControl.Workplaces.Management
             return list;
         }
         // Returns null if failed to find place and returns place if place was found 
-        private void GetDeliveryPlace(int placeCode, out DeliveryPlace? place)
+        public void GetDeliveryPlace(int placeCode, out DeliveryPlace? place)
         {
             if (placeCode == 0)
             {
@@ -73,6 +73,14 @@ namespace Delivery_Project.DataControl.Workplaces.Management
             int maxCode = _deliveryPlaces.Max(p =>  p.PlaceCode) + 1;
 
             return maxCode;
+        }
+
+        // Clears all places manager data, even in files
+        public void Clear()
+        {
+            _deliveryPlaces.Clear();
+
+            Write_Places();
         }
 
         // Writes field _deliveryPlaces to json

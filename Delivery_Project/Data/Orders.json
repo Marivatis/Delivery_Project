@@ -1,1 +1,46 @@
-[]
+[
+  {
+    "OrderStatus": 0,
+    "CourierLogin": null,
+    "CourierPhone": null,
+    "CustomerLogin": "cust",
+    "CustomerPhone": "0687784596",
+    "CustomerAddress": "Електроінструментальний пров. 6Б",
+    "ProviderPlaceName": "PIZZA DAY",
+    "ProviderPlaceAddress": "вул. Полтавський Шлях, 133Б",
+    "CustomerPayment": 743,
+    "CourierEarning": 93,
+    "OrderCart": {
+      "Cart": {
+        "Піца Мегаполіс": 1,
+        "Піца Грін Чікен": 1,
+        "Піца Гавайська": 1,
+        "Соус-діп Гострий": 1
+      },
+      "ProductPrice": 684,
+      "Count": 4
+    }
+  },
+  {
+    "OrderStatus": 3,
+    "CourierLogin": "cour",
+    "CourierPhone": "0889997766",
+    "CustomerLogin": "cust2",
+    "CustomerPhone": "380636054739",
+    "CustomerAddress": "вул. Шевченко, 22",
+    "ProviderPlaceName": "McDonald`s",
+    "ProviderPlaceAddress": "вул. Полтавський шлях, 58",
+    "CustomerPayment": 532,
+    "CourierEarning": 60,
+    "OrderCart": {
+      "Cart": {
+        "Біг Мак": 1,
+        "Маккріспі": 1,
+        "Чікен Рол": 1,
+        "Картопля Фрі Середня": 1
+      },
+      "ProductPrice": 472,
+      "Count": 4
+    }
+  }
+]

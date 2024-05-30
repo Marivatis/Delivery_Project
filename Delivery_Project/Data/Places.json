@@ -63,5 +63,94 @@
         "Description": "соус 25г"
       }
     ]
+  },
+  {
+    "PlaceCode": 1001,
+    "DeliveryPercent": 0,
+    "DeliveryPrice": 0,
+    "Name": "No_Name",
+    "Address": "No_Address",
+    "Description": "No_Description",
+    "Menu": []
+  },
+  {
+    "PlaceCode": 1002,
+    "DeliveryPercent": 0,
+    "DeliveryPrice": 60,
+    "Name": "McDonald`s",
+    "Address": "вул. Полтавський шлях, 58",
+    "Description": "Замовляй соковиті бургери та таку улюблену хрумку картопельку Фрі. А ми доставимо!",
+    "Menu": [
+      {
+        "Name": "Біг Мак",
+        "Price": 129,
+        "Description": "Смачний Біг Мак"
+      },
+      {
+        "Name": "Маккріспі",
+        "Price": 151,
+        "Description": "Смачний Маккріспі"
+      },
+      {
+        "Name": "Роял Делюкс",
+        "Price": 179,
+        "Description": "Смачний Роял Делюкс"
+      },
+      {
+        "Name": "Біг Тейсті",
+        "Price": 214,
+        "Description": "Смачний Біг Тейсті"
+      },
+      {
+        "Name": "Філе-О-Фіш",
+        "Price": 108,
+        "Description": "Смачний Філе-О-Фіш"
+      },
+      {
+        "Name": "Чікен Макнагетс 20шт",
+        "Price": 273,
+        "Description": "Смачні Чікен Макнагетс"
+      },
+      {
+        "Name": "Стріпси Чікен Бокс",
+        "Price": 273,
+        "Description": "Смачні Стріпси Чікен Бокс"
+      },
+      {
+        "Name": "Чікен Рол",
+        "Price": 128,
+        "Description": "Смачний Чікен Рол"
+      },
+      {
+        "Name": "Картопля Фрі Мала",
+        "Price": 52,
+        "Description": "Смачна Картопля Фрі"
+      },
+      {
+        "Name": "Картопля Фрі Середня",
+        "Price": 64,
+        "Description": "Смачна Картопля Фрі"
+      },
+      {
+        "Name": "Картопля Фрі Велика",
+        "Price": 79,
+        "Description": "Смачна Картопля Фрі"
+      }
+    ]
+  },
+  {
+    "PlaceCode": 1003,
+    "DeliveryPercent": 2,
+    "DeliveryPrice": 60,
+    "Name": "KFC",
+    "Address": "майдан Захисників України, 7/8",
+    "Description": "Смачна курка будь-куди!",
+    "Menu": [
+      {
+        "Name": "No_Product_Name",
+        "Price": 100,
+        "Description": "No_Description"
+      }
+    ]
   }
 ]

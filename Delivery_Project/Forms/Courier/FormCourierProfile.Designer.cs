@@ -41,15 +41,16 @@
             textBoxLogin = new TextBox();
             labelMyProfileTitle = new Label();
             buttonDeleteAccount = new Button();
+            buttonWorkStatus = new Button();
             SuspendLayout();
             // 
-            // buttonEdit3
+            // buttonEditCardNumber
             // 
             buttonEditCardNumber.FlatStyle = FlatStyle.Flat;
             buttonEditCardNumber.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonEditCardNumber.ForeColor = Color.White;
             buttonEditCardNumber.Location = new Point(225, 388);
-            buttonEditCardNumber.Name = "buttonEdit3";
+            buttonEditCardNumber.Name = "buttonEditCardNumber";
             buttonEditCardNumber.Size = new Size(66, 36);
             buttonEditCardNumber.TabIndex = 48;
             buttonEditCardNumber.Text = "Edit";
@@ -69,26 +70,26 @@
             textBoxCardNumber.TabIndex = 47;
             textBoxCardNumber.Text = "Enter your card number";
             // 
-            // buttonEdit2
+            // buttonEditPassword
             // 
             buttonEditPassword.FlatStyle = FlatStyle.Flat;
             buttonEditPassword.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonEditPassword.ForeColor = Color.White;
             buttonEditPassword.Location = new Point(225, 289);
-            buttonEditPassword.Name = "buttonEdit2";
+            buttonEditPassword.Name = "buttonEditPassword";
             buttonEditPassword.Size = new Size(66, 36);
             buttonEditPassword.TabIndex = 46;
             buttonEditPassword.Text = "Edit";
             buttonEditPassword.UseVisualStyleBackColor = true;
             buttonEditPassword.Click += buttonEdit2_Click;
             // 
-            // buttonEdit1
+            // buttonEditLoginPhone
             // 
             buttonEditLoginPhone.FlatStyle = FlatStyle.Flat;
             buttonEditLoginPhone.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonEditLoginPhone.ForeColor = Color.White;
             buttonEditLoginPhone.Location = new Point(225, 119);
-            buttonEditLoginPhone.Name = "buttonEdit1";
+            buttonEditLoginPhone.Name = "buttonEditLoginPhone";
             buttonEditLoginPhone.Size = new Size(66, 36);
             buttonEditLoginPhone.TabIndex = 45;
             buttonEditLoginPhone.Text = "Edit";
@@ -203,11 +204,25 @@
             buttonDeleteAccount.UseVisualStyleBackColor = true;
             buttonDeleteAccount.Click += buttonDeleteAccount_Click;
             // 
+            // buttonWorkStatus
+            // 
+            buttonWorkStatus.FlatStyle = FlatStyle.Flat;
+            buttonWorkStatus.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonWorkStatus.ForeColor = Color.White;
+            buttonWorkStatus.Location = new Point(41, 490);
+            buttonWorkStatus.Name = "buttonWorkStatus";
+            buttonWorkStatus.Size = new Size(250, 36);
+            buttonWorkStatus.TabIndex = 50;
+            buttonWorkStatus.Text = "Start Work";
+            buttonWorkStatus.UseVisualStyleBackColor = true;
+            buttonWorkStatus.Click += buttonWorkStatus_Click;
+            // 
             // FormCourierProfile
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(330, 550);
+            Controls.Add(buttonWorkStatus);
             Controls.Add(buttonDeleteAccount);
             Controls.Add(buttonEditCardNumber);
             Controls.Add(textBoxCardNumber);
@@ -237,6 +252,7 @@
             Controls.SetChildIndex(textBoxCardNumber, 0);
             Controls.SetChildIndex(buttonEditCardNumber, 0);
             Controls.SetChildIndex(buttonDeleteAccount, 0);
+            Controls.SetChildIndex(buttonWorkStatus, 0);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -256,5 +272,6 @@
         private Label labelPhoneNumber;
         private Label labelPassword;
         private Label labelCardNumber;
+        private Button buttonWorkStatus;
     }
 }

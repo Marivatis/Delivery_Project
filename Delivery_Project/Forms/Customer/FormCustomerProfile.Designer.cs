@@ -39,12 +39,12 @@
             buttonEditLoginPhone = new Button();
             labelBecomeProvider = new Label();
             labelBecomePart2 = new Label();
-            labelBecomeProvider = new Label();
             labelBecomeCourier = new Label();
             buttonEditPassword = new Button();
             textBoxAddress = new TextBox();
             buttonEditAddress = new Button();
             buttonDeleteAccount = new Button();
+            labelBecomePart1 = new Label();
             SuspendLayout();
             // 
             // labelMyProfileTitle
@@ -141,40 +141,18 @@
             labelAddress.TabIndex = 25;
             labelAddress.Text = "Address:";
             // 
-            // buttonEdit1
+            // buttonEditLoginPhone
             // 
             buttonEditLoginPhone.FlatStyle = FlatStyle.Flat;
             buttonEditLoginPhone.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonEditLoginPhone.ForeColor = Color.White;
             buttonEditLoginPhone.Location = new Point(224, 124);
-            buttonEditLoginPhone.Name = "buttonEdit1";
+            buttonEditLoginPhone.Name = "buttonEditLoginPhone";
             buttonEditLoginPhone.Size = new Size(66, 36);
             buttonEditLoginPhone.TabIndex = 27;
             buttonEditLoginPhone.Text = "Edit";
             buttonEditLoginPhone.UseVisualStyleBackColor = true;
             buttonEditLoginPhone.Click += buttonEdit1_Click;
-            // 
-            // labelBecome1
-            // 
-            labelBecomeProvider.AutoSize = true;
-            labelBecomeProvider.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            labelBecomeProvider.ForeColor = Color.White;
-            labelBecomeProvider.Location = new Point(38, 509);
-            labelBecomeProvider.Name = "labelBecome1";
-            labelBecomeProvider.Size = new Size(66, 21);
-            labelBecomeProvider.TabIndex = 30;
-            labelBecomeProvider.Text = "Become";
-            // 
-            // labelBecome2
-            // 
-            labelBecomePart2.AutoSize = true;
-            labelBecomePart2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            labelBecomePart2.ForeColor = Color.White;
-            labelBecomePart2.Location = new Point(175, 509);
-            labelBecomePart2.Name = "labelBecome2";
-            labelBecomePart2.Size = new Size(25, 21);
-            labelBecomePart2.TabIndex = 31;
-            labelBecomePart2.Text = "or";
             // 
             // labelBecomeProvider
             // 
@@ -188,6 +166,17 @@
             labelBecomeProvider.Text = "a provider";
             labelBecomeProvider.Click += labelBecomeProvider_Click;
             // 
+            // labelBecomePart2
+            // 
+            labelBecomePart2.AutoSize = true;
+            labelBecomePart2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            labelBecomePart2.ForeColor = Color.White;
+            labelBecomePart2.Location = new Point(175, 509);
+            labelBecomePart2.Name = "labelBecomePart2";
+            labelBecomePart2.Size = new Size(25, 21);
+            labelBecomePart2.TabIndex = 31;
+            labelBecomePart2.Text = "or";
+            // 
             // labelBecomeCourier
             // 
             labelBecomeCourier.AutoSize = true;
@@ -200,13 +189,13 @@
             labelBecomeCourier.Text = "a courier";
             labelBecomeCourier.Click += labelBecomeCourier_Click;
             // 
-            // buttonEdit2
+            // buttonEditPassword
             // 
             buttonEditPassword.FlatStyle = FlatStyle.Flat;
             buttonEditPassword.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonEditPassword.ForeColor = Color.White;
             buttonEditPassword.Location = new Point(224, 296);
-            buttonEditPassword.Name = "buttonEdit2";
+            buttonEditPassword.Name = "buttonEditPassword";
             buttonEditPassword.Size = new Size(66, 36);
             buttonEditPassword.TabIndex = 34;
             buttonEditPassword.Text = "Edit";
@@ -226,13 +215,13 @@
             textBoxAddress.TabIndex = 35;
             textBoxAddress.Text = "Enter your address";
             // 
-            // buttonEdit3
+            // buttonEditAddress
             // 
             buttonEditAddress.FlatStyle = FlatStyle.Flat;
             buttonEditAddress.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             buttonEditAddress.ForeColor = Color.White;
             buttonEditAddress.Location = new Point(224, 398);
-            buttonEditAddress.Name = "buttonEdit3";
+            buttonEditAddress.Name = "buttonEditAddress";
             buttonEditAddress.Size = new Size(66, 36);
             buttonEditAddress.TabIndex = 36;
             buttonEditAddress.Text = "Edit";
@@ -253,11 +242,23 @@
             buttonDeleteAccount.UseVisualStyleBackColor = true;
             buttonDeleteAccount.Click += buttonDeleteAccount_Click;
             // 
+            // label1
+            // 
+            labelBecomePart1.AutoSize = true;
+            labelBecomePart1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            labelBecomePart1.ForeColor = Color.White;
+            labelBecomePart1.Location = new Point(40, 509);
+            labelBecomePart1.Name = "label1";
+            labelBecomePart1.Size = new Size(66, 21);
+            labelBecomePart1.TabIndex = 38;
+            labelBecomePart1.Text = "Become";
+            // 
             // FormCustomerProfile
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(330, 550);
+            Controls.Add(labelBecomePart1);
             Controls.Add(buttonDeleteAccount);
             Controls.Add(buttonEditAddress);
             Controls.Add(textBoxAddress);
@@ -265,7 +266,6 @@
             Controls.Add(labelBecomeCourier);
             Controls.Add(labelBecomeProvider);
             Controls.Add(labelBecomePart2);
-            Controls.Add(labelBecomeProvider);
             Controls.Add(buttonEditLoginPhone);
             Controls.Add(labelAddress);
             Controls.Add(labelPassword);
@@ -287,7 +287,6 @@
             Controls.SetChildIndex(labelPassword, 0);
             Controls.SetChildIndex(labelAddress, 0);
             Controls.SetChildIndex(buttonEditLoginPhone, 0);
-            Controls.SetChildIndex(labelBecomeProvider, 0);
             Controls.SetChildIndex(labelBecomePart2, 0);
             Controls.SetChildIndex(labelBecomeProvider, 0);
             Controls.SetChildIndex(labelBecomeCourier, 0);
@@ -295,6 +294,7 @@
             Controls.SetChildIndex(textBoxAddress, 0);
             Controls.SetChildIndex(buttonEditAddress, 0);
             Controls.SetChildIndex(buttonDeleteAccount, 0);
+            Controls.SetChildIndex(labelBecomePart1, 0);
             ResumeLayout(false);
             PerformLayout();
         }

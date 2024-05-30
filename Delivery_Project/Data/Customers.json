@@ -1,8 +1,14 @@
 [
   {
-    "Address": "No_Address",
+    "Address": "Електроінструментальний пров. 6Б",
     "Login": "cust",
     "Password": "cust",
-    "PhoneNumber": "No_Phone_Number"
+    "PhoneNumber": "0687784596"
+  },
+  {
+    "Address": "вул. Шевченко, 22",
+    "Login": "cust2",
+    "Password": "cust2",
+    "PhoneNumber": "380636054739"
   }
 ]

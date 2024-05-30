@@ -4,5 +4,17 @@
     "Login": "prov",
     "Password": "prov",
     "PhoneNumber": "380689980425"
+  },
+  {
+    "PlaceCode": 1002,
+    "Login": "prov2",
+    "Password": "prov2",
+    "PhoneNumber": "380998887766"
+  },
+  {
+    "PlaceCode": 1003,
+    "Login": "prov3",
+    "Password": "prov3",
+    "PhoneNumber": "0998665435"
   }
 ]

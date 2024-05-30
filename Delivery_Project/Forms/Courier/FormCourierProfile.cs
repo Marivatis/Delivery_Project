@@ -37,6 +37,11 @@ namespace Delivery_Project.Forms.Courier
             textBoxPhoneNumber.Text = courier.PhoneNumber;
             textBoxCardNumber.Text = courier.CardNumber;
 
+            if (FormCourier.WorkStatus)
+            {
+                buttonWorkStatus.Text = "End Work";
+            }
+
             Location = parentLocation;
         }
 
@@ -102,7 +107,7 @@ namespace Delivery_Project.Forms.Courier
         {
             try
             {
-                
+
                 if (courier.Password != textBoxPassword.Text)
                     courier.Password = textBoxPassword.Text;
 
@@ -173,6 +178,20 @@ namespace Delivery_Project.Forms.Courier
             else
             {
                 MessageBox.Show("Something went wrong.");
+            }
+        }
+
+        private void buttonWorkStatus_Click(object sender, EventArgs e)
+        {
+            if (buttonWorkStatus.Text == "Start Work")
+            {
+                FormCourier.WorkStatus = true;
+                buttonWorkStatus.Text = "End Work";
+            }
+            else if (buttonWorkStatus.Text == "End Work")
+            {
+                FormCourier.WorkStatus = false;
+                buttonWorkStatus.Text = "Start Work";
             }
         }
     }

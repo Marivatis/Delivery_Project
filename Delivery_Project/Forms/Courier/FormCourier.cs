@@ -31,6 +31,8 @@ namespace Delivery_Project.Forms.Courier
         public static TakeOrder? TakeOrder;
         public static FinishOrder? FinishOrder;
 
+        public static bool WorkStatus { get; set; } = false;
+
         public FormCourier(ref DeliveryCourier courier) : base()
         {
             InitializeComponent();
@@ -177,6 +179,12 @@ namespace Delivery_Project.Forms.Courier
         }
         private void buttonTakeOrder_TakeOrder_Click()
         {
+            if (!WorkStatus)
+            {
+                MessageBox.Show("Start work before taking order.");
+                return;
+            }
+
             if (_selectedOrder is null)
             {
                 MessageBox.Show("Select some order before.");

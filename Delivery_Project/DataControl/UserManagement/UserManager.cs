@@ -23,9 +23,9 @@ namespace Delivery_Project.DataControl.UserManagement
 {
     public class UserManager
     {
-        private ListDeliveryCustomers _deliveryCustomers;
-        private ListDeliveryCouriers _deliveryCouriers;
-        private ListDeliveryProvider _deliveryProviders;
+        public ListDeliveryCustomers _deliveryCustomers;
+        public ListDeliveryCouriers _deliveryCouriers;
+        public ListDeliveryProvider _deliveryProviders;
 
         public static GetPlaceHandler? QuerryGetDeliveryPlace;
 
@@ -64,7 +64,7 @@ namespace Delivery_Project.DataControl.UserManagement
         }
 
         // Validates new user login
-        private bool ValidateLogin(string login, ref string message)
+        public bool ValidateLogin(string login, ref string message)
         {
             if (!UserDataValidator.ValidateLogin(login, ref message))
                 return false;
@@ -79,10 +79,10 @@ namespace Delivery_Project.DataControl.UserManagement
         }
 
         // User registration functions
-        private bool RegisterCustomer(string login, string password, ref string message)
+        public bool RegisterCustomer(string login, string password, ref string message)
         {
             bool isValid = UserDataValidator.ValidateLogin(login, ref message) &&
-                           UserDataValidator.ValidatePassword(password, ref message);
+                            UserDataValidator.ValidatePassword(password, ref message);
 
             if (!isValid)
                 return false;
@@ -90,13 +90,13 @@ namespace Delivery_Project.DataControl.UserManagement
             if (IsLoginExist(login))
             {
                 message = "This login is already used.";
-                return false;
+                return false;   
             }
 
             _deliveryCustomers.Add(new DeliveryCustomer(login, password));
             return true;
         }
-        private bool RegisterCourier(DeliveryUser user, string cardNumber, ref string message)
+        public bool RegisterCourier(DeliveryUser user, string cardNumber, ref string message)
         {
             bool isValid = UserDataValidator.ValidateCardNumber(cardNumber, ref message);
 
@@ -107,7 +107,7 @@ namespace Delivery_Project.DataControl.UserManagement
 
             return DeleteAcount(user); 
         }
-        private bool RegisterProvider(DeliveryUser user, string secretWord, ref string message)
+        public bool RegisterProvider(DeliveryUser user, string secretWord, ref string message)
         {
             if (secretWord != "Please")
             {
@@ -140,7 +140,7 @@ namespace Delivery_Project.DataControl.UserManagement
         }
 
         // Tries to log in account using given login and password
-        private string LoginUser(string login, string password, out DeliveryUser? user)
+        public string LoginUser(string login, string password, out DeliveryUser? user)
         {
             string message = "Something went wrong";
 
@@ -165,21 +165,21 @@ namespace Delivery_Project.DataControl.UserManagement
             return message;
         }
         // Deletes given account
-        private bool DeleteAcount(DeliveryUser user)
+        public bool DeleteAcount(DeliveryUser user)
         {
             bool isDeleted = false;
 
             if (user is DeliveryCustomer customer)
             {
-                isDeleted = _deliveryCustomers?.Remove(customer) ?? false;
+                isDeleted = _deliveryCustomers.Remove(customer);
             }
             else if (user is DeliveryCourier courier)
             {
-                isDeleted = _deliveryCouriers?.Remove(courier) ?? false;
+                isDeleted = _deliveryCouriers.Remove(courier);
             }
             else if (user is DeliveryProvider provider)
             {
-                isDeleted = _deliveryProviders?.Remove(provider) ?? false;
+                isDeleted = _deliveryProviders.Remove(provider);
             }
 
             if (isDeleted)
@@ -188,6 +188,18 @@ namespace Delivery_Project.DataControl.UserManagement
             }
 
             return isDeleted;
+        }
+
+        // Clear all user manager data, even in files
+        public void Clear()
+        {
+            _deliveryCouriers.Clear();
+            _deliveryProviders.Clear();
+            _deliveryCustomers.Clear();
+
+            Write_List(_deliveryCouriers.List, "Couriers");
+            Write_List(_deliveryProviders.List, "Providers");
+            Write_List(_deliveryCustomers.List, "Customers");
         }
 
         // Writes specified user list to json depending on given user type
